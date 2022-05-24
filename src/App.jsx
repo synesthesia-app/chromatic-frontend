@@ -17,12 +17,16 @@ export default function App() {
 
     //play a middle 'C' for the duration of an 8th note
     synth.triggerAttackRelease('C4', '4n');
-    synth2.triggerAttackRelease('E4', '4n');
+    synth2.triggerAttackRelease('E5', '1n');
   };
 
   return (
     <>
       <button onClick={handleClick}>Play sound</button>
+      <input
+        type="color"
+        onChange={(event) => console.log(event.target.value)}
+      />
       <EyeDropper onChange={getColor} />
       <div
         style={{ height: '4rem', backgroundColor: 'yellow' }}
