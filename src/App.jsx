@@ -1,6 +1,9 @@
 import * as Tone from 'tone';
 import { EyeDropper } from 'react-eyedrop';
 import { useState } from 'react';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom'
+import Cloud from './views/Cloud'
+import ImgUpload from './views/ImgUpload'
 
 export default function App() {
   const [pickedColor, setPickedColor] = useState('#bada55');
@@ -9,6 +12,7 @@ export default function App() {
     setPickedColor(hex);
     console.log(rgb, hex);
   }
+
 
   const handleClick = () => {
     //create a synth and connect it to the main output (your speakers)
@@ -22,6 +26,9 @@ export default function App() {
 
   return (
     <>
+          <Cloud />
+          {/* <ImgUpload /> */}
+
       <button onClick={handleClick}>Play sound</button>
       <input
         type="color"
@@ -46,7 +53,10 @@ export default function App() {
           width: '100%',
           backgroundColor: `${pickedColor}`,
         }}
-      ></div>
+      >
+
+      </div>
+
     </>
   );
 }
