@@ -7,6 +7,7 @@ import ImgUpload from './views/ImgUpload';
 import hexToHSL from './utils/hex-to-hsl';
 import hslToNote from './utils/hsl-to-note';
 import { useTone } from './context/ToneProvider';
+import style from './App.css';
 
 export default function App() {
   const { userColor, setUserColor } = useTone();
@@ -15,12 +16,15 @@ export default function App() {
 
   function getColorMakeSound({ rgb, hex }) {
     const synth = new Tone.Synth().toDestination();
-    setUserColor((prev) => {
-      return [...prev, pickedColor];
-    });
     setPickedColor(hex);
-    const { h, l } = hexToHSL(hex);
+    const { h, s, l } = hexToHSL(hex);
     const { oct, note } = hslToNote(h, l);
+    setUserColor((prev) => {
+      return [
+        ...prev,
+        { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
+      ];
+    });
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
@@ -29,17 +33,17 @@ export default function App() {
   }, [userColor]);
 
   return (
-    <>
+    <section>
       <Cloud />
       {/* <ImgUpload /> */}
-
       {/* <button onClick={handleClick}>Play sound</button> */}
       <input
         type="color"
         onChange={(event) => console.log(event.target.value)}
       />
       <EyeDropper onChange={getColorMakeSound} once={false} />
-      <img src="./color-wheel.svg" alt="" width="600px" />
+      {/* <img src="./color-wheel.svg" alt="" width="600px" /> */}
+
       <div
         style={{ height: '4rem', backgroundColor: 'yellow' }}
         className="yellow"
@@ -59,6 +63,6 @@ export default function App() {
           backgroundColor: `${pickedColor}`,
         }}
       ></div>
-    </>
+    </section>
   );
 }

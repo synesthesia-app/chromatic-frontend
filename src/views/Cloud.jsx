@@ -12,7 +12,7 @@ export default function Cloud() {
       cloudName: `${process.env.CLOUD_NAME}`,
     },
   });
-  const defaultImg = cld.image('gucjxiz3r3qjkvmaq2br');
+  const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
   const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
   const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`;
@@ -29,11 +29,13 @@ export default function Cloud() {
     widget.open();
   };
 
+  defaultImg.resize(fill().width(250).height(250));
+
   return (
     <div>
-      <img src={myImage} />
+      {/* <img src={myImage} /> */}
       <button onClick={handleClick}>Upload Image</button>
-      <AdvancedImage cldImg={myImage} />
+      <AdvancedImage cldImg={defaultImg} />
     </div>
   );
 }
