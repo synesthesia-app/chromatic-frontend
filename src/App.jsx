@@ -19,8 +19,6 @@ export default function App() {
     const { oct, note } = hslToNote(h, l);
     console.log('oct, note :>> ', oct, note);
     synth.triggerAttackRelease(note + oct, '4n');
-
-    // console.log(rgb, hex);
   }
 
   const handleClick = () => {
@@ -44,7 +42,7 @@ export default function App() {
         onChange={(event) => console.log(event.target.value)}
       />
       <EyeDropper onChange={getColor} once={false} />
-      <img src="./color-wheel.png" alt="" width="600px" />
+      <img src="./color-wheel.svg" alt="" width="600px" />
       <div
         style={{ height: '4rem', backgroundColor: 'yellow' }}
         className="yellow"
