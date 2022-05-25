@@ -1,12 +1,11 @@
-export default function hslToNote(h, l= '50') {
-  let note = ''
-  let oct = ''
-  console.log('h', h);
+export default function hslToNote(h, l) {
+  let note = '';
+  let oct = '';
 
   // switch for note
   switch (true) {
     //RED
-    case h > 345 || h >= 0 && h < 16:
+    case h > 345 || (h >= 0 && h < 16):
       note = 'C';
       break;
     //ORANGE
@@ -57,10 +56,32 @@ export default function hslToNote(h, l= '50') {
       break;
   }
 
-  console.log('note', note);
+  switch (true) {
+    case l >= 0 && l <= 100 / 7:
+      oct = '1';
+      break;
+    case l > 100 / 7 && l <= 200 / 7:
+      oct = '2';
+      break;
+    case l > 200 / 7 && l <= 300 / 7:
+      oct = '3';
+      break;
+    case l > 300 / 7 && l <= 400 / 7:
+      oct = '4';
+      break;
+    case l > 400 / 7 && l <= 500 / 7:
+      oct = '5';
+      break;
+    case l > 500 / 7 && l <= 600 / 7:
+      oct = '6';
+      break;
+    case l > 600 / 7 && l <= 700 / 7:
+      oct = '7';
+      break;
+  }
 
-  const noteOct = note + '4';
-
-  return noteOct;
-
+  return {
+    note,
+    oct,
+  };
 }
