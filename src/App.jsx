@@ -1,47 +1,44 @@
 import * as Tone from 'tone';
 import { EyeDropper } from 'react-eyedrop';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import Cloud from './views/Cloud';
 import ImgUpload from './views/ImgUpload';
 import hexToHSL from './utils/hex-to-hsl';
 import hslToNote from './utils/hsl-to-note';
+import { useTone } from './context/ToneProvider';
 
 export default function App() {
+  const { userColor, setUserColor } = useTone();
+
   const [pickedColor, setPickedColor] = useState('#bada55');
 
-  function getColor({ rgb, hex }) {
+  function getColorMakeSound({ rgb, hex }) {
     const synth = new Tone.Synth().toDestination();
-
+    setUserColor((prev) => {
+      return [...prev, pickedColor];
+    });
     setPickedColor(hex);
     const { h, l } = hexToHSL(hex);
-    console.log('hl', h, l);
     const { oct, note } = hslToNote(h, l);
-    console.log('oct, note :>> ', oct, note);
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
-  const handleClick = () => {
-    //create a synth and connect it to the main output (your speakers)
-    const synth = new Tone.Synth().toDestination();
-    const synth2 = new Tone.Synth().toDestination();
-
-    //play a middle 'C' for the duration of an 8th note
-    synth.triggerAttackRelease('C4', '4n');
-    synth2.triggerAttackRelease('E5', '1n');
-  };
+  useEffect(() => {
+    console.log(`|| userColor >`, userColor);
+  }, [userColor]);
 
   return (
     <>
       <Cloud />
       {/* <ImgUpload /> */}
 
-      <button onClick={handleClick}>Play sound</button>
+      {/* <button onClick={handleClick}>Play sound</button> */}
       <input
         type="color"
         onChange={(event) => console.log(event.target.value)}
       />
-      <EyeDropper onChange={getColor} once={false} />
+      <EyeDropper onChange={getColorMakeSound} once={false} />
       <img src="./color-wheel.svg" alt="" width="600px" />
       <div
         style={{ height: '4rem', backgroundColor: 'yellow' }}
