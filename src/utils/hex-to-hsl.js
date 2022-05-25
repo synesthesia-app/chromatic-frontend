@@ -11,7 +11,7 @@ export default function hexToHSL(hexcode) {
     b = "0x" + hexcode[5] + hexcode[6];
   }
 
-  console.log('rgb', r, g, b)
+  // console.log('rgb', r, g, b)
 
 
    // Then to HSL
@@ -45,5 +45,6 @@ export default function hexToHSL(hexcode) {
   l = +(l * 100).toFixed(1);
 
   // console.log('hsl', h, s, l)
-  console.log("hsl(" + h + "," + s + "%," + l + "%)");
+  // console.log("hsl(" + h + "," + s + "%," + l + "%)");
+  return { h, s, l };
 }
