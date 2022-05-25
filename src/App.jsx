@@ -6,6 +6,7 @@ import Cloud from './views/Cloud';
 import ImgUpload from './views/ImgUpload';
 import hexToHSL from './utils/hex-to-hsl';
 import hslToNote from './utils/hsl-to-note';
+import Login from './views/Login';
 
 export default function App() {
   const [pickedColor, setPickedColor] = useState('#bada55');
@@ -33,6 +34,7 @@ export default function App() {
 
   return (
     <>
+      <Login />
       <Cloud />
       {/* <ImgUpload /> */}
 
