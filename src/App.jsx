@@ -1,18 +1,25 @@
 import * as Tone from 'tone';
 import { EyeDropper } from 'react-eyedrop';
 import { useState } from 'react';
-import { BrowserRouter as Router, NavLink } from 'react-router-dom'
-import Cloud from './views/Cloud'
-import ImgUpload from './views/ImgUpload'
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import Cloud from './views/Cloud';
+import ImgUpload from './views/ImgUpload';
+import hexToHSL from './utils/hex-to-hsl';
+import hslToNote from './utils/hsl-to-note';
 
 export default function App() {
   const [pickedColor, setPickedColor] = useState('#bada55');
 
   function getColor({ rgb, hex }) {
-    setPickedColor(hex);
-    console.log(rgb, hex);
-  }
+    const synth = new Tone.Synth().toDestination();
 
+    setPickedColor(hex);
+    const { h, l } = hexToHSL(hex);
+    console.log('hl', h, l);
+    const { oct, note } = hslToNote(h, l);
+    console.log('oct, note :>> ', oct, note);
+    synth.triggerAttackRelease(note + oct, '4n');
+  }
 
   const handleClick = () => {
     //create a synth and connect it to the main output (your speakers)
@@ -26,15 +33,16 @@ export default function App() {
 
   return (
     <>
-          <Cloud />
-          {/* <ImgUpload /> */}
+      <Cloud />
+      {/* <ImgUpload /> */}
 
       <button onClick={handleClick}>Play sound</button>
       <input
         type="color"
         onChange={(event) => console.log(event.target.value)}
       />
-      <EyeDropper onChange={getColor} />
+      <EyeDropper onChange={getColor} once={false} />
+      <img src="./color-wheel.svg" alt="" width="600px" />
       <div
         style={{ height: '4rem', backgroundColor: 'yellow' }}
         className="yellow"
@@ -53,10 +61,7 @@ export default function App() {
           width: '100%',
           backgroundColor: `${pickedColor}`,
         }}
-      >
-
-      </div>
-
+      ></div>
     </>
   );
 }
