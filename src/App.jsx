@@ -1,11 +1,12 @@
 import * as Tone from 'tone';
 import { EyeDropper } from 'react-eyedrop';
 import { useState } from 'react';
-import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+// import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import Cloud from './views/Cloud';
 import ImgUpload from './views/ImgUpload';
 import hexToHSL from './utils/hex-to-hsl';
 import hslToNote from './utils/hsl-to-note';
+import HexTest from './components/HexTest';
 
 export default function App() {
   const [pickedColor, setPickedColor] = useState('#bada55');
@@ -33,6 +34,7 @@ export default function App() {
 
   return (
     <>
+      <HexTest />
       <Cloud />
       {/* <ImgUpload /> */}
 
