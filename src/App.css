@@ -16,20 +16,42 @@ header {
   height: 150px;
   background-color: var(--dk-grey);
   top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .main {
-  margin-top: 150px;
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav {
   background-color: yellow;
   height: 100%;
   width: 300px;
+  top: 0;
 }
 
 .brand {
   width: 400px;
   height: 100%;
   background-color: red;
+}
+
+.main {
+  display: flex;
+  width: 700px;
+}
+
+.info {
+  width: 350px;
+}
+
+.infoSection {
+  width: inherit;
+  padding: 20px;
+  background-color: blue;
+  height: ;
 }

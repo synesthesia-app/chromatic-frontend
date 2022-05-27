@@ -20,7 +20,8 @@ export default function App() {
     cursorActive: 'crosshair',
     cursorInactive: 'default',
   });
-
+  const [currentColorNav, setCurrentColorNav] = useState(true);
+  const [savedColorNav, setSavedColorNav] = useState(false);
   const [pickedColor, setPickedColor] = useState('#bada55');
 
   // function getColorMakeSound({ rgb, hex }) {
@@ -37,6 +38,16 @@ export default function App() {
   //   synth.triggerAttackRelease(note + oct, '4n');
   // }
 
+  function handleCurrentClick() {
+    setCurrentColorNav(true);
+    setSavedColorNav(false);
+  }
+
+  function handleSavedClick() {
+    setCurrentColorNav(false);
+    setSavedColorNav(true);
+  }
+
   return (
     <>
       <header>
@@ -45,8 +56,8 @@ export default function App() {
           <div className={styles.logoType}></div>
         </div>
         <div className={styles.auth}>
-          <p>welcome *USER*</p>
           <nav>
+            <p>welcome *USER*</p>
             <Router>
               <Route>
                 <About />
@@ -68,22 +79,59 @@ export default function App() {
           >
             Eye Dropper
           </EyeDropper> */}
+          <Cloud />
+          {/* <ImgUpload /> */}
+          {/* <button onClick={handleClick}>Play sound</button> */}
+          <input
+            type="color"
+            onChange={(event) => console.log(event.target.value)}
+          />
         </div>
-        <Cloud />
-        {/* <ImgUpload /> */}
-        {/* <button onClick={handleClick}>Play sound</button> */}
-        <input
-          type="color"
-          onChange={(event) => console.log(event.target.value)}
-        />
+        <div className={styles.infoPanel}>
+          <div>
+            <Router>
+              <NavLink
+                to="#"
+                className={styles.currentColor}
+                onClick={handleCurrentClick}
+              >
+                Current Color
+              </NavLink>
+              <NavLink
+                to="#"
+                className={styles.savedColor}
+                onClick={handleSavedClick}
+              >
+                Saved Color
+              </NavLink>
+            </Router>
+          </div>
+          <div className={styles.infoSection}>
+            {currentColorNav ? (
+              <div className={styles.info}>
+                <div
+                  style={{
+                    height: '4rem',
+                    width: '100%',
+                    backgroundColor: `${pickedColor}`,
+                  }}
+                ></div>
+              </div>
+            ) : (
+              <div className={styles.info}>
+                <div
+                  style={{
+                    height: '4rem',
+                    width: '100%',
+                    backgroundColor: 'black',
+                  }}
+                ></div>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* <img src="./color-wheel.svg" alt="" width="600px" /> */}
-        <div
-          style={{
-            height: '4rem',
-            width: '100%',
-            backgroundColor: `${pickedColor}`,
-          }}
-        ></div>
       </section>
     </>
   );
