@@ -59,7 +59,7 @@ export default function App() {
           <nav>
             <p>welcome *USER*</p>
             <Router>
-              <Route>
+              <Route path="#">
                 <About />
               </Route>
 
