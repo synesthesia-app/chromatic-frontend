@@ -1,8 +1,24 @@
 import { useState } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { EyeDropper, useEyeDrop } from 'react-eyedrop';
+import styles from './Cloud.css';
 
 import { fill } from '@cloudinary/url-gen/actions/resize';
+
+function getColorMakeSound({ rgb, hex }) {
+  const synth = new Tone.Synth().toDestination();
+  setPickedColor(hex);
+  const { h, s, l } = hexToHSL(hex);
+  const { oct, note } = hslToNote(h, l);
+  setUserColor((prev) => {
+    return [
+      ...prev,
+      { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
+    ];
+  });
+  synth.triggerAttackRelease(note + oct, '4n');
+}
 
 export default function Cloud() {
   const unsigned = 'lfiwhmcn';
@@ -33,8 +49,19 @@ export default function Cloud() {
 
   return (
     <div>
+      <div className={styles.imageButtons}>
+        <button onClick={handleClick}>Upload Image</button>
+        <div className={styles.holdsEyeDropper}>
+          <EyeDropper
+            buttonClasses="eye-dropper"
+            onChange={getColorMakeSound}
+            once={false}
+          >
+            Eye Dropper
+          </EyeDropper>
+        </div>
+      </div>
       {/* <img src={myImage} /> */}
-      <button onClick={handleClick}>Upload Image</button>
       <AdvancedImage cldImg={defaultImg} />
     </div>
   );
