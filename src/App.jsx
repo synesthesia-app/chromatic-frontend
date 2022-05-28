@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, NavLink, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Link, NavLink, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Main from './views/Main/Main';
 import Login from './views/Login/Login';
