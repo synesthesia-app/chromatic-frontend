@@ -1,4 +1,28 @@
 .displayCurrentColor {
   width: 100%;
   height: 200px;
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  font-weight: 700;
+  color: var(--dk-grey);
+}
+
+.colorValues {
+  margin-top: 20px;
+  color: var(--brt-green);
+  font-size: 1.25rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.musicalNote {
+  margin-top: 20px;
+  color: var(--brt-green);
+  font-size: 1.25rem;
+  width: 100%;
 }

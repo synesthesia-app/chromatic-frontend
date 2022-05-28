@@ -13,7 +13,14 @@ import styles from './Cloud.css';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-  const { userColor, setUserColor, pickedColor, setPickedColor } = useTone();
+  const {
+    userColor,
+    setUserColor,
+    pickedColor,
+    setPickedColor,
+    colorObj,
+    setColorObj,
+  } = useTone();
 
   const unsigned = 'lfiwhmcn';
   const cld = new Cloudinary({
@@ -28,6 +35,14 @@ export default function Cloud() {
     setPickedColor(hex);
     const { h, s, l } = hexToHSL(hex);
     const { oct, note } = hslToNote(h, l);
+    setColorObj({
+      rgb,
+      hex,
+      hsl: `${h}`,
+      sat: `${s}`,
+      light: `${l}`,
+      tone: note + oct,
+    });
     setUserColor((prev) => {
       return [
         ...prev,
@@ -38,8 +53,8 @@ export default function Cloud() {
   }
 
   useEffect(() => {
-    console.log(`|| userColor >`, userColor);
-  }, [userColor]);
+    console.log(`|| colorObj >`, colorObj.hsl);
+  }, [colorObj]);
 
   const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
   const [myImage, setMyImage] = useState(defaultImg);

@@ -29,15 +29,21 @@ export default function Main() {
   }
 
   const isActive = {
-    backgroundColor: 'var(--brt-pink)',
-    border: '2px solid var(--brt-pink)',
+    color: 'var(--brt-green)',
+    borderTop: '2px solid var(--brt-green)',
+    borderLeft: '2px solid var(--brt-green)',
+    borderRight: '2px solid var(--brt-green)',
     borderBottom: 'none',
+    cursor: 'default',
   };
 
   const isNotActive = {
-    backgroundColor: 'var(--drk-grey)',
-    border: '2px solid var(--brt-pink)',
+    color: 'var(--brt-pink)',
+    borderTop: '2px solid var(--brt-pink)',
+    borderLeft: '2px solid var(--brt-pink)',
+    borderRight: '2px solid var(--brt-pink)',
     borderBottom: 'none',
+    cursor: 'pointer',
   };
 
   return (

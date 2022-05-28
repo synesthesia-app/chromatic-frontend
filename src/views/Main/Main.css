@@ -1,5 +1,5 @@
 .main {
-  margin-top: 200px;
+  margin-top: 150px;
   display: flex;
   justify-content: space-between;
   width: 700px;
@@ -12,13 +12,15 @@
 .infoSection {
   width: inherit;
   padding: 20px;
-  height: 350px;
-  background-color: var(--brt-pink);
+  min-height: 374px;
+  border: 2px solid var(--brt-green);
 }
 
 .holdsButtons {
+  padding-left: 10px;
   width: 100%;
   display: flex;
+  gap: 10px;
 }
 
 .buttonStyle {
