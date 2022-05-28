@@ -1,0 +1,17 @@
+
+.main {
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+
+.info {
+  width: 350px;
+}
+
+.infoSection {
+  width: inherit;
+  padding: 20px;
+  background-color: blue;
+}
