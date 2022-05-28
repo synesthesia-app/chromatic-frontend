@@ -2,25 +2,34 @@ import { useState } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
+import { useTone } from '../context/ToneProvider';
+import ImgUpload from '../views/ImgUpload';
+import hexToHSL from '../utils/hex-to-hsl';
+import hslToNote from '../utils/hsl-to-note';
+import * as Tone from 'tone';
+
 import styles from './Cloud.css';
 
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
-function getColorMakeSound({ rgb, hex }) {
-  const synth = new Tone.Synth().toDestination();
-  setPickedColor(hex);
-  const { h, s, l } = hexToHSL(hex);
-  const { oct, note } = hslToNote(h, l);
-  setUserColor((prev) => {
-    return [
-      ...prev,
-      { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
-    ];
-  });
-  synth.triggerAttackRelease(note + oct, '4n');
-}
-
 export default function Cloud() {
+  const { userColor, setUserColor } = useTone();
+
+  const [pickedColor, setPickedColor] = useState('#bada55');
+
+  function getColorMakeSound({ rgb, hex }) {
+    const synth = new Tone.Synth().toDestination();
+    setPickedColor(hex);
+    const { h, s, l } = hexToHSL(hex);
+    const { oct, note } = hslToNote(h, l);
+    setUserColor((prev) => {
+      return [
+        ...prev,
+        { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
+      ];
+    });
+    synth.triggerAttackRelease(note + oct, '4n');
+  }
   const unsigned = 'lfiwhmcn';
 
   const cld = new Cloudinary({
