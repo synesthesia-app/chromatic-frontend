@@ -1,9 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap');
 
-
+:root {
+  --dk-grey: #111111;
+  --brt-green: #4cf000;
+  --brt-blue: #00fbff;
+  --brt-pink: #f0b;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Reem Kufi', sans-serif;}
+  font-family: 'Reem Kufi', sans-serif;
+}
+
+html {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
