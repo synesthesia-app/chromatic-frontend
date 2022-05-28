@@ -1,4 +1,3 @@
-
 .main {
   margin-top: 200px;
   display: flex;
@@ -13,5 +12,18 @@
 .infoSection {
   width: inherit;
   padding: 20px;
-  background-color: blue;
+  height: 350px;
+  background-color: var(--brt-pink);
+}
+
+.holdsButtons {
+  width: 100%;
+  display: flex;
+}
+
+.buttonStyle {
+  cursor: pointer;
+  color: var(--brt-green);
+  padding: 3px 8px;
+  display: flex;
 }

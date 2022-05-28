@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
@@ -13,12 +13,18 @@ import styles from './Cloud.css';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-  const { userColor, setUserColor } = useTone();
+  const { userColor, setUserColor, pickedColor, setPickedColor } = useTone();
 
-  const [pickedColor, setPickedColor] = useState('#bada55');
+  const unsigned = 'lfiwhmcn';
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: `${process.env.CLOUD_NAME}`,
+    },
+  });
 
   function getColorMakeSound({ rgb, hex }) {
     const synth = new Tone.Synth().toDestination();
+
     setPickedColor(hex);
     const { h, s, l } = hexToHSL(hex);
     const { oct, note } = hslToNote(h, l);
@@ -30,13 +36,11 @@ export default function Cloud() {
     });
     synth.triggerAttackRelease(note + oct, '4n');
   }
-  const unsigned = 'lfiwhmcn';
 
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: `${process.env.CLOUD_NAME}`,
-    },
-  });
+  useEffect(() => {
+    console.log(`|| userColor >`, userColor);
+  }, [userColor]);
+
   const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
   const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
