@@ -58,6 +58,18 @@ export default function CurrentColor() {
     e.target.style.color = `#292929`;
   }
 
+  function handleMouseDown(e) {
+    e.preventDefault();
+    e.target.style.background = '#f0b';
+    e.target.style.color = `#292929`;
+  }
+
+  function handleMouseUp(e) {
+    e.preventDefault();
+    e.target.style.background = `${pickedColor}`;
+    e.target.style.color = `#292929`;
+  }
+
   return (
     <>
       <div
@@ -92,6 +104,8 @@ export default function CurrentColor() {
             style={{ backgroundColor: `${pickedColor}` }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
           >
             save swatch
           </div>

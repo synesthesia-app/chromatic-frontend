@@ -8,6 +8,7 @@ import { EyeDropper, useEyeDrop } from 'react-eyedrop';
 import { useState } from 'react';
 import CurrentColor from '../CurrentColor/CurrentColor';
 import SavedColors from '../SavedColors/SavedColors';
+import CurrentArray from '../../components/CurrentArray/CurrentArray';
 
 export default function Main() {
   const { userColor, setUserColor, currentColor, setCurrentColor } = useTone();
@@ -47,34 +48,37 @@ export default function Main() {
   };
 
   return (
-    <section className={styles.main}>
-      <div className={styles.interactImage}>
-        <Cloud />
-      </div>
+    <>
+      <section className={styles.main}>
+        <div className={styles.interactImage}>
+          <Cloud />
+        </div>
 
-      <div className={styles.infoPanel}>
-        <div className={styles.holdsButtons}>
-          <div
-            className={`${styles.ccButton} ${styles.buttonStyle}`}
-            style={currentColorNav ? isActive : isNotActive}
-            onClick={handleCurrentClick}
-          >
-            Current Color
+        <div className={styles.infoPanel}>
+          <div className={styles.holdsButtons}>
+            <div
+              className={`${styles.ccButton} ${styles.buttonStyle}`}
+              style={currentColorNav ? isActive : isNotActive}
+              onClick={handleCurrentClick}
+            >
+              Current Color
+            </div>
+            <div
+              className={`${styles.scButton} ${styles.buttonStyle}`}
+              style={currentColorNav ? isNotActive : isActive}
+              onClick={handleSavedClick}
+            >
+              Saved Colors
+            </div>
           </div>
-          <div
-            className={`${styles.scButton} ${styles.buttonStyle}`}
-            style={currentColorNav ? isNotActive : isActive}
-            onClick={handleSavedClick}
-          >
-            Saved Colors
+          <div className={styles.infoSection}>
+            <div className={styles.info}>
+              {currentColorNav ? <CurrentColor /> : <SavedColors />}
+            </div>
           </div>
         </div>
-        <div className={styles.infoSection}>
-          <div className={styles.info}>
-            {currentColorNav ? <CurrentColor /> : <SavedColors />}
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+      <CurrentArray />
+    </>
   );
 }
