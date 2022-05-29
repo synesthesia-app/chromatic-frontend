@@ -24,7 +24,7 @@ export default function CurrentColor() {
 
   useEffect(() => {
     console.log(`|| rgb >`, rgb.charAt(0));
-    let stringManip = rgb;
+    const stringManip = rgb;
     const newString1 = stringManip.replace('rgb(', '');
     const newString2 = newString1.replace(')', '');
 
@@ -46,6 +46,18 @@ export default function CurrentColor() {
   // rgb = rgb.replace(')', '');
   // console.log(`|| rgb >`, rgb);
 
+  function handleMouseEnter(e) {
+    e.preventDefault();
+    e.target.style.background = '#292929';
+    e.target.style.color = `${pickedColor}`;
+  }
+
+  function handleMouseLeave(e) {
+    e.preventDefault();
+    e.target.style.background = `${pickedColor}`;
+    e.target.style.color = `#292929`;
+  }
+
   return (
     <>
       <div
@@ -54,25 +66,43 @@ export default function CurrentColor() {
           backgroundColor: `${pickedColor}`,
         }}
       >
-        BIG FREAKING LONG COLOR NAME
+        <h1 className={styles.colorName}>BIG FREAKING LONG COLOR NAME</h1>
+        <div className={styles.colorValues}>
+          <div>
+            <p>HEX</p>
+            <p>{hex || 'xxxxxx'}</p>
+          </div>
+          <div>
+            <p>RGB</p>
+            <p>{rgb || '0, 0, 0'}</p>
+          </div>
+          <div>
+            <p>HSL</p>
+            <p>{makeHSLItem}</p>
+          </div>
+        </div>
+        <p className={styles.musicalNote}>
+          Musical Note: {colorObj.tone || '𝄞 𝄆'}
+        </p>
+        <div className={styles.colorButtons}>
+          <div
+            className={`${styles.buttonStyle} ${styles.saveColor}`}
+            style={{ backgroundColor: `${pickedColor}` }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            save swatch
+          </div>
+          <div
+            className={`${styles.buttonStyle} ${styles.addToList}`}
+            style={{ backgroundColor: `${pickedColor}` }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            add to list
+          </div>
+        </div>
       </div>
-      <div className={styles.colorValues}>
-        <div>
-          <p>HEX</p>
-          <p>{hex || 'xxxxxx'}</p>
-        </div>
-        <div>
-          <p>RGB</p>
-          <p>{rgb || '0, 0, 0'}</p>
-        </div>
-        <div>
-          <p>HSL</p>
-          <p>{makeHSLItem}</p>
-        </div>
-      </div>
-      <p className={styles.musicalNote}>
-        Musical Note: {colorObj.tone || '𝄞 𝄆'}
-      </p>
     </>
   );
 }

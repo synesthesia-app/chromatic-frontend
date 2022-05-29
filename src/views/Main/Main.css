@@ -25,7 +25,7 @@
 
 .buttonStyle {
   cursor: pointer;
-  color: var(--brt-green);
+  color: var(--dk-grey);
   padding: 3px 8px;
   display: flex;
 }
