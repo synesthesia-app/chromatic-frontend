@@ -73,7 +73,7 @@ export default function Cloud() {
     widget.open();
   };
 
-  defaultImg.resize(fill().width(250).height(250));
+  defaultImg.resize(fill().width(400).height(400));
 
   return (
     <div>

@@ -1,3 +1,11 @@
 .imageButtons {
   display: flex;
 }
+
+.eyeDropper {
+  background-color: red;
+}
+
+.eyeDrop {
+  background-color: red;
+}

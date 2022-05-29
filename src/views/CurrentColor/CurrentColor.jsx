@@ -66,24 +66,26 @@ export default function CurrentColor() {
           backgroundColor: `${pickedColor}`,
         }}
       >
-        <h1 className={styles.colorName}>BIG FREAKING LONG COLOR NAME</h1>
-        <div className={styles.colorValues}>
-          <div>
-            <p>HEX</p>
-            <p>{hex || 'xxxxxx'}</p>
+        <div>
+          <h1 className={styles.colorName}>BIG FREAKING LONG COLOR NAME</h1>
+          <div className={styles.colorValues}>
+            <div>
+              <p>HEX</p>
+              <p>{hex || 'xxxxxx'}</p>
+            </div>
+            <div>
+              <p>RGB</p>
+              <p>{rgb || '0, 0, 0'}</p>
+            </div>
+            <div>
+              <p>HSL</p>
+              <p>{makeHSLItem}</p>
+            </div>
           </div>
-          <div>
-            <p>RGB</p>
-            <p>{rgb || '0, 0, 0'}</p>
-          </div>
-          <div>
-            <p>HSL</p>
-            <p>{makeHSLItem}</p>
-          </div>
+          <p className={styles.musicalNote}>
+            Musical Note: {colorObj.tone || '𝄞 𝄆'}
+          </p>
         </div>
-        <p className={styles.musicalNote}>
-          Musical Note: {colorObj.tone || '𝄞 𝄆'}
-        </p>
         <div className={styles.colorButtons}>
           <div
             className={`${styles.buttonStyle} ${styles.saveColor}`}

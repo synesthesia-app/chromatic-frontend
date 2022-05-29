@@ -4,8 +4,7 @@
   font-size: 1.75rem;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
+  justify-content: space-between;
   text-align: left;
   padding: 20px;
   font-weight: 700;
@@ -38,20 +37,23 @@
 }
 
 .colorButtons {
-  margin-top: 20px;
+  margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 
 .buttonStyle {
+  width: 130px;
   cursor: pointer;
   color: var(--dk-grey);
   border: 2px solid var(--dk-grey);
-  /* color: var(--brt-green); */
   padding: 3px 8px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.25rem;
 }
