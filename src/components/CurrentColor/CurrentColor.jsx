@@ -7,15 +7,15 @@ export default function CurrentColor() {
     useTone();
   
   const [makeHSLItem, setMakeHSLItem] = useState();
-  const [hex, setHex] = useState('000000');
-  const [rgb, setRgb] = useState('0, 0, 0');
+  const [hex, setHex] = useState('bada55');
+  const [rgb, setRgb] = useState('186, 218, 85');
 
   useEffect(() => {
     console.log(`|| colorObj >`, colorObj);
     setHex(new String(colorObj.hex));
     setRgb(new String(colorObj.rgb));
     setMakeHSLItem(
-      `${colorObj.hsl || 0}°, ${colorObj.sat || 0}, ${colorObj.light || 0}`
+      `${colorObj.hsl || 74}°, ${colorObj.sat || 64}, ${colorObj.light || 59}`
     );
   }, [colorObj]);
 
@@ -34,42 +34,41 @@ export default function CurrentColor() {
     setRgb(newString2);
   }, [rgb]);
 
-  // {
-  //     "rgb": "rgb(0, 0, 255)",
-  //     "hex": "#0000ff",
-  //     "hsl": "240",
-  //     "sat": "100",
-  //     "light": "50",
-  //     "tone": "G#4"
-  // }
-
-  // let rgb = colorObj.rgb.replace('rgb(', '');
-  // rgb = rgb.replace(')', '');
-  // console.log(`|| rgb >`, rgb);
+  function textColor(e) {
+    if (userColor.textColor === undefined) return `${pickedColor}`;
+    return userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
+  }
 
   function handleMouseEnter(e) {
     e.preventDefault();
     e.target.style.background = '#292929';
-    e.target.style.color = `${pickedColor}`;
+    e.target.style.color = textColor(e);
+    console.log(`|| userColor.textColor >`, userColor.textColor);
   }
 
   function handleMouseLeave(e) {
     e.preventDefault();
     e.target.style.background = `${pickedColor}`;
-    e.target.style.color = `#292929`;
+    if (userColor.textColor === '#4cf000') {
+      return (e.target.style.color = '#4cf000');
+    } else {
+      return (e.target.style.color = '#292929');
+    }
   }
 
   function handleMouseDown(e) {
     e.preventDefault();
     e.target.style.background = '#f0b';
-    e.target.style.color = `#292929`;
+    e.target.style.color = `${userColor?.textColor}`;
   }
 
   function handleMouseUp(e) {
     e.preventDefault();
-    e.target.style.background = `${pickedColor}`;
-    e.target.style.color = `#292929`;
+    e.target.style.background = '#292929';
+    e.target.style.color = `${userColor?.textColor}`;
   }
+
+  console.log(`|| colorObj >`, colorObj);
 
   return (
     <>
@@ -81,7 +80,7 @@ export default function CurrentColor() {
         }}
       >
         <div>
-          <h1 className={styles.colorName}>Color Name</h1>
+          <h1 className={styles.colorName}>{userColor.name || 'Conifer'}</h1>
           <div
             className={styles.colorValues}
             style={{
@@ -113,7 +112,11 @@ export default function CurrentColor() {
         <div className={styles.colorButtons}>
           <div
             className={`${styles.buttonStyle} ${styles.saveColor}`}
-            style={{ backgroundColor: `${pickedColor}` }}
+            style={{
+              backgroundColor: `${pickedColor}`,
+              border: `2px solid ${userColor?.textColor}`,
+              color: `${userColor?.textColor}`,
+            }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
@@ -123,7 +126,11 @@ export default function CurrentColor() {
           </div>
           <div
             className={`${styles.buttonStyle} ${styles.addToList}`}
-            style={{ backgroundColor: `${pickedColor}` }}
+            style={{
+              backgroundColor: `${pickedColor}`,
+              border: `2px solid ${userColor?.textColor}`,
+              color: `${userColor?.textColor}`,
+            }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
