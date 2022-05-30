@@ -9,6 +9,7 @@ import { useState } from 'react';
 import CurrentColor from '../CurrentColor/CurrentColor';
 import SavedColors from '../SavedColors/SavedColors';
 import CurrentArray from '../../components/CurrentArray/CurrentArray';
+import ImageScroller from '../../components/ImageScroller/ImageScroller';
 
 export default function Main() {
   const { userColor, setUserColor, currentColor, setCurrentColor } = useTone();
@@ -79,6 +80,7 @@ export default function Main() {
         </div>
       </section>
       <CurrentArray />
+      <ImageScroller />
     </>
   );
 }

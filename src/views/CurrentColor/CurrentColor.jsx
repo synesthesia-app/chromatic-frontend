@@ -114,6 +114,8 @@ export default function CurrentColor() {
             style={{ backgroundColor: `${pickedColor}` }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
           >
             add to list
           </div>

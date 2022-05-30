@@ -1,0 +1,13 @@
+.imageScroller {
+  width: 100%;
+  height: 150px;
+  border: 2px solid var(--brt-green);
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+.showImages {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}

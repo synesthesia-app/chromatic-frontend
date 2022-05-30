@@ -16,7 +16,8 @@
   text-decoration: none;
 }
 
-html {
+html,
+body {
   width: 100%;
   display: flex;
   justify-content: center;
