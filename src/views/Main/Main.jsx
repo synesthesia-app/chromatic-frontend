@@ -47,6 +47,29 @@ export default function Main() {
     borderBottom: 'none',
     cursor: 'pointer',
   };
+  function handleMouseEnter(e) {
+    e.preventDefault();
+    e.target.style.background = '#f0b';
+    e.target.style.color = '#292929';
+  }
+
+  function handleMouseLeave(e) {
+    e.preventDefault();
+    e.target.style.background = '#292929';
+    e.target.style.color = '#f0b';
+  }
+
+  function handleMouseDown(e) {
+    e.preventDefault();
+    e.target.style.background = '#00fbff';
+    e.target.style.color = `#292929`;
+  }
+
+  function handleMouseUp(e) {
+    e.preventDefault();
+    e.target.style.background = '#292929';
+    e.target.style.color = `#f09`;
+  }
 
   return (
     <>
@@ -59,6 +82,10 @@ export default function Main() {
           <div className={styles.holdsButtons}>
             <div
               className={`${styles.ccButton} ${styles.buttonStyle}`}
+              onMouseEnter={!currentColorNav ? handleMouseEnter : ''}
+              onMouseLeave={!currentColorNav ? handleMouseLeave : ''}
+              onMouseDown={!currentColorNav ? handleMouseDown : ''}
+              onMouseUp={!currentColorNav ? handleMouseUp : ''}
               style={currentColorNav ? isActive : isNotActive}
               onClick={handleCurrentClick}
             >
@@ -66,6 +93,10 @@ export default function Main() {
             </div>
             <div
               className={`${styles.scButton} ${styles.buttonStyle}`}
+              onMouseEnter={currentColorNav ? handleMouseEnter : ''}
+              onMouseLeave={currentColorNav ? handleMouseLeave : ''}
+              onMouseDown={currentColorNav ? handleMouseDown : ''}
+              onMouseUp={currentColorNav ? handleMouseUp : ''}
               style={currentColorNav ? isNotActive : isActive}
               onClick={handleSavedClick}
             >

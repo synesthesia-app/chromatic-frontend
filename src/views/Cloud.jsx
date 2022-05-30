@@ -73,12 +73,14 @@ export default function Cloud() {
     widget.open();
   };
 
-  defaultImg.resize(fill().width(400).height(400));
+  defaultImg.resize(fill().width(380).height(380));
 
   return (
     <div>
       <div className={styles.imageButtons}>
-        <button onClick={handleClick}>Upload Image</button>
+        <div className={styles.uploadImgButton} onClick={handleClick}>
+          Upload Image
+        </div>
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"
