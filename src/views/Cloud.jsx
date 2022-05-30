@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
@@ -7,36 +7,73 @@ import ImgUpload from '../views/ImgUpload';
 import hexToHSL from '../utils/hex-to-hsl';
 import hslToNote from '../utils/hsl-to-note';
 import * as Tone from 'tone';
+import colorAPI from '../services/colorAPI';
 
 import styles from './Cloud.css';
 
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-  const { userColor, setUserColor } = useTone();
+  const {
+    userColor,
+    setUserColor,
+    pickedColor,
+    setPickedColor,
+    colorObj,
+    setColorObj,
+  } = useTone();
 
-  const [pickedColor, setPickedColor] = useState('#bada55');
-
-  function getColorMakeSound({ rgb, hex }) {
-    const synth = new Tone.Synth().toDestination();
-    setPickedColor(hex);
-    const { h, s, l } = hexToHSL(hex);
-    const { oct, note } = hslToNote(h, l);
-    setUserColor((prev) => {
-      return [
-        ...prev,
-        { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
-      ];
-    });
-    synth.triggerAttackRelease(note + oct, '4n');
-  }
   const unsigned = 'lfiwhmcn';
-
   const cld = new Cloudinary({
     cloud: {
       cloudName: `${process.env.CLOUD_NAME}`,
     },
   });
+
+  async function getColorMakeSound({ rgb, hex }) {
+    const synth = new Tone.Synth().toDestination();
+
+    setPickedColor(hex);
+    const { h, s, l } = hexToHSL(hex);
+    const { oct, note } = hslToNote(h, l);
+    setColorObj({
+      rgb,
+      hex,
+      hsl: `${h}`,
+      sat: `${s}`,
+      light: `${l}`,
+      tone: note + oct,
+    });
+
+    console.log('before colorAPI call');
+
+    const selectedColor = await colorAPI(hex);
+    console.log(
+      '🚀 ~ file: Cloud.jsx ~ line 51 ~ getColorMakeSound ~ selectedColor',
+      selectedColor
+    );
+
+    const textColor =
+      selectedColor.contrast.value === '#ffffff' ? '#4cf000' : '#292929';
+
+    setUserColor(() => {
+      return {
+        hsl: `${h}`,
+        sat: `${s}`,
+        light: `${l}`,
+        tone: note + oct,
+        name: selectedColor.name.value,
+        textColor,
+      };
+    });
+    console.log('trigger sound');
+    synth.triggerAttackRelease(note + oct, '4n');
+  }
+
+  useEffect(() => {
+    console.log(`|| userColor >`, userColor);
+  }, [userColor]);
+
   const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
   const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
@@ -54,12 +91,14 @@ export default function Cloud() {
     widget.open();
   };
 
-  defaultImg.resize(fill().width(250).height(250));
+  defaultImg.resize(fill().width(380).height(380));
 
   return (
     <div>
       <div className={styles.imageButtons}>
-        <button onClick={handleClick}>Upload Image</button>
+        <div className={styles.uploadImgButton} onClick={handleClick}>
+          Upload Image
+        </div>
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"

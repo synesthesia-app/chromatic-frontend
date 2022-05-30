@@ -1,9 +1,8 @@
-
 .main {
-  margin-top: 200px;
+  margin-top: 150px;
   display: flex;
   justify-content: space-between;
-  width: 700px;
+  width: 850px;
 }
 
 .info {
@@ -13,5 +12,20 @@
 .infoSection {
   width: inherit;
   padding: 20px;
-  background-color: blue;
+  min-height: 374px;
+  border: 2px solid var(--brt-green);
+}
+
+.holdsButtons {
+  padding-left: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.buttonStyle {
+  cursor: pointer;
+  color: var(--dk-grey);
+  padding: 3px 8px;
+  display: flex;
 }
