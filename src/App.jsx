@@ -22,7 +22,7 @@ export default function App() {
             <Main />
           </Route>
 
-          <Route path="/">{/* <Login /> */}</Route>
+          <Route path="/"><Login /></Route>
         </Switch>
       </Router>
       <Footer />
