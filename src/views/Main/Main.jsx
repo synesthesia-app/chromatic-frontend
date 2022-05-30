@@ -6,11 +6,12 @@ import * as Tone from 'tone';
 import { useTone } from '../../context/ToneProvider.jsx';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
 import { useState, useEffect } from 'react';
-import CurrentColor from '../CurrentColor/CurrentColor';
-import SavedColors from '../SavedColors/SavedColors';
+import CurrentColor from '../../components/CurrentColor/CurrentColor';
+import SavedColors from '../../components/SavedColors/SavedColors';
 import CurrentArray from '../../components/CurrentArray/CurrentArray';
 import ImageScroller from '../../components/ImageScroller/ImageScroller';
 import colorAPI from '../../services/colorAPI';
+import ColorPanel from '../../components/ColorPanel/ColorPanel.jsx';
 
 export default function Main() {
   const { userColor, setUserColor, currentColor, setCurrentColor } = useTone();
@@ -21,56 +22,56 @@ export default function Main() {
     cursorActive: 'crosshair',
     cursorInactive: 'default',
   });
-  const [currentColorNav, setCurrentColorNav] = useState(true);
+  // const [currentColorNav, setCurrentColorNav] = useState(true);
 
-  function handleCurrentClick() {
-    setCurrentColorNav(true);
-  }
+  // function handleCurrentClick() {
+  //   setCurrentColorNav(true);
+  // }
 
-  function handleSavedClick() {
-    setCurrentColorNav(false);
-  }
+  // function handleSavedClick() {
+  //   setCurrentColorNav(false);
+  // }
 
-  const isActive = {
-    color: 'var(--brt-green)',
-    borderTop: '2px solid var(--brt-green)',
-    borderLeft: '2px solid var(--brt-green)',
-    borderRight: '2px solid var(--brt-green)',
-    borderBottom: 'none',
-    cursor: 'default',
-  };
+  // const isActive = {
+  //   color: 'var(--brt-green)',
+  //   borderTop: '2px solid var(--brt-green)',
+  //   borderLeft: '2px solid var(--brt-green)',
+  //   borderRight: '2px solid var(--brt-green)',
+  //   borderBottom: 'none',
+  //   cursor: 'default',
+  // };
 
-  const isNotActive = {
-    color: 'var(--brt-pink)',
-    borderTop: '2px solid var(--brt-pink)',
-    borderLeft: '2px solid var(--brt-pink)',
-    borderRight: '2px solid var(--brt-pink)',
-    borderBottom: 'none',
-    cursor: 'pointer',
-  };
-  function handleMouseEnter(e) {
-    e.preventDefault();
-    e.target.style.background = '#f0b';
-    e.target.style.color = '#292929';
-  }
+  // const isNotActive = {
+  //   color: 'var(--brt-pink)',
+  //   borderTop: '2px solid var(--brt-pink)',
+  //   borderLeft: '2px solid var(--brt-pink)',
+  //   borderRight: '2px solid var(--brt-pink)',
+  //   borderBottom: 'none',
+  //   cursor: 'pointer',
+  // };
+  // function handleMouseEnter(e) {
+  //   e.preventDefault();
+  //   e.target.style.background = '#f0b';
+  //   e.target.style.color = '#292929';
+  // }
 
-  function handleMouseLeave(e) {
-    e.preventDefault();
-    e.target.style.background = '#292929';
-    e.target.style.color = '#f0b';
-  }
+  // function handleMouseLeave(e) {
+  //   e.preventDefault();
+  //   e.target.style.background = '#292929';
+  //   e.target.style.color = '#f0b';
+  // }
 
-  function handleMouseDown(e) {
-    e.preventDefault();
-    e.target.style.background = '#00fbff';
-    e.target.style.color = `#292929`;
-  }
+  // function handleMouseDown(e) {
+  //   e.preventDefault();
+  //   e.target.style.background = '#00fbff';
+  //   e.target.style.color = `#292929`;
+  // }
 
-  function handleMouseUp(e) {
-    e.preventDefault();
-    e.target.style.background = '#292929';
-    e.target.style.color = `#f09`;
-  }
+  // function handleMouseUp(e) {
+  //   e.preventDefault();
+  //   e.target.style.background = '#292929';
+  //   e.target.style.color = `#f09`;
+  // }
 
   return (
     <>
@@ -78,7 +79,7 @@ export default function Main() {
         <div className={styles.interactImage}>
           <Playground />
         </div>
-
+        <ColorPanel />
         {/* <div className={styles.infoPanel}>
           <div className={styles.holdsButtons}>
             <div

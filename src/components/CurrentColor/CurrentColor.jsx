@@ -5,6 +5,7 @@ import styles from './CurrentColor.css';
 export default function CurrentColor() {
   const { userColor, setUserColor, pickedColor, setPickedColor, colorObj } =
     useTone();
+  
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('000000');
   const [rgb, setRgb] = useState('0, 0, 0');
