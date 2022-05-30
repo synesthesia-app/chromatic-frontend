@@ -5,7 +5,7 @@ export default function Foot() {
     <section className={styles.footer}>
       <p>© MMXXII all rights reservered</p>
       <div className={styles.footerLogo}>
-        <p className={styles.footerName}>synesthesia</p>
+        <p className={styles.footerName}>chromatic</p>
         <img
           className={styles.footImage}
           src="../chromaticLogoOutlineGreenFat.png"
