@@ -1,5 +1,5 @@
 import React from 'react';
-import Cloud from '../Cloud';
+import Playground from '../../components/Playground/Playground.jsx';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import styles from './Main.css';
 import * as Tone from 'tone';
@@ -76,10 +76,10 @@ export default function Main() {
     <>
       <section className={styles.main}>
         <div className={styles.interactImage}>
-          <Cloud />
+          <Playground />
         </div>
 
-        <div className={styles.infoPanel}>
+        {/* <div className={styles.infoPanel}>
           <div className={styles.holdsButtons}>
             <div
               className={`${styles.ccButton} ${styles.buttonStyle}`}
@@ -109,7 +109,7 @@ export default function Main() {
               {currentColorNav ? <CurrentColor /> : <SavedColors />}
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
       <CurrentArray />
       <ImageScroller />
