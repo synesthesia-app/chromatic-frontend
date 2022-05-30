@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&display=swap');
 
-
+:root {
+  --dk-grey: #292929;
+  --brt-green: #4cf000;
+  --brt-blue: #00fbff;
+  --brt-pink: #f0b;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Reem Kufi', sans-serif;}
+  font-family: 'Reem Kufi', sans-serif;
+  text-decoration: none;
+}
+
+html,
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--dk-grey);
+}

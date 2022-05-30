@@ -4,9 +4,20 @@ const ToneContext = createContext();
 
 export const ToneProvider = ({ children }) => {
   const [userColor, setUserColor] = useState([]);
+  const [pickedColor, setPickedColor] = useState('#bada55');
+  const [colorObj, setColorObj] = useState({});
 
   return (
-    <ToneContext.Provider value={{ userColor, setUserColor }}>
+    <ToneContext.Provider
+      value={{
+        userColor,
+        setUserColor,
+        pickedColor,
+        setPickedColor,
+        colorObj,
+        setColorObj,
+      }}
+    >
       {children}
     </ToneContext.Provider>
   );

@@ -1,0 +1,60 @@
+.displayCurrentColor {
+  width: 100%;
+  height: 374px;
+  font-size: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: 20px;
+  font-weight: 700;
+  color: var(--dk-grey);
+}
+
+.colorValues {
+  margin-top: 10px;
+  color: var(--dk-grey);
+  font-size: 1.125rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.8fr repeat(2, 1fr);
+  text-align: left;
+  line-height: 1.125rem;
+}
+
+.colorName {
+  height: 131px;
+  margin-top: 10px;
+  line-height: 2.5rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dk-grey);
+}
+
+.musicalNote {
+  margin-top: 10px;
+  color: var(--dk-grey);
+  font-size: 1.25rem;
+  width: 100%;
+}
+
+.colorButtons {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.buttonStyle {
+  width: 130px;
+  cursor: pointer;
+  color: var(--dk-grey);
+  border: 2px solid var(--dk-grey);
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
