@@ -1,11 +1,4 @@
-.main {
-  margin-top: 150px;
-  display: flex;
-  justify-content: space-between;
-  width: 850px;
-}
-
-/* .info {
+.info {
   width: 350px;
 }
 
@@ -28,4 +21,4 @@
   color: var(--dk-grey);
   padding: 3px 8px;
   display: flex;
-} */
+}

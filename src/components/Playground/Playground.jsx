@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
-import { useTone } from '../context/ToneProvider';
-import ImgUpload from '../views/ImgUpload';
-import hexToHSL from '../utils/hex-to-hsl';
-import hslToNote from '../utils/hsl-to-note';
+import { useTone } from '../../context/ToneProvider';
+// import ImgUpload from './ImgUpload';
+import hexToHSL from '../../utils/hex-to-hsl';
+import hslToNote from '../../utils/hsl-to-note';
 import * as Tone from 'tone';
-import colorAPI from '../services/colorAPI';
+import colorAPI from '../../services/colorAPI';
 
-import styles from './Cloud.css';
+import styles from './Playground.css';
 
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
