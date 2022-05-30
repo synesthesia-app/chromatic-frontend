@@ -76,11 +76,17 @@ export default function CurrentColor() {
         className={styles.displayCurrentColor}
         style={{
           backgroundColor: `${pickedColor}`,
+          color: `${userColor?.textColor}`,
         }}
       >
         <div>
           <h1 className={styles.colorName}>Color Name</h1>
-          <div className={styles.colorValues}>
+          <div
+            className={styles.colorValues}
+            style={{
+              color: `${userColor?.textColor}`,
+            }}
+          >
             <div>
               <p>HEX</p>
               <p>{hex || 'xxxxxx'}</p>
@@ -94,7 +100,12 @@ export default function CurrentColor() {
               <p>{makeHSLItem}</p>
             </div>
           </div>
-          <p className={styles.musicalNote}>
+          <p
+            className={styles.musicalNote}
+            style={{
+              color: `${userColor?.textColor}`,
+            }}
+          >
             Musical Note: {colorObj.tone || '𝄞 𝄆'}
           </p>
         </div>

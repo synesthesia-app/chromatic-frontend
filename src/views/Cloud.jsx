@@ -7,6 +7,7 @@ import ImgUpload from '../views/ImgUpload';
 import hexToHSL from '../utils/hex-to-hsl';
 import hslToNote from '../utils/hsl-to-note';
 import * as Tone from 'tone';
+import colorAPI from '../services/colorAPI';
 
 import styles from './Cloud.css';
 
@@ -29,7 +30,7 @@ export default function Cloud() {
     },
   });
 
-  function getColorMakeSound({ rgb, hex }) {
+  async function getColorMakeSound({ rgb, hex }) {
     const synth = new Tone.Synth().toDestination();
 
     setPickedColor(hex);
@@ -43,18 +44,35 @@ export default function Cloud() {
       light: `${l}`,
       tone: note + oct,
     });
-    setUserColor((prev) => {
-      return [
-        ...prev,
-        { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
-      ];
+
+    console.log('before colorAPI call');
+
+    const selectedColor = await colorAPI(hex);
+    console.log(
+      '🚀 ~ file: Cloud.jsx ~ line 51 ~ getColorMakeSound ~ selectedColor',
+      selectedColor
+    );
+
+    const textColor =
+      selectedColor.contrast.value === '#ffffff' ? '#4cf000' : '#292929';
+
+    setUserColor(() => {
+      return {
+        hsl: `${h}`,
+        sat: `${s}`,
+        light: `${l}`,
+        tone: note + oct,
+        name: selectedColor.name.value,
+        textColor,
+      };
     });
+    console.log('trigger sound');
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
   useEffect(() => {
-    console.log(`|| colorObj >`, colorObj.hsl);
-  }, [colorObj]);
+    console.log(`|| userColor >`, userColor);
+  }, [userColor]);
 
   const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
   const [myImage, setMyImage] = useState(defaultImg);

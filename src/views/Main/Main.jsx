@@ -5,11 +5,12 @@ import styles from './Main.css';
 import * as Tone from 'tone';
 import { useTone } from '../../context/ToneProvider.jsx';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CurrentColor from '../CurrentColor/CurrentColor';
 import SavedColors from '../SavedColors/SavedColors';
 import CurrentArray from '../../components/CurrentArray/CurrentArray';
 import ImageScroller from '../../components/ImageScroller/ImageScroller';
+import colorAPI from '../../services/colorAPI';
 
 export default function Main() {
   const { userColor, setUserColor, currentColor, setCurrentColor } = useTone();
@@ -82,10 +83,10 @@ export default function Main() {
           <div className={styles.holdsButtons}>
             <div
               className={`${styles.ccButton} ${styles.buttonStyle}`}
-              onMouseEnter={!currentColorNav ? handleMouseEnter : ''}
-              onMouseLeave={!currentColorNav ? handleMouseLeave : ''}
-              onMouseDown={!currentColorNav ? handleMouseDown : ''}
-              onMouseUp={!currentColorNav ? handleMouseUp : ''}
+              onMouseEnter={!currentColorNav ? handleMouseEnter : () => {}}
+              onMouseLeave={!currentColorNav ? handleMouseLeave : () => {}}
+              onMouseDown={!currentColorNav ? handleMouseDown : () => {}}
+              onMouseUp={!currentColorNav ? handleMouseUp : () => {}}
               style={currentColorNav ? isActive : isNotActive}
               onClick={handleCurrentClick}
             >
@@ -93,10 +94,10 @@ export default function Main() {
             </div>
             <div
               className={`${styles.scButton} ${styles.buttonStyle}`}
-              onMouseEnter={currentColorNav ? handleMouseEnter : ''}
-              onMouseLeave={currentColorNav ? handleMouseLeave : ''}
-              onMouseDown={currentColorNav ? handleMouseDown : ''}
-              onMouseUp={currentColorNav ? handleMouseUp : ''}
+              onMouseEnter={currentColorNav ? handleMouseEnter : () => {}}
+              onMouseLeave={currentColorNav ? handleMouseLeave : () => {}}
+              onMouseDown={currentColorNav ? handleMouseDown : () => {}}
+              onMouseUp={currentColorNav ? handleMouseUp : () => {}}
               style={currentColorNav ? isNotActive : isActive}
               onClick={handleSavedClick}
             >
