@@ -1,62 +1,57 @@
 import * as Tone from 'tone';
-import { EyeDropper } from 'react-eyedrop';
-import { useState } from 'react';
+import { EyeDropper, useEyeDrop } from 'react-eyedrop';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import Cloud from './views/Cloud';
 import ImgUpload from './views/ImgUpload';
 import hexToHSL from './utils/hex-to-hsl';
 import hslToNote from './utils/hsl-to-note';
-import Login from './views/Login';
+import { useTone } from './context/ToneProvider';
+import styles from './App.css';
 
 export default function App() {
+  const { userColor, setUserColor } = useTone();
+
+  const [colors, pickColor, cancelPickColor] = useEyeDrop({
+    once: false,
+    pickRadius: 10,
+    cursorActive: 'crosshair',
+    cursorInactive: 'default',
+  });
+
   const [pickedColor, setPickedColor] = useState('#bada55');
 
-  function getColor({ rgb, hex }) {
+  function getColorMakeSound({ rgb, hex }) {
     const synth = new Tone.Synth().toDestination();
-
     setPickedColor(hex);
-    const { h, l } = hexToHSL(hex);
-    console.log('hl', h, l);
+    const { h, s, l } = hexToHSL(hex);
     const { oct, note } = hslToNote(h, l);
-    console.log('oct, note :>> ', oct, note);
+    setUserColor((prev) => {
+      return [
+        ...prev,
+        { hsl: `${h}`, sat: `${s}`, light: `${l}`, tone: note + oct },
+      ];
+    });
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
-  const handleClick = () => {
-    //create a synth and connect it to the main output (your speakers)
-    const synth = new Tone.Synth().toDestination();
-    const synth2 = new Tone.Synth().toDestination();
-
-    //play a middle 'C' for the duration of an 8th note
-    synth.triggerAttackRelease('C4', '4n');
-    synth2.triggerAttackRelease('E5', '1n');
-  };
-
   return (
-    <>
-      <Login />
+    <section>
       <Cloud />
       {/* <ImgUpload /> */}
-
-      <button onClick={handleClick}>Play sound</button>
+      {/* <button onClick={handleClick}>Play sound</button> */}
       <input
         type="color"
         onChange={(event) => console.log(event.target.value)}
       />
-      <EyeDropper onChange={getColor} once={false} />
-      <img src="./color-wheel.svg" alt="" width="600px" />
-      <div
-        style={{ height: '4rem', backgroundColor: 'yellow' }}
-        className="yellow"
+      <EyeDropper
+        buttonClasses="eye-dropper"
+        onChange={getColorMakeSound}
+        once={false}
       >
-        Yellow
-      </div>
-      <div style={{ height: '4rem', backgroundColor: 'blue' }} className="blue">
-        Blue
-      </div>
-      <div style={{ height: '4rem', backgroundColor: 'red' }} className="red">
-        Red
-      </div>
+        Eye Dropper
+      </EyeDropper>
+      {/* <img src="./color-wheel.svg" alt="" width="600px" /> */}
       <div
         style={{
           height: '4rem',
@@ -64,6 +59,6 @@ export default function App() {
           backgroundColor: `${pickedColor}`,
         }}
       ></div>
-    </>
+    </section>
   );
 }

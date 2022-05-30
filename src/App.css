@@ -1,0 +1,11 @@
+.backgroundImg {
+  width: 500px;
+  height: 500px;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.eye-dropper {
+  background-color: red;
+  width: 100px;
+}
