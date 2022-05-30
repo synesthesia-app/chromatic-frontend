@@ -79,7 +79,7 @@ export default function CurrentColor() {
         }}
       >
         <div>
-          <h1 className={styles.colorName}>BIG FREAKING LONG COLOR NAME</h1>
+          <h1 className={styles.colorName}>Color Name</h1>
           <div className={styles.colorValues}>
             <div>
               <p>HEX</p>
