@@ -7,7 +7,8 @@ export default function Login() {
 
   function handleClick() {
     location.replace(
-      'https://chromatic-backend.herokuapp.com/api/v1/github/login'
+      // 'https://chromatic-backend.herokuapp.com/api/v1/github/login'
+      'http://localhost:7890/api/v1/github/login'
     );
   }
 
