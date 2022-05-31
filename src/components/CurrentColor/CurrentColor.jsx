@@ -76,12 +76,7 @@ export default function CurrentColor() {
   }
 
   function handleSavePalette() {
-    setColorPalette((prev) => {
-      return {
-        ...prev,
-        userColor,
-      };
-    });
+    setColorPalette([...colorPalette, userColor]);
   }
 
   console.log(`|| colorObj >`, colorObj);
@@ -137,7 +132,6 @@ export default function CurrentColor() {
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
-            onClick={handleSavePalette}
           >
             save swatch
           </div>
@@ -152,6 +146,7 @@ export default function CurrentColor() {
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
+            onClick={handleSavePalette}
           >
             add to list
           </div>
