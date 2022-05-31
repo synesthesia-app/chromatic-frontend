@@ -81,84 +81,89 @@ export default function CurrentColor() {
     setColorPalette([...colorPalette, userColor]);
   }
 
-  console.log(`|| colorObj >`, colorObj);
+  // console.log(`|| colorObj >`, colorObj);
+  // console.log('colorPalette', colorPalette)
 
   return (
     <>
-      <div
-        className={styles.displayCurrentColor}
-        style={{
-          backgroundColor: `${pickedColor}`,
-          color: `${userColor?.textColor}`,
-        }}
-      >
-        <div>
-          <h1
-            className={styles.colorName}
-            style={{ borderBottom: `1px solid ${userColor.textColor}` }}
-          >
-            {userColor.name || 'Conifer'}
-          </h1>
-          <div
-            className={styles.colorValues}
-            style={{
-              color: `${userColor?.textColor}`,
-            }}
-          >
-            <div>
-              <p>HEX</p>
-              <p>{hex || 'xxxxxx'}</p>
+      {
+        userColor.name
+          ? <div
+          className={styles.displayCurrentColor}
+          style={{
+            backgroundColor: `${colorObj.hex}`,
+            color: `${userColor?.textColor}`,
+          }}
+        >
+          <div>
+            <h1
+              className={styles.colorName}
+              style={{ borderBottom: `1px solid ${userColor.textColor}` }}
+            >
+              {userColor.name}
+            </h1>
+            <div
+              className={styles.colorValues}
+              style={{
+                color: `${userColor?.textColor}`,
+              }}
+            >
+              <div>
+                <p>HEX</p>
+                <p>{hex || 'xxxxxx'}</p>
+              </div>
+              <div>
+                <p>RGB</p>
+                <p>{rgb || '0, 0, 0'}</p>
+              </div>
+              <div>
+                <p>HSL</p>
+                <p>{makeHSLItem}</p>
+              </div>
             </div>
-            <div>
-              <p>RGB</p>
-              <p>{rgb || '0, 0, 0'}</p>
+            <p
+              className={styles.musicalNote}
+              style={{
+                color: `${userColor?.textColor}`,
+              }}
+            >
+              Musical Note: {colorObj.tone || '𝄞 𝄆'}
+            </p>
+          </div>
+          <div className={styles.colorButtons}>
+            <div
+              className={`${styles.buttonStyle} ${styles.saveColor}`}
+              style={{
+                backgroundColor: `${pickedColor}`,
+                border: `2px solid ${userColor?.textColor}`,
+                color: `${userColor?.textColor}`,
+              }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+            >
+              save swatch
             </div>
-            <div>
-              <p>HSL</p>
-              <p>{makeHSLItem}</p>
+            <div
+              className={`${styles.buttonStyle} ${styles.addToList}`}
+              style={{
+                backgroundColor: `${pickedColor}`,
+                border: `2px solid ${userColor?.textColor}`,
+                color: `${userColor?.textColor}`,
+              }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onClick={handleSavePalette}
+            >
+              add to list
             </div>
           </div>
-          <p
-            className={styles.musicalNote}
-            style={{
-              color: `${userColor?.textColor}`,
-            }}
-          >
-            Musical Note: {colorObj.tone || '𝄞 𝄆'}
-          </p>
         </div>
-        <div className={styles.colorButtons}>
-          <div
-            className={`${styles.buttonStyle} ${styles.saveColor}`}
-            style={{
-              backgroundColor: `${pickedColor}`,
-              border: `2px solid ${userColor?.textColor}`,
-              color: `${userColor?.textColor}`,
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-          >
-            save swatch
-          </div>
-          <div
-            className={`${styles.buttonStyle} ${styles.addToList}`}
-            style={{
-              backgroundColor: `${pickedColor}`,
-              border: `2px solid ${userColor?.textColor}`,
-              color: `${userColor?.textColor}`,
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onClick={handleSavePalette}
-          >
-            add to list
-          </div>
-        </div>
-      </div>
+          : <h2 style={{ color: '#bada55'}}>Click a color with the eye dropper for more info</h2>
+      }
     </>
   );
 }

@@ -35,11 +35,12 @@ export default function Cloud() {
 
     setPickedColor(hex);
     const { h, s, l } = hexToHSL(hex);
-    const { oct, note } = hslToNote(h, l);
+    const { note, oct } = hslToNote(h, l);
+
     setColorObj({
       rgb,
       hex,
-      hsl: `${h}`,
+      hue: `${h}`,
       sat: `${s}`,
       light: `${l}`,
       tone: note + oct,
@@ -56,17 +57,19 @@ export default function Cloud() {
     const textColor =
       selectedColor.contrast.value === '#ffffff' ? '#4cf000' : '#292929';
 
-    setUserColor(() => {
-      return {
-        hsl: `${h}`,
-        sat: `${s}`,
-        light: `${l}`,
-        tone: note + oct,
-        name: selectedColor.name.value,
-        textColor,
-      };
+    setUserColor({
+      rgb,
+      hex,
+      hue: `${h}`,
+      sat: `${s}`,
+      light: `${l}`,
+      tone: note + oct,
+      name: selectedColor.name.value,
+      textColor,
     });
+
     console.log('trigger sound');
+
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
