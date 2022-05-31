@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useTone } from '../../context/ToneProvider';
+import { useColorNote } from '../../context/ColorNoteProvider';
 import styles from './CurrentColor.css';
 
 export default function CurrentColor() {
-  const { userColor, setUserColor, pickedColor, setPickedColor, colorObj } =
-    useTone();
-  
+  const {
+    userColor,
+    setUserColor,
+    colorPalette,
+    setColorPalette,
+    pickedColor,
+    setPickedColor,
+    colorObj,
+  } = useColorNote();
+
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
   const [rgb, setRgb] = useState('186, 218, 85');
@@ -64,8 +71,12 @@ export default function CurrentColor() {
 
   function handleMouseUp(e) {
     e.preventDefault();
-    e.target.style.background = '#292929';
+    e.target.style.background = `${pickedColor}`;
     e.target.style.color = `${userColor?.textColor}`;
+  }
+
+  function handleSavePalette() {
+    setColorPalette([...colorPalette, userColor]);
   }
 
   console.log(`|| colorObj >`, colorObj);
@@ -135,6 +146,7 @@ export default function CurrentColor() {
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
+            onClick={handleSavePalette}
           >
             add to list
           </div>
