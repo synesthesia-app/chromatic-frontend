@@ -43,6 +43,7 @@ export default function CurrentColor() {
 
   function textColor(e) {
     if (userColor.textColor === undefined) return `${pickedColor}`;
+    // return userColor.textColor === '#4cf000' ? '#4cf000' : `#292929`;
     return userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
   }
 
@@ -50,7 +51,6 @@ export default function CurrentColor() {
     e.preventDefault();
     e.target.style.background = '#292929';
     e.target.style.color = textColor(e);
-    console.log(`|| userColor.textColor >`, userColor.textColor);
   }
 
   function handleMouseLeave(e) {
@@ -71,8 +71,10 @@ export default function CurrentColor() {
 
   function handleMouseUp(e) {
     e.preventDefault();
-    e.target.style.background = `${pickedColor}`;
-    e.target.style.color = `${userColor?.textColor}`;
+    e.target.style.background = `#292929`;
+    e.target.style.color =
+      userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
+    // e.target.style.color = `${pickedColor}`;
   }
 
   function handleSavePalette() {
