@@ -43,6 +43,7 @@ export default function CurrentColor() {
 
   function textColor(e) {
     if (userColor.textColor === undefined) return `${pickedColor}`;
+    // return userColor.textColor === '#4cf000' ? '#4cf000' : `#292929`;
     return userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
   }
 
@@ -50,7 +51,6 @@ export default function CurrentColor() {
     e.preventDefault();
     e.target.style.background = '#292929';
     e.target.style.color = textColor(e);
-    console.log(`|| userColor.textColor >`, userColor.textColor);
   }
 
   function handleMouseLeave(e) {
@@ -66,13 +66,15 @@ export default function CurrentColor() {
   function handleMouseDown(e) {
     e.preventDefault();
     e.target.style.background = '#f0b';
-    e.target.style.color = `${userColor?.textColor}`;
+    e.target.style.color = `#292929`;
+    // e.target.style.color = `${userColor?.textColor}`;
   }
 
   function handleMouseUp(e) {
     e.preventDefault();
-    e.target.style.background = `${pickedColor}`;
-    e.target.style.color = `${userColor?.textColor}`;
+    e.target.style.background = `#292929`;
+    e.target.style.color =
+      userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
   }
 
   function handleSavePalette() {
@@ -91,7 +93,12 @@ export default function CurrentColor() {
         }}
       >
         <div>
-          <h1 className={styles.colorName}>{userColor.name || 'Conifer'}</h1>
+          <h1
+            className={styles.colorName}
+            style={{ borderBottom: `1px solid ${userColor.textColor}` }}
+          >
+            {userColor.name || 'Conifer'}
+          </h1>
           <div
             className={styles.colorValues}
             style={{

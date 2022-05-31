@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const ToneContext = createContext();
 
 export const ColorNoteProvider = ({ children }) => {
-  const [userColor, setUserColor] = useState([]);
+  const [userColor, setUserColor] = useState({});
   const [pickedColor, setPickedColor] = useState('#bada55');
   const [colorObj, setColorObj] = useState({});
   const [colorPalette, setColorPalette] = useState([]);
