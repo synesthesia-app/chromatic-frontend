@@ -5,12 +5,10 @@ import styles from './Login.css';
 export default function Login() {
   const history = useHistory();
 
-  async function handleClick() {
+  function handleClick() {
     location.replace(
-      // 'http://localhost:7890/api/v1/github/login'
       'https://chromatic-backend.herokuapp.com/api/v1/github/login'
     );
-    console.log('|data', data);
   }
 
   return (
