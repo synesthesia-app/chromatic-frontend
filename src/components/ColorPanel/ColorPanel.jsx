@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
 import { useState } from 'react';
-import { useTone } from '../../context/ToneProvider.jsx';
+import { useColorNote } from '../../context/ColorNoteProvider.jsx';
 import CurrentColor from '../CurrentColor/CurrentColor';
 import SavedColors from '../SavedColors/SavedColors';
 
 import styles from './ColorPanel.css';
 
 export default function ColorPanel() {
-  const { userColor, setUserColor, currentColor, setCurrentColor } = useTone();
+  const { userColor, setUserColor, currentColor, setCurrentColor } =
+    useColorNote();
 
   const [currentColorNav, setCurrentColorNav] = useState(true);
 
@@ -37,7 +38,6 @@ export default function ColorPanel() {
     setCurrentColorNav(false);
   }
 
-
   function handleMouseEnter(e) {
     e.preventDefault();
     e.target.style.background = '#f0b';
@@ -62,73 +62,40 @@ export default function ColorPanel() {
     e.target.style.color = `#f09`;
   }
 
-
-
   return (
     <div className={styles.infoPanel}>
       <div className={styles.holdsButtons}>
         {/* CURRENT COLOR BUTTON */}
-      <div
-        className={`${styles.ccButton} ${styles.buttonStyle}`}
-          onMouseEnter={
-            !currentColorNav
-              ? handleMouseEnter
-              : () => { }}
-          onMouseLeave={
-            !currentColorNav
-              ? handleMouseLeave
-              : () => { }}
-          onMouseDown={
-            !currentColorNav
-              ? handleMouseDown
-              : () => { }}
-          onMouseUp={
-            !currentColorNav
-              ? handleMouseUp
-              : () => { }}
-          style={currentColorNav
-            ? isActive
-            : isNotActive}
-        onClick={handleCurrentClick}
-      >
-        Current Color
-      </div>
+        <div
+          className={`${styles.ccButton} ${styles.buttonStyle}`}
+          onMouseEnter={!currentColorNav ? handleMouseEnter : () => {}}
+          onMouseLeave={!currentColorNav ? handleMouseLeave : () => {}}
+          onMouseDown={!currentColorNav ? handleMouseDown : () => {}}
+          onMouseUp={!currentColorNav ? handleMouseUp : () => {}}
+          style={currentColorNav ? isActive : isNotActive}
+          onClick={handleCurrentClick}
+        >
+          Current Color
+        </div>
 
         {/* SAVED COLORS BUTTON */}
-      <div
-        className={`${styles.scButton} ${styles.buttonStyle}`}
-          onMouseEnter={
-            currentColorNav
-              ? handleMouseEnter
-              : () => { }}
-          onMouseLeave={
-            currentColorNav
-              ? handleMouseLeave
-              : () => { }}
-          onMouseDown={
-            currentColorNav
-              ? handleMouseDown
-              : () => { }}
-          onMouseUp={
-            currentColorNav
-              ? handleMouseUp
-              : () => { }}
-          style={
-            currentColorNav
-              ? isNotActive
-              : isActive}
-        onClick={handleSavedClick}
-      >
-        Saved Colors
+        <div
+          className={`${styles.scButton} ${styles.buttonStyle}`}
+          onMouseEnter={currentColorNav ? handleMouseEnter : () => {}}
+          onMouseLeave={currentColorNav ? handleMouseLeave : () => {}}
+          onMouseDown={currentColorNav ? handleMouseDown : () => {}}
+          onMouseUp={currentColorNav ? handleMouseUp : () => {}}
+          style={currentColorNav ? isNotActive : isActive}
+          onClick={handleSavedClick}
+        >
+          Saved Colors
+        </div>
+      </div>
+      <div className={styles.infoSection}>
+        <div className={styles.info}>
+          {currentColorNav ? <CurrentColor /> : <SavedColors />}
+        </div>
       </div>
     </div>
-    <div className={styles.infoSection}>
-      <div className={styles.info}>
-          {currentColorNav
-            ? <CurrentColor />
-            : <SavedColors />}
-      </div>
-    </div>
-  </div>
-  )
+  );
 }

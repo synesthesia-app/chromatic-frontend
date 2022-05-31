@@ -6,7 +6,7 @@ import Playground from '../../components/Playground/Playground.jsx';
 import styles from './Main.css';
 
 export default function Main() {
-  // const { userColor, setUserColor, currentColor, setCurrentColor } = useTone();
+  // const { userColor, setUserColor, currentColor, setCurrentColor } = useColorNote();
 
   // const [colors, pickColor, cancelPickColor] = useEyeDrop({
   //   once: false,
