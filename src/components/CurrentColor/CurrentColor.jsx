@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useTone } from '../../context/ToneProvider';
+import { useColorNote } from '../../context/ColorNoteProvider';
 import styles from './CurrentColor.css';
 
 export default function CurrentColor() {
-  const { userColor, setUserColor, pickedColor, setPickedColor, colorObj } =
-    useTone();
-  
+  const {
+    userColor,
+    setUserColor,
+    colorPalette,
+    setColorPalette,
+    pickedColor,
+    setPickedColor,
+    colorObj,
+  } = useColorNote();
+
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
   const [rgb, setRgb] = useState('186, 218, 85');
@@ -68,6 +75,15 @@ export default function CurrentColor() {
     e.target.style.color = `${userColor?.textColor}`;
   }
 
+  function handleSavePalette() {
+    setColorPalette((prev) => {
+      return {
+        ...prev,
+        userColor,
+      };
+    });
+  }
+
   console.log(`|| colorObj >`, colorObj);
 
   return (
@@ -121,6 +137,7 @@ export default function CurrentColor() {
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
+            onClick={handleSavePalette}
           >
             save swatch
           </div>
