@@ -66,7 +66,8 @@ export default function CurrentColor() {
   function handleMouseDown(e) {
     e.preventDefault();
     e.target.style.background = '#f0b';
-    e.target.style.color = `${userColor?.textColor}`;
+    e.target.style.color = `#292929`;
+    // e.target.style.color = `${userColor?.textColor}`;
   }
 
   function handleMouseUp(e) {
@@ -74,7 +75,6 @@ export default function CurrentColor() {
     e.target.style.background = `#292929`;
     e.target.style.color =
       userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
-    // e.target.style.color = `${pickedColor}`;
   }
 
   function handleSavePalette() {
@@ -93,7 +93,12 @@ export default function CurrentColor() {
         }}
       >
         <div>
-          <h1 className={styles.colorName}>{userColor.name || 'Conifer'}</h1>
+          <h1
+            className={styles.colorName}
+            style={{ borderBottom: `1px solid ${userColor.textColor}` }}
+          >
+            {userColor.name || 'Conifer'}
+          </h1>
           <div
             className={styles.colorValues}
             style={{
