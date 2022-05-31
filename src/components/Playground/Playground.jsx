@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
-import { useTone } from '../../context/ToneProvider';
+import { useColorNote } from '../../context/ColorNoteProvider';
 // import ImgUpload from './ImgUpload';
 import hexToHSL from '../../utils/hex-to-hsl';
 import hslToNote from '../../utils/hsl-to-note';
@@ -21,7 +21,7 @@ export default function Cloud() {
     setPickedColor,
     colorObj,
     setColorObj,
-  } = useTone();
+  } = useColorNote();
 
   const unsigned = 'lfiwhmcn';
   const cld = new Cloudinary({
