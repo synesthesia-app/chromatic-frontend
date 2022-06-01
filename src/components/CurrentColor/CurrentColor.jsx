@@ -82,7 +82,6 @@ export default function CurrentColor() {
   }
 
   async function handleSaveSwatch() {
-    // console.log('userColor', userColor)
     const singleSwatch = {
       userId: userObj.id,
       name: userColor.name,
@@ -91,7 +90,7 @@ export default function CurrentColor() {
 
     console.log('singleSwatch', singleSwatch);
 
-    const resp = await createPalette(singleSwatch);
+    await createPalette(singleSwatch);
 
   }
 

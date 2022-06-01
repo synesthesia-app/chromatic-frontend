@@ -1,12 +1,17 @@
 import styles from './CurrentArray.css';
 import { useColorNote } from '../../context/ColorNoteProvider';
+import { useUser } from '../../context/UserProvider';
 import { useState } from 'react';
 import * as Tone from 'tone';
+import { createPalette } from '../../services/palettes';
+
 
 export default function CurrentArray() {
   const { colorPalette, setColorObj } = useColorNote();
+  const { userObj } = useUser();
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
+  const [paletteName, setPaletteName] = useState('');
 
   function handleSwatchClick(swatch) {
     setName(swatch.name);
@@ -15,13 +20,28 @@ export default function CurrentArray() {
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
 
+  async function handleSavePalette() {
+    const palette = {
+      userId: userObj.id,
+      name: paletteName,
+      swatchArr: colorPalette
+    };
+
+    console.log('colorPalette', colorPalette)
+    console.log('palette', palette)
+
+    await createPalette(palette);
+  }
+
   return (
     <>
       <section className={styles.arraySection}>
         <input
           className={styles.arrayInput}
           type="text"
-          placeholder="name your array"
+          placeholder="name your palette"
+          value={paletteName}
+          onChange={(e)=> setPaletteName(e.target.value)}
         />
         <div className={styles.displayArray}>
           <div className={styles.arrayContainer}>
@@ -48,7 +68,11 @@ export default function CurrentArray() {
               </h3>
             )}
           </div>
-          <div className={styles.saveArray}>save array</div>
+          <div
+            className={styles.saveArray}
+            onClick={handleSavePalette}
+          >
+            save palette</div>
         </section>
       </section>
     </>
