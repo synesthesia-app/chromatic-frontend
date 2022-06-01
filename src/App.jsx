@@ -15,8 +15,8 @@ import styles from './App.css';
 export default function App() {
   return (
     <>
-      <Header />
       <Router>
+      <Header />
         <Switch>
           <Route path="/main">
             <Main />
