@@ -2,7 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserProvider';
 import { useEffect } from 'react';
 
-import styles from './AuthButton.css';
+import styles from '../Header/Header.css';
 
 export default function AuthButton() {
     const { userObj, logout } = useUser();
