@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
 
   const value = useMemo(
     () => ({ userObj, setUserObj }),
-    [userObj.id, userObj.username]
+    [userObj?.id, userObj?.username]
   );
 
   const logout = useCallback(() => {
