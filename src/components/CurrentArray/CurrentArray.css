@@ -50,4 +50,18 @@
   width: 100%;
   height: 100%;
   background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.swatch {
+  width: 110px;
+  /* height: 50px; */
+}
+
+.nameAndButton {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
 }
