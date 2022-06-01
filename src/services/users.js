@@ -2,6 +2,7 @@ export const getCurrentUser = async () => {
   try {
     const res = await fetch(`${process.env.API_URL}/api/v1/github/me`, {
       credentials: 'include',
+      mode: 'cors',
     });
 
     console.log(`|| res >`, res);
