@@ -1,3 +1,20 @@
 .login {
   margin-top: 200px;
 }
+
+.loginButton {
+  font-weight: bold;
+  color: var(--dk-grey);
+  background-color: var(--brt-green);
+}
+
+
+.loginButton:hover {
+  color: var(--brt-green);
+  background-color: var(--dk-grey);
+}
+
+.loginButton:active {
+  color: var(--brt-green);
+  background-color: var(--brt-pink);
+}
