@@ -13,7 +13,7 @@ export const getCurrentUser = async () => {
 };
 
 export const signOut = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/v1/github/`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/github`, {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',
