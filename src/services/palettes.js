@@ -1,5 +1,7 @@
-export const getPalettes = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/v1/palettes`);
+export const getPalettesByUserId = async (id) => {
+  const res = await fetch(`${process.env.API_URL}/api/v1/palettes/user/${id}`, {
+    credentials: 'include',
+  });
   return res.json();
 };
 

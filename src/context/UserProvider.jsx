@@ -14,7 +14,6 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const currentUser = getCurrentUser();
 
-  // const [userObj, setUserObj] = useState({});
   const [userObj, setUserObj] = useState(
     currentUser ? { id: currentUser.id, username: currentUser.username } : {}
   );
