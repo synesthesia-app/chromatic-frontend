@@ -3,6 +3,7 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
 import { useColorNote } from '../../context/ColorNoteProvider';
+import { useUser } from '../../context/UserProvider';
 // import ImgUpload from './ImgUpload';
 import hexToHSL from '../../utils/hex-to-hsl';
 import hslToNote from '../../utils/hsl-to-note';
@@ -14,6 +15,7 @@ import styles from './Playground.css';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
+  const [uploadedImg, setUploadedImg] = useState('');
   const {
     userColor,
     setUserColor,
@@ -22,6 +24,7 @@ export default function Cloud() {
     colorObj,
     setColorObj,
   } = useColorNote();
+  const { userObj } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = new Cloudinary({
@@ -46,13 +49,7 @@ export default function Cloud() {
       tone: note + oct,
     });
 
-    console.log('before colorAPI call');
-
     const selectedColor = await colorAPI(hex);
-    console.log(
-      '🚀 ~ file: Cloud.jsx ~ line 51 ~ getColorMakeSound ~ selectedColor',
-      selectedColor
-    );
 
     const textColor =
       selectedColor.contrast.value === '#ffffff' ? '#4cf000' : '#292929';
@@ -68,16 +65,11 @@ export default function Cloud() {
       textColor,
     });
 
-    console.log('trigger sound');
-
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
-  useEffect(() => {
-    console.log(`|| userColor >`, userColor);
-  }, [userColor]);
-
   const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
+
   const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
   const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`;
@@ -86,13 +78,43 @@ export default function Cloud() {
       cloudName: `${process.env.CLOUD_NAME}`,
       uploadPreset: `${unsigned}`,
     },
-    (err, res) => {}
+    (err, res) => {
+      let imagePublicId = res.info?.files[0].uploadInfo.public_id;
+      console.log({ imagePublicId });
+      console.log({ res });
+      setUploadedImg(imagePublicId);
+    }
   );
 
   const handleClick = (e) => {
     e.preventDefault();
-    widget.open();
+    const cloudWidget = widget.open();
   };
+
+  useEffect(() => {
+    const uploadImgToDb = async () => {
+      console.log('uploading data');
+      const res = await fetch(
+        'https://chromatic-backend.herokuapp.com/api/v1/images',
+        {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          body: JSON.stringify({
+            imageName: uploadedImg,
+            userId: userObj.id,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const data = await res.json();
+      console.log(data);
+    };
+    uploadImgToDb();
+  }, [uploadedImg]);
 
   defaultImg.resize(fill().width(380).height(380));
 
@@ -112,7 +134,6 @@ export default function Cloud() {
           </EyeDropper>
         </div>
       </div>
-      {/* <img src={myImage} /> */}
       <AdvancedImage cldImg={defaultImg} />
     </div>
   );

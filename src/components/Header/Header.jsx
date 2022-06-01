@@ -15,10 +15,6 @@ export default function Header() {
   const { userObj, logout } = useUser();
   const history = useHistory();
 
-  useEffect(() => {
-    console.log(`|| userObj >`, userObj);
-  }, [userObj]);
-
   const handleLogout = async () => {
     await logout();
     history.push('/');
