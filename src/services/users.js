@@ -5,8 +5,6 @@ export const getCurrentUser = async () => {
       mode: 'cors',
     });
 
-    console.log(`|| res >`, res);
-
     return res.json();
   } catch (error) {
     return null;
