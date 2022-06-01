@@ -69,12 +69,16 @@
   "dependencies": {
     "@cloudinary/react": "^1.4.0",
     "@cloudinary/url-gen": "^1.8.0",
+    "@splidejs/react-splide": "^0.7.7",
+    "@splidejs/splide": "^4.0.6",
     "cloudinary": "^1.30.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-eyedrop": "^5.3.0",
     "react-google-login": "^5.2.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.3.3",
+    "styled-components": "^5.3.5",
     "tone": "^14.7.77"
   }
 }

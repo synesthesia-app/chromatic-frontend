@@ -1,8 +1,9 @@
+import { Carousel } from 'react-responsive-carousel';
+import styles from './ImageCarousel.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useEffect, useState } from 'react';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
 
-export default function Splider() {
+export default function ImageCarousel() {
   const [chars, setChars] = useState([]);
 
   useEffect(() => {
@@ -17,17 +18,15 @@ export default function Splider() {
 
   return (
     <div>
-      <Splide width="200px">
+      <Carousel width="400px">
         {chars.map((char) => {
           return (
-            <SplideSlide key={char.id}>
-              <div key={char.id}>
-                <img src={char.image} />
-              </div>
-            </SplideSlide>
+            <div key={char.id}>
+              <img src={char.image} />
+            </div>
           );
         })}
-      </Splide>
+      </Carousel>
     </div>
   );
 }
