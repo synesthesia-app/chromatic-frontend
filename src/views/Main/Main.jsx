@@ -7,15 +7,16 @@ import { useColorNote } from '../../context/ColorNoteProvider.jsx';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../services/users.js';
 import styles from './Main.css';
+import { useUser } from '../../context/UserProvider.jsx';
 
 export default function Main() {
-  const { userObj, setUserObj } = useColorNote();
+  const { userObj, setUserObj } = useUser();
 
   useEffect(() => {
     const fetchUserItems = async () => {
       const user = await getCurrentUser();
-
       console.log(`|| user >`, user);
+      setUserObj(user);
     };
 
     fetchUserItems();

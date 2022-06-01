@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 const ToneContext = createContext();
 
@@ -7,9 +13,6 @@ export const ColorNoteProvider = ({ children }) => {
   const [pickedColor, setPickedColor] = useState('#bada55');
   const [colorObj, setColorObj] = useState({});
   const [colorPalette, setColorPalette] = useState([]);
-  const [userObj, setUserObj] = useState({});
-
-  // ('mockUser', 'mock@email.com'), ('BobBob', 'bob@email.com');
 
   return (
     <ToneContext.Provider
@@ -22,8 +25,6 @@ export const ColorNoteProvider = ({ children }) => {
         setColorObj,
         colorPalette,
         setColorPalette,
-        userObj,
-        setUserObj,
       }}
     >
       {children}
