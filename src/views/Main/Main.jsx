@@ -3,17 +3,24 @@ import ColorPanel from '../../components/ColorPanel/ColorPanel.jsx';
 import CurrentArray from '../../components/CurrentArray/CurrentArray';
 import ImageScroller from '../../components/ImageScroller/ImageScroller';
 import Playground from '../../components/Playground/Playground.jsx';
+import { useColorNote } from '../../context/ColorNoteProvider.jsx';
+import { useEffect } from 'react';
+import { getCurrentUser } from '../../services/users.js';
 import styles from './Main.css';
+import { useUser } from '../../context/UserProvider.jsx';
 
 export default function Main() {
-  // const { userColor, setUserColor, currentColor, setCurrentColor } = useColorNote();
+  const { userObj, setUserObj } = useUser();
 
-  // const [colors, pickColor, cancelPickColor] = useEyeDrop({
-  //   once: false,
-  //   pickRadius: 10,
-  //   cursorActive: 'crosshair',
-  //   cursorInactive: 'default',
-  // });
+  useEffect(() => {
+    const fetchUserItems = async () => {
+      const user = await getCurrentUser();
+      console.log(`|| user >`, user);
+      setUserObj(user);
+    };
+
+    fetchUserItems();
+  }, []);
 
   return (
     <>
