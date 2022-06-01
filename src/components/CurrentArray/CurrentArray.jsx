@@ -24,7 +24,7 @@ export default function CurrentArray() {
           placeholder="name your array"
         />
         <div className={styles.displayArray}>
-          <div className={styles.showArray}>
+          <div className={styles.arrayContainer}>
             {colorPalette.map((swatch, i) => {
               return (
                 <div
