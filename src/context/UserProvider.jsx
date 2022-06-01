@@ -4,20 +4,41 @@ import {
   useContext,
   useEffect,
   useState,
+  useMemo,
 } from 'react';
 import { signOut } from '../services/users';
+import { getCurrentUser } from '../services/users';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [userObj, setUserObj] = useState({});
+  const currentUser = getCurrentUser();
+
+  // const [userObj, setUserObj] = useState({});
+  const [userObj, setUserObj] = useState(
+    currentUser ? { id: currentUser.id, username: currentUser.username } : {}
+  );
+
+  const value = useMemo(
+    () => ({ userObj, setUserObj }),
+    [userObj.id, userObj.username]
+  );
 
   const logout = useCallback(() => {
     signOut().then(() => setUserObj({}));
   });
 
+  useEffect(() => {
+    if (currentUser) setUserObj(currentUser);
+  }, []);
+
+  // const logout = async () => {
+  //   await signOut().then(() => setUserObj({}));
+  // };
+
   return (
     <UserContext.Provider
+      // value={value}
       value={{
         userObj,
         setUserObj,
