@@ -4,10 +4,7 @@ import { useState } from 'react';
 import * as Tone from 'tone';
 
 export default function CurrentArray() {
-  const {
-    colorPalette,
-    setColorObj
-  } = useColorNote();
+  const { colorPalette, setColorObj } = useColorNote();
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
 
@@ -17,7 +14,6 @@ export default function CurrentArray() {
     const synth3 = new Tone.Synth().toDestination();
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
-
 
   return (
     <>
@@ -29,32 +25,30 @@ export default function CurrentArray() {
         />
         <div className={styles.displayArray}>
           <div className={styles.showArray}>
-            {
-              colorPalette.map((swatch, i) => {
-                return (
-                  <div
-                    key={swatch.name + i}
-                    className={styles.swatch}
-                    style={{ backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)` }}
-                    title={`${swatch.name}`}
-                    onClick={() => handleSwatchClick(swatch)}
-                  >
-                  </div>
-                )
-              })
-            }
+            {colorPalette.map((swatch, i) => {
+              return (
+                <div
+                  key={swatch.name + i}
+                  className={styles.swatch}
+                  style={{
+                    backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
+                  }}
+                  title={`${swatch.name}`}
+                  onClick={() => handleSwatchClick(swatch)}
+                ></div>
+              );
+            })}
           </div>
         </div>
         <section className={styles.nameAndButton}>
           <div>
-            {name &&
-              <h3>{name} - {tone}</h3> 
-            }
+            {name && (
+              <h3>
+                {name} - {tone}
+              </h3>
+            )}
           </div>
-          <div
-            className={styles.saveArray}
-          >save array
-          </div>
+          <div className={styles.saveArray}>save array</div>
         </section>
       </section>
     </>
