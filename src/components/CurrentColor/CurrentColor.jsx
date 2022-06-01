@@ -18,7 +18,6 @@ export default function CurrentColor() {
   const [rgb, setRgb] = useState('186, 218, 85');
 
   useEffect(() => {
-    console.log(`|| colorObj >`, colorObj);
     setHex(new String(colorObj.hex));
     setRgb(new String(colorObj.rgb));
     setMakeHSLItem(
@@ -31,12 +30,9 @@ export default function CurrentColor() {
   }, [hex]);
 
   useEffect(() => {
-    console.log(`|| rgb >`, rgb.charAt(0));
     const stringManip = rgb;
     const newString1 = stringManip.replace('rgb(', '');
     const newString2 = newString1.replace(')', '');
-
-    console.log(`|| newString2 >`, newString2);
 
     setRgb(newString2);
   }, [rgb]);
@@ -81,14 +77,10 @@ export default function CurrentColor() {
     setColorPalette([...colorPalette, userColor]);
   }
 
-  // console.log(`|| colorObj >`, colorObj);
-  // console.log('colorPalette', colorPalette)
-
   return (
     <>
-      {
-        userColor.name
-          ? <div
+      {userColor.name ? (
+        <div
           className={styles.displayCurrentColor}
           style={{
             backgroundColor: `${colorObj.hex}`,
@@ -162,8 +154,11 @@ export default function CurrentColor() {
             </div>
           </div>
         </div>
-          : <h2 style={{ color: '#bada55'}}>Click a color with the eye dropper for more info</h2>
-      }
+      ) : (
+        <h2 style={{ color: '#bada55' }}>
+          Click a color with the eye dropper for more info
+        </h2>
+      )}
     </>
   );
 }
