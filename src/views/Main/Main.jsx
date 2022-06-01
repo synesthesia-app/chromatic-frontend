@@ -10,17 +10,17 @@ import styles from './Main.css';
 import { useUser } from '../../context/UserProvider.jsx';
 
 export default function Main() {
-  const { userObj, setUserObj } = useUser();
+  // const { userObj, setUserObj } = useUser();
 
-  useEffect(() => {
-    const fetchUserItems = async () => {
-      const user = await getCurrentUser();
-      console.log(`|| user >`, user);
-      setUserObj(user);
-    };
+  // useEffect(() => {
+  //   const fetchUserItems = async () => {
+  //     const user = await getCurrentUser();
+  //     console.log(`|| user >`, user);
+  //     setUserObj(user);
+  //   };
 
-    fetchUserItems();
-  }, []);
+  //   fetchUserItems();
+  // }, []);
 
   return (
     <>

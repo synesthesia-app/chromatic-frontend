@@ -6,45 +6,48 @@ import {
   useState,
   useMemo,
 } from 'react';
-import { signOut } from '../services/users';
-import { getCurrentUser } from '../services/users';
+
+// import { signOut, signIn, getCurrentUser } from '../services/users';
+import { signOut, getCurrentUser } from '../services/users';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const currentUser = getCurrentUser();
+  // const [userObj, setUserObj] = useState(
+  //   currentUser ? { id: currentUser.id, username: currentUser.username } : {}
+  // );
+  const [userObj, setUserObj] = useState({})
 
-  // const [userObj, setUserObj] = useState({});
-  const [userObj, setUserObj] = useState(
-    currentUser ? { id: currentUser.id, username: currentUser.username } : {}
-  );
-
-  const value = useMemo(
-    () => ({ userObj, setUserObj }),
-    [userObj.id, userObj.username]
-  );
+  // const login = async (credentials) => {
+  //   try {
+  //     const user = await signIn(credentials);
+  //     setUserObj(user);
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
 
   const logout = useCallback(() => {
     signOut().then(() => setUserObj({}));
-  });
-
-  useEffect(() => {
-    if (currentUser) setUserObj(currentUser);
   }, []);
 
-  // const logout = async () => {
-  //   await signOut().then(() => setUserObj({}));
-  // };
+  useEffect(() => {
+    getCurrentUser()
+      .then(setUserObj)
+      // .finally(() => setLoading(false));
+  }, []);
+
+  const state = useMemo(
+    () => ({ userObj, logout }),
+    [userObj, logout]
+  );
+  // const state = useMemo(
+  //   () => ({ userObj, logout, login }),
+  //   [userObj, logout, login]
+  // );
 
   return (
-    <UserContext.Provider
-      // value={value}
-      value={{
-        userObj,
-        setUserObj,
-        logout,
-      }}
-    >
+    <UserContext.Provider value={{ userObj, logout, state }}>
       {children}
     </UserContext.Provider>
   );

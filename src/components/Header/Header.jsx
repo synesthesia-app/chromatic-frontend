@@ -36,7 +36,7 @@ export default function Header() {
       </div>
       <div className={styles.auth}>
         <p className={styles.welcome}>
-          {userObj.username ? `welcome ${userObj.username}` : 'Please sign in'}
+          {userObj?.username ? `welcome ${userObj.username}` : 'Please sign in'}
         </p>
         <div className={styles.routes}>
           <Router>
