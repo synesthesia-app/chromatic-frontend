@@ -1,0 +1,145 @@
+.aboutContainer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeAbout 1s ease-out;
+}
+
+.aboutTitle {
+    /* font-family: var(--font-secondary); */
+    font-size: clamp(54px, 5vw, 96px);
+    margin: 6vh 0 4vh 0;
+    /* size: 4rem; */
+    color: var(--brt-green);
+    /* font-style: italic; */
+}
+
+.aboutBioContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 900px;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-around;
+    gap: 8vw;
+}
+
+.aboutBio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    gap: 2vw;
+    /* margin: 5vw;
+    margin-top: 2vw; */
+    /* font-weight: 300; */
+}
+
+.aboutBio h3 {
+    /* font-family: var(--font-primary); */
+    font-size: clamp(10px, 1vw, 20px);
+    text-transform: uppercase;
+}
+
+.aboutBio img {
+    width: 15vw;
+    border: 0.3vw solid black;
+}
+
+.aboutBioLinks {
+    display: flex;
+    flex-direction: column;
+    /* font-family: var(--font-primary); */
+    font-size: clamp(8px, 1vw, 15px);
+    align-items: center;
+}
+
+.aboutBioLink {
+    text-transform: uppercase;
+    /* font-family: var(--font-primary); */
+    font-size: clamp(8px, 1vw, 15px);
+}
+
+.sam {
+    color: crimson;
+    border: 2px solid crimson;
+}
+.sam:hover {
+    color: var(--dk-grey);
+    background-color: crimson;
+}
+.sam:active {
+    color: crimson;
+    background-color: var(--brt-green);
+}
+
+.arma {
+    color: orange;
+    border: 2px solid orange;
+}
+.arma:hover {
+    color: var(--dk-grey);
+    background-color: orange;
+}
+.arma:active {
+    color: orange;
+    background-color: cyan;
+}
+.phil {
+    color: yellow;
+    border: 2px solid yellow;
+}
+.phil:hover {
+    color: var(--dk-grey);
+    background-color: yellow;
+}
+.phil:active {
+    color: yellow;
+    background-color: purple;
+}
+.clayton {
+    color: chartreuse;
+    border: 2px solid chartreuse;
+}
+.clayton:hover {
+    color: var(--dk-grey);
+    background-color: chartreuse;
+}
+.clayton:active {
+    color: chartreuse;
+    background-color:  crimson;
+}
+.alex {
+    color: cyan;
+    border: 2px solid cyan;
+}
+.alex:hover {
+    color: var(--dk-grey);
+    background-color: cyan;
+}
+.alex:active {
+    color: cyan;
+    background-color: orange;
+}
+
+
+.aboutBio p {
+    /* font-family: var(--font-secondary); */
+    font-size: clamp(15px, 2vw, 25px);
+}
+
+@keyframes fadeAbout {
+    0%,
+    40% {
+      opacity: 0;
+      transform: translate3d(0, 25px, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+}
