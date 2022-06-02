@@ -12,12 +12,12 @@ import { getCurrentUser } from '../services/users';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [imagesContainer, setImagesContainer] = useState([]);
   const currentUser = getCurrentUser();
 
   const [userObj, setUserObj] = useState(
     currentUser ? { id: currentUser.id, username: currentUser.username } : {}
   );
-  const [imagesContainer, setImagesContainer] = useState([]);
 
   const value = useMemo(
     () => ({ userObj, setUserObj }),
