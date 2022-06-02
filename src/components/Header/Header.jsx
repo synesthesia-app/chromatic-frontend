@@ -38,7 +38,7 @@ export default function Header() {
           {userObj?.username ? `welcome ${userObj.username}` : 'Please sign in'}
         </p>
         <div className={styles.routes}>
-          <Link className={styles.navLink} to="#">
+          <Link to="/about">
             About
           </Link>
           <AuthButton />

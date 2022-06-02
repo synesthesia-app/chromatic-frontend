@@ -10,6 +10,8 @@ import Header from './components/Header/Header';
 import Main from './views/Main/Main';
 import Footer from './components/Foot/Foot';
 import Login from './views/Login/Login';
+import About from './components/About/About';
+
 import styles from './App.css';
 
 export default function App() {
@@ -18,12 +20,20 @@ export default function App() {
       <Router>
       <Header />
         <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+
           <Route path="/main">
             <Main />
           </Route>
 
+          <Route path="/about">
+            <About />
+          </Route>
+
           <Route path="/">
-            <Login />
+            <Redirect to="/main" />
           </Route>
         </Switch>
       </Router>
