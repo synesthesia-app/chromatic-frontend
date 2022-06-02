@@ -43,6 +43,8 @@ export const UserProvider = ({ children }) => {
         userObj,
         setUserObj,
         logout,
+        imagesContainer,
+        setImagesContainer,
       }}
     >
       {children}

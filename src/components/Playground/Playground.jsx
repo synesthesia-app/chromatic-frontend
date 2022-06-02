@@ -25,7 +25,7 @@ export default function Cloud() {
     colorObj,
     setColorObj,
   } = useColorNote();
-  const { userObj } = useUser();
+  const { userObj, imagesContainer, setImagesContainer } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = new Cloudinary({
@@ -89,7 +89,7 @@ export default function Cloud() {
   );
 
   const handleUpload = async (publicId) => {
-    await uploadImage(publicId, userObj.id);
+    publicId && (await uploadImage(publicId, userObj.id));
     const images = await getImages(userObj.id);
     console.log(images);
     setImagesContainer(images);
@@ -100,11 +100,13 @@ export default function Cloud() {
     const cloudWidget = widget.open();
   };
 
-  // useEffect(() => {
-  //   console.log('running upload image useEffect');
-  //   uploadImgToDb(uploadedImg);
-  //   updateImagesContainer();
-  // }, [uploadedImg]);
+  useEffect(() => {
+    console.log(`|| imagesContainer >`, imagesContainer);
+  }, [imagesContainer]);
+
+  useEffect(() => {
+    handleUpload();
+  }, []);
 
   defaultImg.resize(fill().width(380).height(380));
 
