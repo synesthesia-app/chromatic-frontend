@@ -90,8 +90,8 @@ export default function Cloud() {
 
   const handleUpload = async (publicId) => {
     publicId && (await uploadImage(publicId, userObj.id));
-
-    const images = await getImages(userObj.id);
+    let images;
+    publicId ? (images = await getImages(userObj.id)) : () => {};
     console.log(images);
     setImagesContainer(images);
   };

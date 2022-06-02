@@ -15,9 +15,7 @@ export const UserProvider = ({ children }) => {
   const currentUser = getCurrentUser();
 
   const [userObj, setUserObj] = useState(
-    currentUser
-      ? { id: currentUser.id, username: currentUser.username }
-      : { id: 1, username: 'Guest User' }
+    currentUser ? { id: currentUser.id, username: currentUser.username } : {}
   );
   const [imagesContainer, setImagesContainer] = useState([]);
 
