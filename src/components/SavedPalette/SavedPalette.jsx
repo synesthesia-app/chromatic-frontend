@@ -14,22 +14,25 @@ export default function SavedPalette({ name, swatchArr }) {
   return (
     <>
       <section className={styles.paletteContainer}>
-        <p>{name}</p>
-        <div className={styles.swatchContainer}>
-          {palette?.map((swatch, i) => {
-            return (
-              <div
-                key={swatch.name + i}
-                className={styles.swatch}
-                style={{
-                  backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
-                }}
-                title={`${swatch.name}`}
-                onClick={() => handleSwatchClick(swatch)}
-              ></div>
-            );
-          })}
-        </div>
+        <p className={styles.paletteName}>{name}</p>
+        <divc className={styles.buttonAndPaletteContainer}>
+          <img src="./trash@2x.png" className={styles.deletePaletteButton} />
+          <div className={styles.swatchContainer}>
+            {palette?.map((swatch, i) => {
+              return (
+                <div
+                  key={swatch.name + i}
+                  className={styles.swatch}
+                  style={{
+                    backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
+                  }}
+                  title={`${swatch.name}`}
+                  onClick={() => handleSwatchClick(swatch)}
+                ></div>
+              );
+            })}
+          </div>
+        </divc>
       </section>
     </>
   );

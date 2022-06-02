@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.paletteName {
+  color: white;
+}
+
 .swatch {
   width: 40px;
   height: 40px;
@@ -10,6 +14,18 @@
 
 .paletteContainer {
   margin: 10px;
+}
+
+.deletePaletteButton {
+  width: 20px;
+  height: auto;
+}
+
+.buttonAndPaletteContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 3px;
 }
 
 .swatchContainer {
