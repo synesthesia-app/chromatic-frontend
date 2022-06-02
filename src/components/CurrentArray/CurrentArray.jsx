@@ -68,8 +68,11 @@ export default function CurrentArray() {
               </h3>
             )}
           </div>
-          <div className={styles.saveArray} onClick={handleSavePalette}>
-            save palette
+          <div className={styles.arrayButtons}>
+            <div className={styles.resetArray}>reset palette</div>
+            <div className={styles.saveArray} onClick={handleSavePalette}>
+              save palette
+            </div>
           </div>
         </section>
       </section>

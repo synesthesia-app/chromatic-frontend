@@ -22,26 +22,28 @@
   padding: 20px;
 }
 
-.saveArray {
+.saveArray,
+.resetArray {
   padding: 5px 10px;
   cursor: pointer;
   position: relative;
   margin-right: 0;
   margin-left: auto;
   margin-bottom: 100px;
-  width: 100px;
   color: var(--brt-green);
   border-bottom: 2px solid var(--brt-green);
   border-right: 2px solid var(--brt-green);
   border-left: 2px solid var(--brt-green);
 }
 
-.saveArray:hover {
+.saveArray:hover,
+.resetArray:hover {
   background-color: var(--brt-green);
   color: var(--dk-grey);
 }
 
-.saveArray:active {
+.saveArray:active,
+.resetArray:active {
   background-color: var(--brt-pink);
   color: var(--dk-grey);
 }
@@ -66,4 +68,9 @@
   flex-direction: row;
   justify-content: space-between;
   color: white;
+}
+
+.arrayButtons {
+  display: flex;
+  gap: 10px;
 }
