@@ -25,7 +25,13 @@ export default function Cloud() {
     colorObj,
     setColorObj,
   } = useColorNote();
-  const { userObj, imagesContainer, setImagesContainer } = useUser();
+  const {
+    userObj,
+    imagesContainer,
+    setImagesContainer,
+    displayedImage,
+    setDisplayedImage,
+  } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = CloudInstance();
@@ -65,7 +71,7 @@ export default function Cloud() {
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
-  const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
+  const defaultImg = cld.image(displayedImage);
   const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
   const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`;
@@ -77,8 +83,9 @@ export default function Cloud() {
     },
     (err, res) => {
       if (res.info.files) {
-        let imagePublicId = res.info.files[0].uploadInfo.url;
-        handleUpload(imagePublicId);
+        let imagePublicUrl = res.info.files[0].uploadInfo.url;
+        let imagePublicId = res.info.files[0].uploadInfo.publicId;
+        handleUpload(imagePublicUrl, imagePublicId);
       }
     }
   );
@@ -87,6 +94,7 @@ export default function Cloud() {
     publicId && (await uploadImage(publicId, userObj.id));
 
     const images = await getImages(userObj.id);
+    console.log(`|| images >`, images);
     setImagesContainer(images);
   };
 
