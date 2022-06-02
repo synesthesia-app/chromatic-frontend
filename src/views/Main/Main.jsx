@@ -15,7 +15,6 @@ export default function Main() {
   useEffect(() => {
     const fetchUserItems = async () => {
       const user = await getCurrentUser();
-      console.log(`|| user >`, user);
       setUserObj(user);
     };
 
