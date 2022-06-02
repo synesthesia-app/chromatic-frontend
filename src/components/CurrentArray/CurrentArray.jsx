@@ -7,7 +7,7 @@ import { createPalette } from '../../services/palettes';
 
 export default function CurrentArray() {
   const { colorPalette, setColorObj } = useColorNote();
-  const { userObj } = useUser();
+  const { userObj, setCurrentColorNav } = useUser();
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
   const [paletteName, setPaletteName] = useState('');
@@ -26,10 +26,10 @@ export default function CurrentArray() {
       swatchArr: JSON.stringify(colorPalette),
     };
 
-    console.log('colorPalette', colorPalette);
-    console.log('palette', palette);
-
     await createPalette(palette);
+
+    setCurrentColorNav(false);
+
   }
 
   return (
