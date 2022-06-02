@@ -16,7 +16,7 @@ export default function SavedPalette({ name, swatchArr }) {
       <section className={styles.paletteContainer}>
         <p>{name}</p>
         <div className={styles.swatchContainer}>
-          {palette.map((swatch, i) => {
+          {palette?.map((swatch, i) => {
             return (
               <div
                 key={swatch.name + i}
