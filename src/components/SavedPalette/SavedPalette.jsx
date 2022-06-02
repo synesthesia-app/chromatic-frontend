@@ -15,7 +15,7 @@ export default function SavedPalette({ name, swatchArr }) {
     <>
       <section className={styles.paletteContainer}>
         <p className={styles.paletteName}>{name}</p>
-        <divc className={styles.buttonAndPaletteContainer}>
+        <div className={styles.buttonAndPaletteContainer}>
           <img src="./trash@2x.png" className={styles.deletePaletteButton} />
           <div className={styles.swatchContainer}>
             {palette?.map((swatch, i) => {
@@ -32,7 +32,7 @@ export default function SavedPalette({ name, swatchArr }) {
               );
             })}
           </div>
-        </divc>
+        </div>
       </section>
     </>
   );
