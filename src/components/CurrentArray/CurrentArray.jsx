@@ -6,8 +6,9 @@ import * as Tone from 'tone';
 import { createPalette } from '../../services/palettes';
 
 export default function CurrentArray() {
-  const { colorPalette, setColorObj } = useColorNote();
+  const { colorPalette, setColorObj, setColorPalette } = useColorNote();
   const { userObj, setCurrentColorNav } = useUser();
+
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
   const [paletteName, setPaletteName] = useState('');
@@ -27,6 +28,9 @@ export default function CurrentArray() {
     };
 
     await createPalette(palette);
+
+    setColorPalette([]);
+    setPaletteName('');
 
     setCurrentColorNav(false);
 
