@@ -9,7 +9,7 @@ export default function SavedColors() {
   const [palettes, setPalettes] = useState([]);
 
   useEffect(() => {
-    getPalettesByUserId(userObj.id).then(setPalettes);
+    getPalettesByUserId(userObj?.id).then(setPalettes);
   }, []);
 
   return (
