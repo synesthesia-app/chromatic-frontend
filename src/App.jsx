@@ -15,14 +15,16 @@ import styles from './App.css';
 export default function App() {
   return (
     <>
-      <Header />
       <Router>
+      <Header />
         <Switch>
           <Route path="/main">
             <Main />
           </Route>
 
-          <Route path="/"><Login /></Route>
+          <Route path="/">
+            <Login />
+          </Route>
         </Switch>
       </Router>
       <Footer />

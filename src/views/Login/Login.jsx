@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import styles from './Login.css';
 
 export default function Login() {
-  const history = useHistory();
+  // const history = useHistory();
 
   function handleClick() {
     location.replace(
@@ -14,7 +14,9 @@ export default function Login() {
 
   return (
     <div className={styles.login}>
-      <button onClick={handleClick}>Login with Github</button>
+      <button className={styles.loginButton} onClick={handleClick}>
+        Login with GitHub
+      </button>
     </div>
   );
 }

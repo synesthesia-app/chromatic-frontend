@@ -1,3 +1,28 @@
 .login {
   margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.loginButton {
+  font-weight: bold;
+  color: var(--dk-grey);
+  background-color: var(--brt-green);
+  padding: 5px;
+  border-top: 2px solid var(--brt-green);
+  border-left: 2px solid var(--brt-green);
+  border-right: 2px solid var(--brt-green);
+  border-bottom: none;
+}
+
+
+.loginButton:hover {
+  color: var(--brt-green);
+  background-color: var(--dk-grey);
+}
+
+.loginButton:active {
+  color: var(--brt-green);
+  background-color: var(--brt-pink);
 }
