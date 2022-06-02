@@ -40,6 +40,7 @@ export default function CurrentArray() {
           type="text"
           placeholder="name your palette"
           value={paletteName}
+          required
           onChange={(e) => setPaletteName(e.target.value)}
         />
         <div className={styles.displayArray}>

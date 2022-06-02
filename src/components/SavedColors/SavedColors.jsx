@@ -15,7 +15,7 @@ export default function SavedColors() {
   return (
     <>
       <div className={styles.savedColors}>
-        {palettes.map((palette) => (
+        {palettes?.map((palette) => (
           <SavedPalette
             key={palette.id}
             name={palette.name}

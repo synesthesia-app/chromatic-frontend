@@ -85,13 +85,12 @@ export default function CurrentColor() {
     const singleSwatch = {
       userId: userObj.id,
       name: userColor.name,
-      swatchArr: [userColor]
+      swatchArr: JSON.stringify([userColor]),
     };
 
     console.log('singleSwatch', singleSwatch);
 
     await createPalette(singleSwatch);
-
   }
 
   return (
