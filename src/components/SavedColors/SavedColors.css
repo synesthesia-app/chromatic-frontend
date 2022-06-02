@@ -1,7 +1,7 @@
 .savedColors {
   min-width: 100px;
   height: 374px;
-  background-color: white;
+  background-color: var(--dk-grey);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
