@@ -5,7 +5,6 @@ import { useState } from 'react';
 import * as Tone from 'tone';
 import { createPalette } from '../../services/palettes';
 
-
 export default function CurrentArray() {
   const { colorPalette, setColorObj } = useColorNote();
   const { userObj } = useUser();
@@ -24,11 +23,11 @@ export default function CurrentArray() {
     const palette = {
       userId: userObj.id,
       name: paletteName,
-      swatchArr: colorPalette
+      swatchArr: JSON.stringify(colorPalette),
     };
 
-    console.log('colorPalette', colorPalette)
-    console.log('palette', palette)
+    console.log('colorPalette', colorPalette);
+    console.log('palette', palette);
 
     await createPalette(palette);
   }
@@ -41,7 +40,7 @@ export default function CurrentArray() {
           type="text"
           placeholder="name your palette"
           value={paletteName}
-          onChange={(e)=> setPaletteName(e.target.value)}
+          onChange={(e) => setPaletteName(e.target.value)}
         />
         <div className={styles.displayArray}>
           <div className={styles.arrayContainer}>
@@ -68,11 +67,9 @@ export default function CurrentArray() {
               </h3>
             )}
           </div>
-          <div
-            className={styles.saveArray}
-            onClick={handleSavePalette}
-          >
-            save palette</div>
+          <div className={styles.saveArray} onClick={handleSavePalette}>
+            save palette
+          </div>
         </section>
       </section>
     </>
