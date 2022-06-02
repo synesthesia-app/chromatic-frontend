@@ -1,7 +1,7 @@
 export const getImages = async (id) => {
   console.log(userObj);
   const res = await fetch(
-    `https://chromatic-backend.herokuapp.com/api/v1/images/7`,
+    `https://chromatic-backend.herokuapp.com/api/v1/images/${id}`,
     {
       method: 'GET',
       mode: 'cors',
@@ -17,7 +17,7 @@ export const getImages = async (id) => {
   console.log('images', data);
 };
 
-export const uploadImage = async (imgPublicId) => {
+export const uploadImage = async (imgPublicId, id) => {
   console.log('uploading');
   const res = await fetch(
     'https://chromatic-backend.herokuapp.com/api/v1/images',
@@ -27,11 +27,13 @@ export const uploadImage = async (imgPublicId) => {
       credentials: 'include',
       body: JSON.stringify({
         imageName: imgPublicId,
-        userId: userObj.id,
+        userId: id,
       }),
       headers: {
         'Content-Type': 'application/json',
       },
     }
   );
+  const data = await res.json();
+  console.log({ data });
 };

@@ -25,7 +25,7 @@ export default function Cloud() {
     colorObj,
     setColorObj,
   } = useColorNote();
-  const { userObj, uploadImgToDb, updateImagesContainer } = useUser();
+  const { userObj } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = new Cloudinary({
@@ -85,12 +85,13 @@ export default function Cloud() {
         let imagePublicId = res.info.files[0].uploadInfo.public_id;
         console.log('uploading img');
         handleUpload(imagePublicId);
+        console.log('upload');
       }
     }
   );
 
   const handleUpload = async (publicId) => {
-    await uploadImage(imagePublicId);
+    await uploadImage(publicId, userObj.id);
     // await getImages(userObj.id);
   };
 
