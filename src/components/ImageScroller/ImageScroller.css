@@ -1,5 +1,5 @@
 .imageScroller {
-  width: 100%;
+  width: 900px;
   height: 150px;
   border: 2px solid var(--brt-green);
   padding: 20px;
