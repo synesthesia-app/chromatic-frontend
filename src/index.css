@@ -6,6 +6,9 @@
   --brt-green: #4cf000;
   --brt-blue: #00fbff;
   --brt-pink: #f0b;
+  --font-primary: 'Pixel-Primary', sans-serif;
+  --font-secondary: 'Pixel-Secondary', sans-serif;
+  --font-size-nav: clamp(10px, 0.75vw, 16px);
 }
 
 * {
@@ -22,4 +25,14 @@ body {
   display: flex;
   justify-content: center;
   background-color: var(--dk-grey);
+}
+
+@font-face {
+  font-family: 'Pixel-Primary';
+  src: url('./assets/fonts/pixel-primary.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Pixel-Secondary';
+  src: url('./assets/fonts/pixel-secondary.otf') format('opentype');
 }

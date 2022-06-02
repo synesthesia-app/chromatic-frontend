@@ -14,13 +14,7 @@ import { useUser } from '../../context/UserProvider';
 import AuthButton from '../AuthButton/AuthButton';
 
 export default function Header() {
-  const { userObj, logout } = useUser();
-  const history = useHistory();
-
-  const handleLogout = async () => {
-    await logout();
-    history.push('/');
-  };
+  const { userObj } = useUser();
 
   return (
     <header>
