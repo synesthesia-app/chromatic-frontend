@@ -112,7 +112,7 @@ export default function Cloud() {
   // }, []);
 
   useEffect(() => {
-    !userObj.id ? <> </> : handleUpload();
+    !userObj.id ? <></> : handleUpload();
   }, [userObj.id]);
 
   defaultImg.resize(fill().width(380).height(380));
