@@ -14,7 +14,9 @@ export default function Login() {
 
   return (
     <div className={styles.login}>
-      <button className={styles.loginButton} onClick={handleClick}>Login with Github</button>
+      <button className={styles.loginButton} onClick={handleClick}>
+        Login with GitHub
+      </button>
     </div>
   );
 }

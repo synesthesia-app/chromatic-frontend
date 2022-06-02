@@ -1,7 +1,7 @@
 .footer {
   padding: 0 20px;
   height: 60px;
-  width: 100%;
+  width: 700px;
   border-top: 2px solid var(--brt-green);
   color: var(--brt-green);
   display: flex;

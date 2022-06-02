@@ -1,8 +1,8 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserProvider';
 import { useEffect } from 'react';
 
-import styles from './AuthButton.css';
+import styles from '../Header/Header.css';
 
 export default function AuthButton() {
     const { userObj, logout } = useUser();
@@ -14,17 +14,17 @@ export default function AuthButton() {
   
     const handleLogout = async () => {
       await logout();
-      history.push('/');
+    //   history.push('/');
     };
 
   return (
     <div>
         {userObj?.username ? (
-            <Link className={styles.navLink} onClick={handleLogout}>
+            <Link to='/login' className={styles.navLink} onClick={handleLogout}>
                 Logout
             </Link>
         ) : (
-            <Link className={styles.navLink}>
+            <Link to='/login' className={styles.navLink}>
                 Login
             </Link>
         )}
