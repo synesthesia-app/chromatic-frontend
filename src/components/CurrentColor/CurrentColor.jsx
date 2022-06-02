@@ -139,7 +139,26 @@ export default function CurrentColor() {
             </p>
           </div>
           <div className={styles.colorButtons}>
-            <div
+            {!userObj.id ? (
+              <></>
+            ) : (
+              <div
+                className={`${styles.buttonStyle} ${styles.saveColor}`}
+                style={{
+                  backgroundColor: `${pickedColor}`,
+                  border: `2px solid ${userColor?.textColor}`,
+                  color: `${userColor?.textColor}`,
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+                onClick={handleSaveSwatch}
+              >
+                save swatch
+              </div>
+            )}
+            {/* <div
               className={`${styles.buttonStyle} ${styles.saveColor}`}
               style={{
                 backgroundColor: `${pickedColor}`,
@@ -153,7 +172,7 @@ export default function CurrentColor() {
               onClick={handleSaveSwatch}
             >
               save swatch
-            </div>
+            </div> */}
             <div
               className={`${styles.buttonStyle} ${styles.addToList}`}
               style={{

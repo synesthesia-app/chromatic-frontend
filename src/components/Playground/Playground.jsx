@@ -112,19 +112,17 @@ export default function Cloud() {
   defaultImg.resize(fill().width(380).height(380));
 
   console.log(`|| userObj >`, userObj);
-  const showButtons = () => {};
 
   return (
     <div>
       <div className={styles.imageButtons}>
-        {showButtons}
-        {/* {userObj.status === 401 ? (
+        {!userObj.id ? (
+          <></>
+        ) : (
           <div className={styles.uploadImgButton} onClick={handleClick}>
             Upload Image
           </div>
-        ) : (
-          <></>
-        )} */}
+        )}
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"

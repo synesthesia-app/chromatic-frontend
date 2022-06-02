@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useColorNote } from '../../context/ColorNoteProvider.jsx';
 import CurrentColor from '../CurrentColor/CurrentColor';
 import SavedColors from '../SavedColors/SavedColors';
+import { useUser } from '../../context/UserProvider.jsx';
 
 import styles from './ColorPanel.css';
 
 export default function ColorPanel() {
   const { userColor, setUserColor, currentColor, setCurrentColor } =
     useColorNote();
+  const { userObj } = useUser();
 
   const [currentColorNav, setCurrentColorNav] = useState(true);
 
@@ -79,17 +81,21 @@ export default function ColorPanel() {
         </div>
 
         {/* SAVED COLORS BUTTON */}
-        <div
-          className={`${styles.scButton} ${styles.buttonStyle}`}
-          onMouseEnter={currentColorNav ? handleMouseEnter : () => {}}
-          onMouseLeave={currentColorNav ? handleMouseLeave : () => {}}
-          onMouseDown={currentColorNav ? handleMouseDown : () => {}}
-          onMouseUp={currentColorNav ? handleMouseUp : () => {}}
-          style={currentColorNav ? isNotActive : isActive}
-          onClick={handleSavedClick}
-        >
-          Saved Colors
-        </div>
+        {!userObj.id ? (
+          <></>
+        ) : (
+          <div
+            className={`${styles.scButton} ${styles.buttonStyle}`}
+            onMouseEnter={currentColorNav ? handleMouseEnter : () => {}}
+            onMouseLeave={currentColorNav ? handleMouseLeave : () => {}}
+            onMouseDown={currentColorNav ? handleMouseDown : () => {}}
+            onMouseUp={currentColorNav ? handleMouseUp : () => {}}
+            style={currentColorNav ? isNotActive : isActive}
+            onClick={handleSavedClick}
+          >
+            Saved Colors
+          </div>
+        )}
       </div>
       <div className={styles.infoSection}>
         <div className={styles.info}>
