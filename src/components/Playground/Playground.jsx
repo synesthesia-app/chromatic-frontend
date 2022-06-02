@@ -9,6 +9,7 @@ import hexToHSL from '../../utils/hex-to-hsl';
 import hslToNote from '../../utils/hsl-to-note';
 import * as Tone from 'tone';
 import colorAPI from '../../services/colorAPI';
+import { getImages, uploadImage } from '../../services/images';
 
 import styles from './Playground.css';
 
@@ -24,7 +25,7 @@ export default function Cloud() {
     colorObj,
     setColorObj,
   } = useColorNote();
-  const { userObj } = useUser();
+  const { userObj, uploadImgToDb, updateImagesContainer } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = new Cloudinary({
@@ -79,42 +80,30 @@ export default function Cloud() {
       uploadPreset: `${unsigned}`,
     },
     (err, res) => {
-      let imagePublicId = res.info?.files[0].uploadInfo.public_id;
-      console.log({ imagePublicId });
-      console.log({ res });
-      setUploadedImg(imagePublicId);
+      console.log(res);
+      if (res.info.files) {
+        let imagePublicId = res.info.files[0].uploadInfo.public_id;
+        console.log('uploading img');
+        handleUpload(imagePublicId);
+      }
     }
   );
+
+  const handleUpload = async (publicId) => {
+    await uploadImage(imagePublicId);
+    // await getImages(userObj.id);
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
     const cloudWidget = widget.open();
   };
 
-  useEffect(() => {
-    const uploadImgToDb = async () => {
-      console.log('uploading data');
-      const res = await fetch(
-        'https://chromatic-backend.herokuapp.com/api/v1/images',
-        {
-          method: 'POST',
-          mode: 'cors',
-          credentials: 'include',
-          body: JSON.stringify({
-            imageName: uploadedImg,
-            userId: userObj.id,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      const data = await res.json();
-      console.log(data);
-    };
-    uploadImgToDb();
-  }, [uploadedImg]);
+  // useEffect(() => {
+  //   console.log('running upload image useEffect');
+  //   uploadImgToDb(uploadedImg);
+  //   updateImagesContainer();
+  // }, [uploadedImg]);
 
   defaultImg.resize(fill().width(380).height(380));
 

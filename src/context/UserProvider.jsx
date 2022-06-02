@@ -18,6 +18,7 @@ export const UserProvider = ({ children }) => {
   const [userObj, setUserObj] = useState(
     currentUser ? { id: currentUser.id, username: currentUser.username } : {}
   );
+  const [imagesContainer, setImagesContainer] = useState([]);
 
   const value = useMemo(
     () => ({ userObj, setUserObj }),
