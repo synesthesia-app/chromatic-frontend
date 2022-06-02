@@ -10,9 +10,9 @@ import styles from './ColorPanel.css';
 export default function ColorPanel() {
   const { userColor, setUserColor, currentColor, setCurrentColor } =
     useColorNote();
-  const { userObj } = useUser();
+  const { userObj, currentColorNav, setCurrentColorNav } = useUser();
 
-  const [currentColorNav, setCurrentColorNav] = useState(true);
+  // const [currentColorNav, setCurrentColorNav] = useState(true);
 
   const isActive = {
     color: 'var(--brt-green)',
@@ -99,7 +99,9 @@ export default function ColorPanel() {
       </div>
       <div className={styles.infoSection}>
         <div className={styles.info}>
-          {currentColorNav ? <CurrentColor /> : <SavedColors />}
+          {currentColorNav
+            ? <CurrentColor />
+            : <SavedColors />}
         </div>
       </div>
     </div>

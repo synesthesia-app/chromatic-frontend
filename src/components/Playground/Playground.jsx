@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
-import { Cloudinary } from '@cloudinary/url-gen';
 import { EyeDropper, useEyeDrop } from 'react-eyedrop';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import { useUser } from '../../context/UserProvider';
@@ -10,6 +9,7 @@ import hslToNote from '../../utils/hsl-to-note';
 import * as Tone from 'tone';
 import colorAPI from '../../services/colorAPI';
 import { getImages, uploadImage } from '../../services/images';
+import { CloudInstance } from '../../services/Cloudinary';
 
 import styles from './Playground.css';
 
@@ -25,14 +25,16 @@ export default function Cloud() {
     colorObj,
     setColorObj,
   } = useColorNote();
-  const { userObj, imagesContainer, setImagesContainer } = useUser();
+  const {
+    userObj,
+    imagesContainer,
+    setImagesContainer,
+    displayedImage,
+    setDisplayedImage,
+  } = useUser();
 
   const unsigned = 'lfiwhmcn';
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: `${process.env.CLOUD_NAME}`,
-    },
-  });
+  const cld = CloudInstance();
 
   async function getColorMakeSound({ rgb, hex }) {
     const synth = new Tone.Synth().toDestination();
@@ -69,30 +71,30 @@ export default function Cloud() {
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
-  const defaultImg = cld.image('hvahpfe48bxckvfpzuxd');
-
+  const defaultImg = cld.image(displayedImage);
   const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
   const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`;
+
   let widget = window.cloudinary.createUploadWidget(
     {
       cloudName: `${process.env.CLOUD_NAME}`,
       uploadPreset: `${unsigned}`,
     },
     (err, res) => {
-      console.log(res);
       if (res.info.files) {
-        let imagePublicId = res.info.files[0].uploadInfo.public_id;
-        handleUpload(imagePublicId);
+        let imagePublicUrl = res.info.files[0].uploadInfo.url;
+        let imagePublicId = res.info.files[0].uploadInfo.publicId;
+        handleUpload(imagePublicUrl, imagePublicId);
       }
     }
   );
 
   const handleUpload = async (publicId) => {
     publicId && (await uploadImage(publicId, userObj.id));
-    let images;
-    images = await getImages(userObj.id);
-    console.log(images);
+
+    const images = await getImages(userObj.id);
+    console.log(`|| images >`, images);
     setImagesContainer(images);
   };
 
@@ -101,17 +103,19 @@ export default function Cloud() {
     const cloudWidget = widget.open();
   };
 
-  useEffect(() => {
-    console.log(`|| imagesContainer >`, imagesContainer);
-  }, [imagesContainer]);
+  // useEffect(() => {
+  //   const grabImage = (() => {
+  //     const images = await getImages(userObj.id);
+
+  //   })
+  //   grabImage();
+  // }, []);
 
   useEffect(() => {
-    userObj.id ? handleUpload() : <></>;
-  }, []);
+    !userObj.id ? <> </> : handleUpload();
+  }, [userObj.id]);
 
   defaultImg.resize(fill().width(380).height(380));
-
-  console.log(`|| userObj >`, userObj);
 
   return (
     <div>

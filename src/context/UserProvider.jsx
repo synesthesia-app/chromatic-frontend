@@ -12,12 +12,15 @@ import { getCurrentUser } from '../services/users';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [imagesContainer, setImagesContainer] = useState([]);
+  const [displayedImage, setDisplayedImage] = useState('hvahpfe48bxckvfpzuxd');
   const currentUser = getCurrentUser();
 
   const [userObj, setUserObj] = useState(
     currentUser ? { id: currentUser.id, username: currentUser.username } : {}
   );
-  const [imagesContainer, setImagesContainer] = useState([]);
+
+  const [currentColorNav, setCurrentColorNav] = useState(true);
 
   const value = useMemo(
     () => ({ userObj, setUserObj }),
@@ -45,6 +48,8 @@ export const UserProvider = ({ children }) => {
         logout,
         imagesContainer,
         setImagesContainer,
+        displayedImage,
+        setDisplayedImage,
       }}
     >
       {children}

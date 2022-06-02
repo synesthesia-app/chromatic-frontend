@@ -6,8 +6,9 @@ import * as Tone from 'tone';
 import { createPalette } from '../../services/palettes';
 
 export default function CurrentArray() {
-  const { colorPalette, setColorObj } = useColorNote();
-  const { userObj } = useUser();
+  const { colorPalette, setColorObj, setColorPalette } = useColorNote();
+  const { userObj, setCurrentColorNav } = useUser();
+
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
   const [paletteName, setPaletteName] = useState('');
@@ -19,64 +20,85 @@ export default function CurrentArray() {
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
 
-  async function handleSavePalette() {
+  function handleResetPalette() {
+    setColorPalette([]);
+    setPaletteName('');
+  }
+
+  async function handleSavePalette(e) {
+    e.preventDefault();
     const palette = {
       userId: userObj.id,
       name: paletteName,
       swatchArr: JSON.stringify(colorPalette),
     };
 
-    console.log('colorPalette', colorPalette);
-    console.log('palette', palette);
-
     await createPalette(palette);
+
+    handleResetPalette();
+
+    setCurrentColorNav(false);
   }
 
   return (
     <>
-      <input
-        className={styles.arrayInput}
-        type="text"
-        placeholder="name your palette"
-        value={paletteName}
-        required
-        onChange={(e) => setPaletteName(e.target.value)}
-      />
-      <div className={styles.displayArray}>
-        <div className={styles.arrayContainer}>
-          {colorPalette.map((swatch, i) => {
-            return (
-              <div
-                key={swatch.name + i}
-                className={styles.swatch}
-                style={{
-                  backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
-                }}
-                title={`${swatch.name}`}
-                onClick={() => handleSwatchClick(swatch)}
-              ></div>
-            );
-          })}
+      <section className={styles.arraySection}>
+        <form action=""
+          onSubmit={handleSavePalette}
+        >
+        <input
+          className={styles.arrayInput}
+          type="text"
+          placeholder="name your palette"
+          value={paletteName}
+          required
+          onChange={(e) => setPaletteName(e.target.value)}
+        />
+        <div className={styles.displayArray}>
+          <div className={styles.arrayContainer}>
+            {colorPalette.map((swatch, i) => {
+              return (
+                <div
+                  key={swatch.name + i}
+                  className={styles.swatch}
+                  style={{
+                    backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
+                  }}
+                  title={`${swatch.name}`}
+                  onClick={() => handleSwatchClick(swatch)}
+                ></div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <section className={styles.nameAndButton}>
-        <div>
-          {name && (
-            <h3>
-              {name} - {tone}
-            </h3>
-          )}
-        </div>
-        <div className={styles.arrayButtons}>
-          <div className={styles.resetArray}>reset palette</div>
-          {!userObj.id ? (
-            <></>
-          ) : (
-            <div className={styles.saveArray} onClick={handleSavePalette}>
-              save palette
-            </div>
-          )}
-        </div>
+        <section className={styles.nameAndButton}>
+          <div>
+            {name && (
+              <h3>
+                {name} - {tone}
+              </h3>
+            )}
+          </div>
+          <div className={styles.arrayButtons}>
+            <button
+              className={styles.resetArray}
+              onClick={handleResetPalette}
+            >
+              reset palette
+            </button>
+            {!userObj.id ? (
+              <></>
+            ) : (
+                <button
+                  className={styles.saveArray}
+                  type='submit'
+                >
+                save palette
+              </button>
+            )}
+          </div>
+          </section>
+          </form>
       </section>
     </>
   );
