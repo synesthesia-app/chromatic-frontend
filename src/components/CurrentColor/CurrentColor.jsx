@@ -15,11 +15,12 @@ export default function CurrentColor() {
     colorObj,
   } = useColorNote();
 
-  const { userObj } = useUser();
+  const { userObj, setCurrentColorNav } = useUser();
 
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
   const [rgb, setRgb] = useState('186, 218, 85');
+  const [swatchName, setSwatchName] = useState(null);
 
   useEffect(() => {
     setHex(new String(colorObj.hex));
@@ -84,13 +85,13 @@ export default function CurrentColor() {
   async function handleSaveSwatch() {
     const singleSwatch = {
       userId: userObj.id,
-      name: userColor.name,
+      name: swatchName ? swatchName : userColor.name,
       swatchArr: JSON.stringify([userColor]),
     };
 
-    console.log('singleSwatch', singleSwatch);
-
     await createPalette(singleSwatch);
+
+    setCurrentColorNav(false);
   }
 
   return (
@@ -104,12 +105,18 @@ export default function CurrentColor() {
           }}
         >
           <div>
-            <h1
+            <div
               className={styles.colorName}
               style={{ borderBottom: `1px solid ${userColor.textColor}` }}
             >
-              {userColor.name}
-            </h1>
+              <h1>{swatchName ? swatchName : userColor.name}</h1>
+              <input
+                type="text"
+                placeholder="Rename swatch"
+                value={swatchName}
+                onChange={(e) => setSwatchName(e.target.value)}
+              />
+            </div>
             <div
               className={styles.colorValues}
               style={{

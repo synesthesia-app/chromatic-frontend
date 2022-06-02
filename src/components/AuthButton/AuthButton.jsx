@@ -20,7 +20,7 @@ export default function AuthButton() {
   return (
     <div>
         {userObj?.username ? (
-            <Link to='/login' className={styles.navLink} onClick={handleLogout}>
+            <Link to='*' className={styles.navLink} onClick={handleLogout}>
                 Logout
             </Link>
         ) : (

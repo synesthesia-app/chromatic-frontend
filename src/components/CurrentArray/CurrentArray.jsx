@@ -6,8 +6,9 @@ import * as Tone from 'tone';
 import { createPalette } from '../../services/palettes';
 
 export default function CurrentArray() {
-  const { colorPalette, setColorObj } = useColorNote();
-  const { userObj } = useUser();
+  const { colorPalette, setColorObj, setColorPalette } = useColorNote();
+  const { userObj, setCurrentColorNav } = useUser();
+
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
   const [paletteName, setPaletteName] = useState('');
@@ -19,22 +20,32 @@ export default function CurrentArray() {
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
 
-  async function handleSavePalette() {
+  function handleResetPalette() {
+    setColorPalette([]);
+    setPaletteName('');
+  }
+
+  async function handleSavePalette(e) {
+    e.preventDefault();
     const palette = {
       userId: userObj.id,
       name: paletteName,
       swatchArr: JSON.stringify(colorPalette),
     };
 
-    console.log('colorPalette', colorPalette);
-    console.log('palette', palette);
-
     await createPalette(palette);
+
+    handleResetPalette();
+
+    setCurrentColorNav(false);
   }
 
   return (
     <>
       <section className={styles.arraySection}>
+        <form action=""
+          onSubmit={handleSavePalette}
+        >
         <input
           className={styles.arrayInput}
           type="text"
@@ -69,16 +80,25 @@ export default function CurrentArray() {
             )}
           </div>
           <div className={styles.arrayButtons}>
-            <div className={styles.resetArray}>reset palette</div>
+            <button
+              className={styles.resetArray}
+              onClick={handleResetPalette}
+            >
+              reset palette
+            </button>
             {!userObj.id ? (
               <></>
             ) : (
-              <div className={styles.saveArray} onClick={handleSavePalette}>
+                <button
+                  className={styles.saveArray}
+                  type='submit'
+                >
                 save palette
-              </div>
+              </button>
             )}
           </div>
-        </section>
+          </section>
+          </form>
       </section>
     </>
   );

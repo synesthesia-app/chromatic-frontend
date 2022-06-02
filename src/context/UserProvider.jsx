@@ -20,6 +20,8 @@ export const UserProvider = ({ children }) => {
     currentUser ? { id: currentUser.id, username: currentUser.username } : {}
   );
 
+  const [currentColorNav, setCurrentColorNav] = useState(true);
+
   const value = useMemo(
     () => ({ userObj, setUserObj }),
     [userObj?.id, userObj?.username]

@@ -1,5 +1,5 @@
 .arraySection {
-  width: 55rem;
+  width: 900px;
   margin-top: 75px;
 }
 
@@ -24,6 +24,9 @@
 
 .saveArray,
 .resetArray {
+  background-color: black;
+  width: 115px;
+  font-size: 1rem;
   padding: 5px 10px;
   cursor: pointer;
   position: relative;
