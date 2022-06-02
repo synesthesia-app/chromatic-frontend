@@ -91,7 +91,7 @@ export default function Cloud() {
   const handleUpload = async (publicId) => {
     publicId && (await uploadImage(publicId, userObj.id));
     let images;
-    publicId ? (images = await getImages(userObj.id)) : () => {};
+    images = await getImages(userObj.id);
     console.log(images);
     setImagesContainer(images);
   };
@@ -106,21 +106,25 @@ export default function Cloud() {
   }, [imagesContainer]);
 
   useEffect(() => {
-    handleUpload();
+    userObj.id ? handleUpload() : <></>;
   }, []);
 
   defaultImg.resize(fill().width(380).height(380));
 
+  console.log(`|| userObj >`, userObj);
+  const showButtons = () => {};
+
   return (
     <div>
       <div className={styles.imageButtons}>
-        {userObj ? (
+        {showButtons}
+        {/* {userObj.status === 401 ? (
           <div className={styles.uploadImgButton} onClick={handleClick}>
             Upload Image
           </div>
         ) : (
           <></>
-        )}
+        )} */}
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"
