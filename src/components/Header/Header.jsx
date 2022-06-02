@@ -22,25 +22,24 @@ export default function Header() {
     history.push('/');
   };
 
-
   return (
     <header>
-      <div className={styles.brand}>
-        <img
-          className={styles.logo}
-          src="../../chromaticLogoFullColor.png"
-          alt="chromatic-logo"
-        />
-        <h1 className={styles.logoType}>CHROMATIC</h1>
-      </div>
+      <Link className={styles.logoStuff} to="/main">
+        <div className={styles.brand}>
+          <img
+            className={styles.logo}
+            src="../../chromaticLogoFullColor.png"
+            alt="chromatic-logo"
+          />
+          <h1 className={styles.logoType}>CHROMATIC</h1>
+        </div>
+      </Link>
       <div className={styles.auth}>
         <p className={styles.welcome}>
           {userObj?.username ? `welcome ${userObj.username}` : 'Please sign in'}
         </p>
         <div className={styles.routes}>
-          <Link to="/about">
-            About
-          </Link>
+          <Link to="/about">About</Link>
           <AuthButton />
         </div>
       </div>

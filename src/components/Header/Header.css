@@ -68,3 +68,11 @@ a:active {
   margin-right: 30px;
   margin-top: 5px;
 }
+
+.logoStuff {
+  border: none;
+}
+
+.logoStuff:hover {
+  background-color: var(--dk-grey);
+}
