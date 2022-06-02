@@ -50,6 +50,8 @@ export const UserProvider = ({ children }) => {
         setImagesContainer,
         displayedImage,
         setDisplayedImage,
+        currentColorNav,
+        setCurrentColorNav,
       }}
     >
       {children}
