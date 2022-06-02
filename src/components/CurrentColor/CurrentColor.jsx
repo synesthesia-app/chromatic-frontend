@@ -20,7 +20,7 @@ export default function CurrentColor() {
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
   const [rgb, setRgb] = useState('186, 218, 85');
-  const [swatchName, setSwatchName] = useState(null);
+  const [swatchName, setSwatchName] = useState('');
 
   useEffect(() => {
     setHex(new String(colorObj.hex));
