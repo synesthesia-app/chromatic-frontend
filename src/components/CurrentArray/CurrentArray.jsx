@@ -34,51 +34,49 @@ export default function CurrentArray() {
 
   return (
     <>
-      <section className={styles.arraySection}>
-        <input
-          className={styles.arrayInput}
-          type="text"
-          placeholder="name your palette"
-          value={paletteName}
-          required
-          onChange={(e) => setPaletteName(e.target.value)}
-        />
-        <div className={styles.displayArray}>
-          <div className={styles.arrayContainer}>
-            {colorPalette.map((swatch, i) => {
-              return (
-                <div
-                  key={swatch.name + i}
-                  className={styles.swatch}
-                  style={{
-                    backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
-                  }}
-                  title={`${swatch.name}`}
-                  onClick={() => handleSwatchClick(swatch)}
-                ></div>
-              );
-            })}
-          </div>
+      <input
+        className={styles.arrayInput}
+        type="text"
+        placeholder="name your palette"
+        value={paletteName}
+        required
+        onChange={(e) => setPaletteName(e.target.value)}
+      />
+      <div className={styles.displayArray}>
+        <div className={styles.arrayContainer}>
+          {colorPalette.map((swatch, i) => {
+            return (
+              <div
+                key={swatch.name + i}
+                className={styles.swatch}
+                style={{
+                  backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
+                }}
+                title={`${swatch.name}`}
+                onClick={() => handleSwatchClick(swatch)}
+              ></div>
+            );
+          })}
         </div>
-        <section className={styles.nameAndButton}>
-          <div>
-            {name && (
-              <h3>
-                {name} - {tone}
-              </h3>
-            )}
-          </div>
-          <div className={styles.arrayButtons}>
-            <div className={styles.resetArray}>reset palette</div>
-            {!userObj.id ? (
-              <></>
-            ) : (
-              <div className={styles.saveArray} onClick={handleSavePalette}>
-                save palette
-              </div>
-            )}
-          </div>
-        </section>
+      </div>
+      <section className={styles.nameAndButton}>
+        <div>
+          {name && (
+            <h3>
+              {name} - {tone}
+            </h3>
+          )}
+        </div>
+        <div className={styles.arrayButtons}>
+          <div className={styles.resetArray}>reset palette</div>
+          {!userObj.id ? (
+            <></>
+          ) : (
+            <div className={styles.saveArray} onClick={handleSavePalette}>
+              save palette
+            </div>
+          )}
+        </div>
       </section>
     </>
   );

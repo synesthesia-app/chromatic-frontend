@@ -29,8 +29,10 @@ export default function Main() {
         </div>
         <ColorPanel />
       </section>
-      <CurrentArray />
-      <ImageScroller />
+      <section className={styles.arraySection}>
+        <CurrentArray />
+        <ImageScroller />
+      </section>
     </>
   );
 }
