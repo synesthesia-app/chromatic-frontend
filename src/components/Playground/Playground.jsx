@@ -83,16 +83,16 @@ export default function Cloud() {
       console.log(res);
       if (res.info.files) {
         let imagePublicId = res.info.files[0].uploadInfo.public_id;
-        console.log('uploading img');
         handleUpload(imagePublicId);
-        console.log('upload');
       }
     }
   );
 
   const handleUpload = async (publicId) => {
     await uploadImage(publicId, userObj.id);
-    // await getImages(userObj.id);
+    const images = await getImages(userObj.id);
+    console.log(images);
+    setImagesContainer(images);
   };
 
   const handleClick = (e) => {
