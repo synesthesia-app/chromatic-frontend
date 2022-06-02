@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import styles from './CurrentColor.css';
+import { createPalette } from '../../services/palettes';
+import { useUser } from '../../context/UserProvider';
 
 export default function CurrentColor() {
   const {
@@ -12,6 +14,8 @@ export default function CurrentColor() {
     setPickedColor,
     colorObj,
   } = useColorNote();
+
+  const { userObj } = useUser();
 
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
@@ -77,6 +81,19 @@ export default function CurrentColor() {
     setColorPalette([...colorPalette, userColor]);
   }
 
+  async function handleSaveSwatch() {
+    const singleSwatch = {
+      userId: userObj.id,
+      name: userColor.name,
+      swatchArr: [userColor]
+    };
+
+    console.log('singleSwatch', singleSwatch);
+
+    await createPalette(singleSwatch);
+
+  }
+
   return (
     <>
       {userColor.name ? (
@@ -134,6 +151,7 @@ export default function CurrentColor() {
               onMouseLeave={handleMouseLeave}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
+              onClick={handleSaveSwatch}
             >
               save swatch
             </div>
