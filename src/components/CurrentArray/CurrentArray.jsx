@@ -70,9 +70,13 @@ export default function CurrentArray() {
           </div>
           <div className={styles.arrayButtons}>
             <div className={styles.resetArray}>reset palette</div>
-            <div className={styles.saveArray} onClick={handleSavePalette}>
-              save palette
-            </div>
+            {userObj ? (
+              <div className={styles.saveArray} onClick={handleSavePalette}>
+                save palette
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </section>
       </section>
