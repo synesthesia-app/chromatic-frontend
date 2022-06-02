@@ -6,7 +6,7 @@ import styles from '../Header/Header.css';
 
 export default function AuthButton() {
     const { userObj, logout } = useUser();
-    const history = useHistory();
+    // const history = useHistory();
   
     useEffect(() => {
       console.log(`|| userObj >`, userObj);
