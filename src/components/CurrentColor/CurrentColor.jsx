@@ -15,7 +15,7 @@ export default function CurrentColor() {
     colorObj,
   } = useColorNote();
 
-  const { userObj } = useUser();
+  const { userObj, setCurrentColorNav } = useUser();
 
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
@@ -89,9 +89,9 @@ export default function CurrentColor() {
       swatchArr: JSON.stringify([userColor]),
     };
 
-    console.log('singleSwatch', singleSwatch);
-
     await createPalette(singleSwatch);
+
+    setCurrentColorNav(false);
   }
 
   return (

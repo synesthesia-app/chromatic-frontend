@@ -19,6 +19,8 @@ export const UserProvider = ({ children }) => {
   );
   const [imagesContainer, setImagesContainer] = useState([]);
 
+  const [currentColorNav, setCurrentColorNav] = useState(true);
+
   const value = useMemo(
     () => ({ userObj, setUserObj }),
     [userObj?.id, userObj?.username]
@@ -45,6 +47,8 @@ export const UserProvider = ({ children }) => {
         logout,
         imagesContainer,
         setImagesContainer,
+        currentColorNav,
+        setCurrentColorNav,
       }}
     >
       {children}
