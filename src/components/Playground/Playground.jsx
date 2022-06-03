@@ -16,9 +16,18 @@ import styles from './Playground.css';
 import { fill, fit } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-  const { setUserColor, setPickedColor, setColorObj } = useColorNote();
-  const { userObj, setImagesContainer, displayedImage, setDisplayedImage } =
-    useUser();
+  const {
+    setUserColor,
+    setPickedColor,
+    setColorObj
+  } = useColorNote();
+  const {
+    userObj,
+    setImagesContainer,
+    displayedImage,
+    setDisplayedImage,
+    setCurrentColorNav
+  } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = CloudInstance();
