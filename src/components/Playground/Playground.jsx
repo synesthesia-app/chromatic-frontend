@@ -31,6 +31,7 @@ export default function Cloud() {
     setImagesContainer,
     displayedImage,
     setDisplayedImage,
+    setCurrentColorNav
   } = useUser();
 
   const unsigned = 'lfiwhmcn';
@@ -69,6 +70,8 @@ export default function Cloud() {
     });
 
     synth.triggerAttackRelease(note + oct, '4n');
+
+    setCurrentColorNav(true);
   }
 
   // const [myImage, setMyImage] = useState(defaultImg);
@@ -126,13 +129,6 @@ export default function Cloud() {
   return (
     <div>
       <div className={styles.imageButtons}>
-        {!userObj.id ? (
-          <></>
-        ) : (
-          <div className={styles.uploadImgButton} onClick={handleClick}>
-            Upload Image
-          </div>
-        )}
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"
@@ -142,6 +138,13 @@ export default function Cloud() {
             Eye Dropper
           </EyeDropper>
         </div>
+        {!userObj.id ? (
+          <></>
+        ) : (
+          <div className={styles.uploadImgButton} onClick={handleClick}>
+            Upload Image
+          </div>
+        )}
       </div>
       <AdvancedImage cldImg={defaultImg} />
     </div>
