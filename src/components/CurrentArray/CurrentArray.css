@@ -113,3 +113,14 @@
   width: 300px;
   color: white;
 }
+
+.iconAndLabel {
+  display: flex;
+  gap: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+  width: 20px;
+  height: auto;
+}
