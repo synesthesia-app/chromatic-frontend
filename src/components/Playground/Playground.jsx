@@ -16,8 +16,10 @@ import styles from './Playground.css';
 import { fill, fit } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
+
   const { setUserColor, setPickedColor, setColorObj } = useColorNote();
   const { userObj, setImagesContainer, displayedImage } = useUser();
+
 
   const unsigned = 'lfiwhmcn';
   const cld = CloudInstance();
@@ -55,6 +57,8 @@ export default function Cloud() {
     });
 
     synth.triggerAttackRelease(note + oct, '4n');
+
+    setCurrentColorNav(true);
   }
 
   // const [myImage, setMyImage] = useState(defaultImg);
@@ -104,13 +108,6 @@ export default function Cloud() {
   return (
     <div>
       <div className={styles.imageButtons}>
-        {!userObj.id ? (
-          <></>
-        ) : (
-          <div className={styles.uploadImgButton} onClick={handleClick}>
-            Upload Image
-          </div>
-        )}
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"
@@ -120,6 +117,13 @@ export default function Cloud() {
             Eye Dropper
           </EyeDropper>
         </div>
+        {!userObj.id ? (
+          <></>
+        ) : (
+          <div className={styles.uploadImgButton} onClick={handleClick}>
+            Upload Image
+          </div>
+        )}
       </div>
       <AdvancedImage cldImg={defaultImg} />
     </div>
