@@ -10,6 +10,7 @@
   border-top: 2px solid var(--brt-green);
   border-left: 2px solid var(--brt-green);
   border-right: 2px solid var(--brt-green);
+  border-bottom: none;
   color: white;
   padding: 0 10px;
   font-size: 1.125rem;
@@ -44,8 +45,8 @@
 
 .saveArray:hover,
 .resetArray:hover,
-.playArray:active,
-.playSequence:active {
+.playArray:hover,
+.playSequence:hover {
   background-color: var(--brt-green);
   color: var(--dk-grey);
 }
@@ -87,8 +88,14 @@
   gap: 50px;
 }
 
-.playPalette,
-.resetAndSave {
+.playPalette {
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
+}
+
+.itMovesTheButtonsToTheRight {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }

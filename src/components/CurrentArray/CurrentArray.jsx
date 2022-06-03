@@ -56,7 +56,7 @@ export default function CurrentArray() {
   return (
     <>
       <section className={styles.arraySection}>
-        <form action="" onSubmit={handleSavePalette}>
+        <form id="colorArray" action="" onSubmit={handleSavePalette}>
           <input
             className={styles.arrayInput}
             type="text"
@@ -90,34 +90,30 @@ export default function CurrentArray() {
                 </h3>
               )}
             </div>
-            <div className={styles.arrayButtons}>
-              <div className={styles.playPalette}>
-                <button
-                  className={styles.playArray}
-                  onClick={handlePlayPalette}
-                >
-                  play palette
-                </button>
-                <button className={styles.playSequence}>play sequence</button>
-              </div>
-              <div className={styles.resetAndSave}>
-                <button
-                  className={styles.resetArray}
-                  onClick={handleResetPalette}
-                >
-                  reset palette
-                </button>
-                {!userObj.id ? (
-                  <></>
-                ) : (
-                  <button className={styles.saveArray} type="submit">
-                    save palette
-                  </button>
-                )}
-              </div>
-            </div>
           </section>
         </form>
+        <div className={styles.itMovesTheButtonsToTheRight}>
+          <div className={styles.playPalette}>
+            {!userObj.id ? (
+              <></>
+            ) : (
+              <button
+                className={styles.saveArray}
+                type="submit"
+                form="colorArray"
+              >
+                save palette
+              </button>
+            )}
+            <button className={styles.resetArray} onClick={handleResetPalette}>
+              reset palette
+            </button>
+            <button className={styles.playArray} onClick={handlePlayPalette}>
+              play palette
+            </button>
+            <button className={styles.playSequence}>play sequence</button>
+          </div>
+        </div>
       </section>
     </>
   );
