@@ -84,19 +84,25 @@ export default function CurrentArray() {
               )}
             </div>
             <div className={styles.arrayButtons}>
-              <button
-                className={styles.resetArray}
-                onClick={handleResetPalette}
-              >
-                reset palette
-              </button>
-              {!userObj.id ? (
-                <></>
-              ) : (
-                <button className={styles.saveArray} type="submit">
-                  save palette
+              <div className={styles.playPalette}>
+                <button className={styles.playArray}>play palette</button>
+                <button className={styles.playSequence}>play sequence</button>
+              </div>
+              <div className={styles.resetAndSave}>
+                <button
+                  className={styles.resetArray}
+                  onClick={handleResetPalette}
+                >
+                  reset palette
                 </button>
-              )}
+                {!userObj.id ? (
+                  <></>
+                ) : (
+                  <button className={styles.saveArray} type="submit">
+                    save palette
+                  </button>
+                )}
+              </div>
             </div>
           </section>
         </form>

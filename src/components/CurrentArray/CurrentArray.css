@@ -23,9 +23,11 @@
 }
 
 .saveArray,
-.resetArray {
+.resetArray,
+.playArray,
+.playSequence {
   background-color: var(--dk-grey);
-  width: 115px;
+  width: 130px;
   font-size: 1rem;
   padding: 5px 10px;
   cursor: pointer;
@@ -41,13 +43,17 @@
 }
 
 .saveArray:hover,
-.resetArray:hover {
+.resetArray:hover,
+.playArray:active,
+.playSequence:active {
   background-color: var(--brt-green);
   color: var(--dk-grey);
 }
 
 .saveArray:active,
-.resetArray:active {
+.resetArray:active,
+.playArray:active,
+.playSequence:active {
   background-color: var(--brt-pink);
   color: var(--dk-grey);
 }
@@ -75,6 +81,12 @@
 }
 
 .arrayButtons {
+  display: flex;
+  gap: 50px;
+}
+
+.playPalette,
+.resetAndSave {
   display: flex;
   gap: 10px;
 }
