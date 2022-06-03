@@ -13,10 +13,13 @@ export const ColorNoteProvider = ({ children }) => {
   const [pickedColor, setPickedColor] = useState('#bada55');
   const [colorObj, setColorObj] = useState({});
   const [colorPalette, setColorPalette] = useState([]);
+  const [paletteName, setPaletteName] = useState('');
 
   return (
     <ToneContext.Provider
       value={{
+        paletteName,
+        setPaletteName,
         userColor,
         setUserColor,
         pickedColor,
