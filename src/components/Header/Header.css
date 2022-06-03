@@ -70,6 +70,8 @@ a:active {
 }
 
 .logoStuff {
+  display: flex;
+  gap: 20px;
   border: none;
 }
 

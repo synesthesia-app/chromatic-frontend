@@ -1,4 +1,5 @@
 import styles from './ImageScroller.css';
+import styles2 from '../../index.css';
 import { useEffect, useState } from 'react';
 import { useUser } from '../../context/UserProvider';
 import { CloudInstance } from '../../services/Cloudinary';
@@ -21,7 +22,7 @@ export default function ImageScroller() {
   return (
     <>
       <section className={styles.imageScroller}>
-        <div className={styles.showImages}>
+        <div className={`${styles.showImages} ${styles2.scrollbar}`}>
           {userIs.map((image) => {
             return (
               <img

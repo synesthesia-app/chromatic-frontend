@@ -1,4 +1,5 @@
 import styles from './CurrentArray.css';
+import styles2 from '../../index.css';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import { useUser } from '../../context/UserProvider';
 import { useState } from 'react';
@@ -59,7 +60,7 @@ export default function CurrentArray() {
             onChange={(e) => setPaletteName(e.target.value)}
           />
           <div className={styles.displayArray}>
-            <div className={styles.arrayContainer}>
+            <div className={`${styles.arrayContainer} ${styles2.scrollbar}`}>
               {colorPalette.map((swatch, i) => {
                 return (
                   <div
