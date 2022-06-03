@@ -1,32 +1,27 @@
-import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
+import { useEffect, useState } from 'react';
 import { EyeDropper } from 'react-eyedrop';
+import * as Tone from 'tone';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import { useUser } from '../../context/UserProvider';
-// import ImgUpload from './ImgUpload';
-import hexToHSL from '../../utils/hex-to-hsl';
-import hslToNote from '../../utils/hsl-to-note';
-import * as Tone from 'tone';
+import { CloudInstance } from '../../services/Cloudinary';
 import colorAPI from '../../services/colorAPI';
 import { getImages, uploadImage } from '../../services/images';
-import { CloudInstance } from '../../services/Cloudinary';
+import hexToHSL from '../../utils/hex-to-hsl';
+import hslToNote from '../../utils/hsl-to-note';
 
 import styles from './Playground.css';
 
-import { fill, fit } from '@cloudinary/url-gen/actions/resize';
+import { fit } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-  const {
-    setUserColor,
-    setPickedColor,
-    setColorObj
-  } = useColorNote();
+  const { setUserColor, setPickedColor, setColorObj } = useColorNote();
   const {
     userObj,
     setImagesContainer,
     displayedImage,
     setDisplayedImage,
-    setCurrentColorNav
+    setCurrentColorNav,
   } = useUser();
 
   const unsigned = 'lfiwhmcn';
@@ -69,7 +64,6 @@ export default function Cloud() {
     setCurrentColorNav(true);
   }
 
-  // const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
   const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`;
 
@@ -80,7 +74,6 @@ export default function Cloud() {
     },
     (err, res) => {
       if (res.info.files) {
-        console.log(res.info);
         let publicUrl = res.info.files[0].uploadInfo.url;
         let publicId = res.info.files[0].uploadInfo.public_id;
         handleUpload(publicUrl, publicId);
@@ -89,7 +82,6 @@ export default function Cloud() {
   );
 
   const handleUpload = async (publicUrl, publicId) => {
-    console.log('in handleUpload');
     publicId && (await uploadImage(publicUrl, publicId, userObj.id));
 
     const images = await getImages(userObj.id);
@@ -99,7 +91,7 @@ export default function Cloud() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const cloudWidget = widget.open();
+    widget.open();
   };
 
   useEffect(() => {

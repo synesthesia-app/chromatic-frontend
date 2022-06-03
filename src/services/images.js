@@ -32,5 +32,5 @@ export const uploadImage = async (publicUrl, publicId, id) => {
       },
     }
   );
-  const data = await res.json();
+  await res.json();
 };

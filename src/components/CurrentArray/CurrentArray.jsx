@@ -1,22 +1,16 @@
-import styles from './CurrentArray.css';
-import styles2 from '../../index.css';
-import { useColorNote } from '../../context/ColorNoteProvider';
-import { useUser } from '../../context/UserProvider';
 import { useState } from 'react';
 import * as Tone from 'tone';
+import { useColorNote } from '../../context/ColorNoteProvider';
+import { useUser } from '../../context/UserProvider';
+import styles2 from '../../index.css';
 import { createPalette } from '../../services/palettes';
+import styles from './CurrentArray.css';
 
 export default function CurrentArray() {
-  const {
-    colorPalette,
-    setPaletteName,
-    paletteName,
-    setColorObj,
-    setColorPalette,
-  } = useColorNote();
-  console.log('colorPalette :>> ', colorPalette);
+  const { colorPalette, setPaletteName, paletteName, setColorPalette } =
+    useColorNote();
+
   const { userObj, setCurrentColorNav } = useUser();
-  console.log('paletteName :>> ', paletteName);
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
   const [swatchIndex, setSwatchIndex] = useState('');
@@ -30,13 +24,12 @@ export default function CurrentArray() {
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
 
-  function handleSwatchDelete(swatch, index) {
-    const filteredPalette = colorPalette.filter((swatch, index) => index != swatchIndex);
+  function handleSwatchDelete() {
+    const filteredPalette = colorPalette.filter(
+      (swatch, index) => index != swatchIndex
+    );
     setColorPalette(filteredPalette);
-
   }
-
-
 
   function handleResetPalette() {
     setColorPalette([]);
@@ -54,9 +47,7 @@ export default function CurrentArray() {
     };
 
     await createPalette(palette);
-
     handleResetPalette();
-
     setCurrentColorNav(false);
   }
 
@@ -75,10 +66,9 @@ export default function CurrentArray() {
     const synth = new Tone.Synth().toDestination();
     console.log('synth', synth);
 
-    const seq = new Tone.Sequence((time, note,) => {
+    const seq = new Tone.Sequence((time, note) => {
       synth.triggerAttackRelease(note, 0.1, time);
     }, tones).start(0);
-    console.log('seq', seq);
 
     Tone.Transport.start();
   }
@@ -88,7 +78,6 @@ export default function CurrentArray() {
     Tone.Transport.cancel();
     setIsSequencing(false);
   }
-
 
   return (
     <>
@@ -119,15 +108,15 @@ export default function CurrentArray() {
               })}
             </div>
           </div>
-          <section className={styles.nameAndButton}>
-          </section>
+          <section className={styles.nameAndButton}></section>
         </form>
         <div className={styles.labelAndButtons}>
           <div className={styles.nameAndTone}>
             {name && (
               <div className={styles.iconAndLabel}>
                 <img
-                  src="./trash@2x.png" alt=""
+                  src="./trash@2x.png"
+                  alt=""
                   className={styles.trashIcon}
                   onClick={handleSwatchDelete}
                 />
@@ -139,7 +128,6 @@ export default function CurrentArray() {
           </div>
           <div className={styles.itMovesTheButtonsToTheRight}>
             <div className={styles.playPalette}>
-              
               {!userObj.id ? (
                 <></>
               ) : (
@@ -151,26 +139,30 @@ export default function CurrentArray() {
                   save palette
                 </button>
               )}
-              <button className={styles.resetArray} onClick={handleResetPalette}>
+              <button
+                className={styles.resetArray}
+                onClick={handleResetPalette}
+              >
                 reset palette
               </button>
               <button className={styles.playArray} onClick={handlePlayPalette}>
                 play palette
               </button>
-              {!isSequencing
-                ? <button
-                    className={styles.playSequence}
-                    onClick={handlePlaySequence}
-                  >
+              {!isSequencing ? (
+                <button
+                  className={styles.playSequence}
+                  onClick={handlePlaySequence}
+                >
                   play sequence
-                  </button>
-                : <button
-                    className={styles.playSequence}
-                    onClick={handleStopSequence}
-                  >
-                    stop sequence
-                  </button>
-              }
+                </button>
+              ) : (
+                <button
+                  className={styles.playSequence}
+                  onClick={handleStopSequence}
+                >
+                  stop sequence
+                </button>
+              )}
             </div>
           </div>
         </div>

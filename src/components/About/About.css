@@ -37,8 +37,6 @@
   flex-direction: row;
   gap: 60px;
   justify-content: center;
-  /* align-content: space-between; */
-  /* justify-content: space-around; */
 }
 
 .aboutBio {
@@ -47,7 +45,6 @@
   align-items: center;
   justify-content: center;
   width: 275px;
-  /* gap: 10px; */
 }
 
 .aboutBio h2 {

@@ -1,16 +1,10 @@
-import styles from './ImageScroller.css';
-import styles2 from '../../index.css';
-import { useEffect, useState } from 'react';
 import { useUser } from '../../context/UserProvider';
-import { CloudInstance } from '../../services/Cloudinary';
+import styles2 from '../../index.css';
 import { defaultArray } from './defaultArray';
+import styles from './ImageScroller.css';
 
 export default function ImageScroller() {
   const { imagesContainer, setDisplayedImage, userObj } = useUser();
-
-  useEffect(() => {
-    console.log(`|| imagesContainer >`, imagesContainer);
-  }, []);
 
   const handleImageSwap = (e) => {
     setDisplayedImage(e.target.alt);
