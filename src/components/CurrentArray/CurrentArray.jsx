@@ -6,12 +6,18 @@ import * as Tone from 'tone';
 import { createPalette } from '../../services/palettes';
 
 export default function CurrentArray() {
-  const { colorPalette, setColorObj, setColorPalette } = useColorNote();
+  const {
+    colorPalette,
+    setPaletteName,
+    paletteName,
+    setColorObj,
+    setColorPalette,
+  } = useColorNote();
+  console.log('colorPalette :>> ', colorPalette);
   const { userObj, setCurrentColorNav } = useUser();
-
+  console.log('paletteName :>> ', paletteName);
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
-  const [paletteName, setPaletteName] = useState('');
 
   function handleSwatchClick(swatch) {
     setName(swatch.name);
@@ -43,62 +49,57 @@ export default function CurrentArray() {
   return (
     <>
       <section className={styles.arraySection}>
-        <form action=""
-          onSubmit={handleSavePalette}
-        >
-        <input
-          className={styles.arrayInput}
-          type="text"
-          placeholder="name your palette"
-          value={paletteName}
-          required
-          onChange={(e) => setPaletteName(e.target.value)}
-        />
-        <div className={styles.displayArray}>
-          <div className={styles.arrayContainer}>
-            {colorPalette.map((swatch, i) => {
-              return (
-                <div
-                  key={swatch.name + i}
-                  className={styles.swatch}
-                  style={{
-                    backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
-                  }}
-                  title={`${swatch.name}`}
-                  onClick={() => handleSwatchClick(swatch)}
-                ></div>
-              );
-            })}
+        <form action="" onSubmit={handleSavePalette}>
+          <input
+            className={styles.arrayInput}
+            type="text"
+            placeholder="name your palette"
+            value={paletteName}
+            required
+            onChange={(e) => setPaletteName(e.target.value)}
+          />
+          <div className={styles.displayArray}>
+            <div className={styles.arrayContainer}>
+              {colorPalette.map((swatch, i) => {
+                return (
+                  <div
+                    key={swatch.name + i}
+                    className={styles.swatch}
+                    style={{
+                      backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
+                    }}
+                    title={`${swatch.name}`}
+                    onClick={() => handleSwatchClick(swatch)}
+                  ></div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <section className={styles.nameAndButton}>
-          <div>
-            {name && (
-              <h3>
-                {name} - {tone}
-              </h3>
-            )}
-          </div>
-          <div className={styles.arrayButtons}>
-            <button
-              className={styles.resetArray}
-              onClick={handleResetPalette}
-            >
-              reset palette
-            </button>
-            {!userObj.id ? (
-              <></>
-            ) : (
-                <button
-                  className={styles.saveArray}
-                  type='submit'
-                >
-                save palette
+          <section className={styles.nameAndButton}>
+            <div>
+              {name && (
+                <h3>
+                  {name} - {tone}
+                </h3>
+              )}
+            </div>
+            <div className={styles.arrayButtons}>
+              <button
+                className={styles.resetArray}
+                onClick={handleResetPalette}
+              >
+                reset palette
               </button>
-            )}
-          </div>
+              {!userObj.id ? (
+                <></>
+              ) : (
+                <button className={styles.saveArray} type="submit">
+                  save palette
+                </button>
+              )}
+            </div>
           </section>
-          </form>
+        </form>
       </section>
     </>
   );
