@@ -58,17 +58,24 @@ export default function CurrentArray() {
 
   function handlePlaySequence() {
     setIsSequencing(true);
-    const tones = colorPalette.map((swatch) => swatch.tone);
+    let tones = [];
+    tones = colorPalette.map((swatch) => swatch.tone);
+    console.log('tones', tones);
 
-    const synth2 = new Tone.Synth().toDestination();
+    const synth = new Tone.Synth().toDestination();
+    console.log('synth', synth);
+
     const seq = new Tone.Sequence((time, note,) => {
-      synth2.triggerAttackRelease(note, 0.1, time);
+      synth.triggerAttackRelease(note, 0.1, time);
     }, tones).start(0);
+    console.log('seq', seq);
+
     Tone.Transport.start();
   }
 
   function handleStopSequence() {
     Tone.Transport.stop();
+    Tone.Transport.cancel();
     setIsSequencing(false);
   }
 
