@@ -3,7 +3,12 @@ import styles from './SavedPalette.css';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import { deletePaletteById } from '../../services/palettes';
 
-export default function SavedPalette({ id, name, swatchArr }) {
+export default function SavedPalette({
+  id,
+  name, 
+  swatchArr,
+  setIsDeleting
+}) {
   const { setColorPalette, setPaletteName } = useColorNote();
   const [palette, setPalette] = useState([]);
 
@@ -21,6 +26,7 @@ export default function SavedPalette({ id, name, swatchArr }) {
   };
 
   async function handlePaletteDelete() {
+    setIsDeleting(true);
     await deletePaletteById(id);
   };
 
