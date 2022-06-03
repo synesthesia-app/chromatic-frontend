@@ -3,19 +3,21 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+  height: 70vh;
 }
 
 .loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   color: var(--dk-grey);
   background-color: var(--brt-green);
   padding: 5px;
-  border-top: 2px solid var(--brt-green);
-  border-left: 2px solid var(--brt-green);
-  border-right: 2px solid var(--brt-green);
-  border-bottom: none;
-}
+  border: 2px solid var(--brt-green);
 
+  height: 40px;
+}
 
 .loginButton:hover {
   color: var(--brt-green);

@@ -5,30 +5,29 @@ import { useEffect } from 'react';
 import styles from '../Header/Header.css';
 
 export default function AuthButton() {
-    const { userObj, logout } = useUser();
-    // const history = useHistory();
-  
-    useEffect(() => {
-      console.log(`|| userObj >`, userObj);
-    }, [userObj]);
-  
-    const handleLogout = async () => {
-      await logout();
+  const { userObj, logout } = useUser();
+  // const history = useHistory();
+
+  useEffect(() => {
+    console.log(`|| userObj >`, userObj);
+  }, [userObj]);
+
+  const handleLogout = async () => {
+    await logout();
     //   history.push('/');
-    };
+  };
 
   return (
-    <div>
-        {userObj?.username ? (
-            <Link to='*' className={styles.navLink} onClick={handleLogout}>
-                Logout
-            </Link>
-        ) : (
-            <Link to='/login' className={styles.navLink}>
-                Login
-            </Link>
-        )}
+    <div className={styles.logout}>
+      {userObj?.username ? (
+        <Link to="*" className={styles.navLink} onClick={handleLogout}>
+          Logout
+        </Link>
+      ) : (
+        <Link to="/login" className={styles.navLink}>
+          Login
+        </Link>
+      )}
     </div>
-  )
+  );
 }
-
