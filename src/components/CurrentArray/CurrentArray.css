@@ -10,6 +10,7 @@
   border-top: 2px solid var(--brt-green);
   border-left: 2px solid var(--brt-green);
   border-right: 2px solid var(--brt-green);
+  border-bottom: none;
   color: white;
   padding: 0 10px;
   font-size: 1.125rem;
@@ -44,8 +45,8 @@
 
 .saveArray:hover,
 .resetArray:hover,
-.playArray:active,
-.playSequence:active {
+.playArray:hover,
+.playSequence:hover {
   background-color: var(--brt-green);
   color: var(--dk-grey);
 }
@@ -63,6 +64,10 @@
 .arrayContainer {
   width: 100%;
   height: 100%;
+  border-bottom: 2px solid #111;
+  border-right: 2px solid #333;
+  border-left: 2px solid #666;
+  border-top: 2px solid #999;
   background-image: linear-gradient(#777 0%, #444 100%);
   display: flex;
   flex-wrap: nowrap;
@@ -87,8 +92,36 @@
   gap: 50px;
 }
 
-.playPalette,
-.resetAndSave {
+.playPalette {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.itMovesTheButtonsToTheRight {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.labelAndButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nameAndTone {
+  margin-top: 3px;
+  width: 500px;
+  color: white;
+}
+
+.iconAndLabel {
   display: flex;
   gap: 10px;
+}
+
+.trashIcon {
+  cursor: pointer;
+  width: 20px;
+  height: auto;
 }

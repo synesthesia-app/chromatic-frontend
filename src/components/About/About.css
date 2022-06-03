@@ -1,154 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&family=Roboto+Slab:wght@100;200;300&display=swap');
+
 .About {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.aboutContainer {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    animation: fadeAbout 1s ease-out;
-}
-
-.aboutTitle {
-    /* font-family: var(--font-secondary); */
-    font-size: clamp(54px, 5vw, 96px);
-    margin: 6vh 0 4vh 0;
-    /* size: 4rem; */
-    color: var(--brt-green);
-    /* font-style: italic; */
-}
-
-.aboutBioContainer {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    /* max-width: 900px; */
-    flex-direction: row;
-    align-content: space-between;
-    justify-content: space-around;
-    gap: 8vw;
-}
-
-.aboutBio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 20vw;
-    gap: 2vw;
-    /* margin: 5vw;
-    margin-top: 2vw; */
-    /* font-weight: 300; */
-}
-
-.aboutBio h3 {
-    /* font-family: var(--font-primary); */
-    font-size: clamp(10px, 1vw, 20px);
-    text-transform: uppercase;
+  padding-bottom: 50px;
 }
 
 .aboutBio img {
-    width: 15vw;
-    border: 0.3vw solid black;
+  max-width: 200px;
+  min-width: 200px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #111;
+  border-left: 3px solid var(--brt-blue);
+  border-right: 3px solid var(--brt-green);
+  border-top: 3px solid var(--brt-pink);
+}
+
+.aboutContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeAbout 1s ease-out;
+}
+
+.aboutTitle {
+  font-size: 2rem;
+  margin: 100px 0 25px 0;
+  color: var(--brt-green);
+}
+
+.aboutBioContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 960px;
+  flex-direction: row;
+  gap: 60px;
+  justify-content: center;
+  /* align-content: space-between; */
+  /* justify-content: space-around; */
+}
+
+.aboutBio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 275px;
+  /* gap: 10px; */
+}
+
+.aboutBio h2 {
+  margin-bottom: 20px;
+  font-size: 1.375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.063rem;
 }
 
 .aboutBioLinks {
-    display: flex;
-    flex-direction: column;
-    /* font-family: var(--font-primary); */
-    font-size: clamp(8px, 1vw, 15px);
-    align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: clamp(8px, 1vw, 15px);
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .aboutBioLink {
-    text-transform: uppercase;
-    /* font-family: var(--font-primary); */
-    font-size: clamp(8px, 1vw, 15px);
+  text-transform: uppercase;
+  font-size: 0.65rem;
 }
 
 .sam {
-    color: crimson;
-    border: 2px solid crimson;
+  color: crimson;
+  border: 2px solid crimson;
 }
 .sam:hover {
-    color: var(--dk-grey);
-    background-color: crimson;
+  color: var(--dk-grey);
+  background-color: crimson;
 }
 .sam:active {
-    color: crimson;
-    background-color: var(--brt-green);
+  color: crimson;
+  background-color: var(--brt-green);
 }
 
 .arma {
-    color: orange;
-    border: 2px solid orange;
+  color: orange;
+  border: 2px solid orange;
 }
 .arma:hover {
-    color: var(--dk-grey);
-    background-color: orange;
+  color: var(--dk-grey);
+  background-color: orange;
 }
 .arma:active {
-    color: orange;
-    background-color: cyan;
+  color: orange;
+  background-color: cyan;
 }
 .phil {
-    color: yellow;
-    border: 2px solid yellow;
+  color: yellow;
+  border: 2px solid yellow;
 }
 .phil:hover {
-    color: var(--dk-grey);
-    background-color: yellow;
+  color: var(--dk-grey);
+  background-color: yellow;
 }
 .phil:active {
-    color: yellow;
-    background-color: purple;
+  color: yellow;
+  background-color: purple;
 }
 .clayton {
-    color: chartreuse;
-    border: 2px solid chartreuse;
+  color: chartreuse;
+  border: 2px solid chartreuse;
 }
 .clayton:hover {
-    color: var(--dk-grey);
-    background-color: chartreuse;
+  color: var(--dk-grey);
+  background-color: chartreuse;
 }
 .clayton:active {
-    color: chartreuse;
-    background-color:  crimson;
+  color: chartreuse;
+  background-color: crimson;
 }
 .alex {
-    color: cyan;
-    border: 2px solid cyan;
+  color: cyan;
+  border: 2px solid cyan;
 }
 .alex:hover {
-    color: var(--dk-grey);
-    background-color: cyan;
+  color: var(--dk-grey);
+  background-color: cyan;
 }
 .alex:active {
-    color: cyan;
-    background-color: orange;
+  color: cyan;
+  background-color: orange;
 }
-
 
 .aboutBio p {
-    /* font-family: var(--font-secondary); */
-    font-size: clamp(15px, 2vw, 25px);
-}
-
-@keyframes fadeAbout {
-    0%,
-    40% {
-      opacity: 0;
-      transform: translate3d(0, 25px, 0);
-    }
-    100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+  font-family: 'Roboto Slab', serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.063rem;
+  line-height: 1.25rem;
+  width: 300px;
 }

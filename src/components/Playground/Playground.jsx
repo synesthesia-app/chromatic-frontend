@@ -16,10 +16,18 @@ import styles from './Playground.css';
 import { fill, fit } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-
-  const { setUserColor, setPickedColor, setColorObj } = useColorNote();
-  const { userObj, setImagesContainer, displayedImage } = useUser();
-
+  const {
+    setUserColor,
+    setPickedColor,
+    setColorObj
+  } = useColorNote();
+  const {
+    userObj,
+    setImagesContainer,
+    displayedImage,
+    setDisplayedImage,
+    setCurrentColorNav
+  } = useUser();
 
   const unsigned = 'lfiwhmcn';
   const cld = CloudInstance();
@@ -104,6 +112,10 @@ export default function Cloud() {
     defaultImg = cld.image(displayedImage);
   }, [displayedImage]);
 
+  const resetImage = () => {
+    setDisplayedImage('hvahpfe48bxckvfpzuxd');
+  };
+
   defaultImg.resize(fit().width(380).height(380));
   return (
     <div>
@@ -122,6 +134,13 @@ export default function Cloud() {
         ) : (
           <div className={styles.uploadImgButton} onClick={handleClick}>
             Upload Image
+          </div>
+        )}
+        {displayedImage === 'hvahpfe48bxckvfpzuxd' ? (
+          <></>
+        ) : (
+          <div className={styles.uploadImgButton} onClick={resetImage}>
+            Color Wheel
           </div>
         )}
       </div>

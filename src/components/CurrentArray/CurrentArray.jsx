@@ -19,17 +19,30 @@ export default function CurrentArray() {
   console.log('paletteName :>> ', paletteName);
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
+  const [swatchIndex, setSwatchIndex] = useState('');
+  const [isSequencing, setIsSequencing] = useState(false);
 
-  function handleSwatchClick(swatch) {
+  function handleSwatchClick(swatch, index) {
     setName(swatch.name);
     setTone(swatch.tone);
+    setSwatchIndex(index);
     const synth3 = new Tone.Synth().toDestination();
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
 
+  function handleSwatchDelete(swatch, index) {
+    const filteredPalette = colorPalette.filter((swatch, index) => index != swatchIndex);
+    setColorPalette(filteredPalette);
+
+  }
+
+
+
   function handleResetPalette() {
     setColorPalette([]);
     setPaletteName('');
+    setName('');
+    setTone('');
   }
 
   async function handleSavePalette(e) {
@@ -53,10 +66,34 @@ export default function CurrentArray() {
     synth.triggerAttackRelease(tones, 1);
   }
 
+  function handlePlaySequence() {
+    setIsSequencing(true);
+    let tones = [];
+    tones = colorPalette.map((swatch) => swatch.tone);
+    console.log('tones', tones);
+
+    const synth = new Tone.Synth().toDestination();
+    console.log('synth', synth);
+
+    const seq = new Tone.Sequence((time, note,) => {
+      synth.triggerAttackRelease(note, 0.1, time);
+    }, tones).start(0);
+    console.log('seq', seq);
+
+    Tone.Transport.start();
+  }
+
+  function handleStopSequence() {
+    Tone.Transport.stop();
+    Tone.Transport.cancel();
+    setIsSequencing(false);
+  }
+
+
   return (
     <>
       <section className={styles.arraySection}>
-        <form action="" onSubmit={handleSavePalette}>
+        <form id="colorArray" action="" onSubmit={handleSavePalette}>
           <input
             className={styles.arrayInput}
             type="text"
@@ -67,57 +104,76 @@ export default function CurrentArray() {
           />
           <div className={styles.displayArray}>
             <div className={`${styles.arrayContainer} ${styles2.scrollbar}`}>
-              {colorPalette.map((swatch, i) => {
+              {colorPalette.map((swatch, index) => {
                 return (
                   <div
-                    key={swatch.name + i}
+                    key={swatch.name + index}
                     className={styles.swatch}
                     style={{
                       backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
                     }}
                     title={`${swatch.name}`}
-                    onClick={() => handleSwatchClick(swatch)}
+                    onClick={() => handleSwatchClick(swatch, index)}
                   ></div>
                 );
               })}
             </div>
           </div>
           <section className={styles.nameAndButton}>
-            <div>
-              {name && (
+          </section>
+        </form>
+        <div className={styles.labelAndButtons}>
+          <div className={styles.nameAndTone}>
+            {name && (
+              <div className={styles.iconAndLabel}>
+                <img
+                  src="./trash@2x.png" alt=""
+                  className={styles.trashIcon}
+                  onClick={handleSwatchDelete}
+                />
                 <h3>
                   {name} - {tone}
                 </h3>
+              </div>
+            )}
+          </div>
+          <div className={styles.itMovesTheButtonsToTheRight}>
+            <div className={styles.playPalette}>
+              
+              {!userObj.id ? (
+                <></>
+              ) : (
+                <button
+                  className={styles.saveArray}
+                  type="submit"
+                  form="colorArray"
+                >
+                  save palette
+                </button>
               )}
-            </div>
-            <div className={styles.arrayButtons}>
-              <div className={styles.playPalette}>
-                <button
-                  className={styles.playArray}
-                  onClick={handlePlayPalette}
-                >
-                  play palette
-                </button>
-                <button className={styles.playSequence}>play sequence</button>
-              </div>
-              <div className={styles.resetAndSave}>
-                <button
-                  className={styles.resetArray}
-                  onClick={handleResetPalette}
-                >
-                  reset palette
-                </button>
-                {!userObj.id ? (
-                  <></>
-                ) : (
-                  <button className={styles.saveArray} type="submit">
-                    save palette
+              <button className={styles.resetArray} onClick={handleResetPalette}>
+                reset palette
+              </button>
+              <button className={styles.playArray} onClick={handlePlayPalette}>
+                play palette
+              </button>
+              {!isSequencing
+                ? <button
+                    className={styles.playSequence}
+                    onClick={handlePlaySequence}
+                  >
+                  play sequence
                   </button>
-                )}
-              </div>
+                : <button
+                    className={styles.playSequence}
+                    onClick={handleStopSequence}
+                  >
+                    stop sequence
+                  </button>
+              }
             </div>
-          </section>
-        </form>
+          </div>
+        </div>
       </section>
     </>
   );
