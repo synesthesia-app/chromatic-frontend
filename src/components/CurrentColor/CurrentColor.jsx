@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useColorNote } from '../../context/ColorNoteProvider';
-import styles from './CurrentColor.css';
-import { createPalette } from '../../services/palettes';
 import { useUser } from '../../context/UserProvider';
+import { createPalette } from '../../services/palettes';
+import styles from './CurrentColor.css';
 
 export default function CurrentColor() {
-  const {
-    userColor,
-    setUserColor,
-    colorPalette,
-    setColorPalette,
-    pickedColor,
-    setPickedColor,
-    colorObj,
-  } = useColorNote();
+  const { userColor, colorPalette, setColorPalette, pickedColor, colorObj } =
+    useColorNote();
 
   const { userObj, setCurrentColorNav } = useUser();
-
   const [makeHSLItem, setMakeHSLItem] = useState();
   const [hex, setHex] = useState('bada55');
   const [rgb, setRgb] = useState('186, 218, 85');
@@ -38,13 +30,11 @@ export default function CurrentColor() {
     const stringManip = rgb;
     const newString1 = stringManip.replace('rgb(', '');
     const newString2 = newString1.replace(')', '');
-
     setRgb(newString2);
   }, [rgb]);
 
   function textColor(e) {
     if (userColor.textColor === undefined) return `${pickedColor}`;
-    // return userColor.textColor === '#4cf000' ? '#4cf000' : `#292929`;
     return userColor.textColor === '#4cf000' ? '#4cf000' : `${pickedColor}`;
   }
 
@@ -68,7 +58,6 @@ export default function CurrentColor() {
     e.preventDefault();
     e.target.style.background = '#f0b';
     e.target.style.color = `#292929`;
-    // e.target.style.color = `${userColor?.textColor}`;
   }
 
   function handleMouseUp(e) {
@@ -90,7 +79,6 @@ export default function CurrentColor() {
     };
 
     await createPalette(singleSwatch);
-
     setCurrentColorNav(false);
   }
 
@@ -165,21 +153,6 @@ export default function CurrentColor() {
                 save swatch
               </div>
             )}
-            {/* <div
-              className={`${styles.buttonStyle} ${styles.saveColor}`}
-              style={{
-                backgroundColor: `${pickedColor}`,
-                border: `2px solid ${userColor?.textColor}`,
-                color: `${userColor?.textColor}`,
-              }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseDown={handleMouseDown}
-              onMouseUp={handleMouseUp}
-              onClick={handleSaveSwatch}
-            >
-              save swatch
-            </div> */}
             <div
               className={`${styles.buttonStyle} ${styles.addToList}`}
               style={{

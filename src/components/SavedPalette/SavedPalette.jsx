@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
-import styles from './SavedPalette.css';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import { deletePaletteById } from '../../services/palettes';
+import styles from './SavedPalette.css';
 
-export default function SavedPalette({
-  id,
-  name, 
-  swatchArr,
-  setIsDeleting
-}) {
+export default function SavedPalette({ id, name, swatchArr, setIsDeleting }) {
   const { setColorPalette, setPaletteName } = useColorNote();
   const [palette, setPalette] = useState([]);
 
@@ -28,7 +23,7 @@ export default function SavedPalette({
   async function handlePaletteDelete() {
     setIsDeleting(true);
     await deletePaletteById(id);
-  };
+  }
 
   return (
     <section title={`${name}`} className={styles.paletteContainer}>

@@ -1,24 +1,20 @@
 import {
   BrowserRouter as Router,
-  Switch,
-  Link,
-  NavLink,
-  Route,
   Redirect,
+  Route,
+  Switch,
 } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Main from './views/Main/Main';
-import Footer from './components/Foot/Foot';
-import Login from './views/Login/Login';
 import About from './components/About/About';
-
-import styles from './App.css';
+import Footer from './components/Foot/Foot';
+import Header from './components/Header/Header';
+import Login from './views/Login/Login';
+import Main from './views/Main/Main';
 
 export default function App() {
   return (
     <>
       <Router>
-      <Header />
+        <Header />
         <Switch>
           <Route path="/login">
             <Login />

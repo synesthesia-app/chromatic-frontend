@@ -1,18 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
-import { useColorNote } from '../../context/ColorNoteProvider.jsx';
+import { useUser } from '../../context/UserProvider.jsx';
 import CurrentColor from '../CurrentColor/CurrentColor';
 import SavedColors from '../SavedColors/SavedColors';
-import { useUser } from '../../context/UserProvider.jsx';
 
 import styles from './ColorPanel.css';
 
 export default function ColorPanel() {
-  const { userColor, setUserColor, currentColor, setCurrentColor } =
-    useColorNote();
   const { userObj, currentColorNav, setCurrentColorNav } = useUser();
-
-  // const [currentColorNav, setCurrentColorNav] = useState(true);
 
   const isActive = {
     color: 'var(--brt-green)',
@@ -99,9 +92,7 @@ export default function ColorPanel() {
       </div>
       <div className={styles.infoSection}>
         <div className={styles.info}>
-          {currentColorNav
-            ? <CurrentColor />
-            : <SavedColors />}
+          {currentColorNav ? <CurrentColor /> : <SavedColors />}
         </div>
       </div>
     </div>

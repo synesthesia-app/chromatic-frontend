@@ -1,17 +1,7 @@
-import React from 'react';
-import { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Link,
-  useHistory,
-} from 'react-router-dom';
-import styles from './Header.css';
-import About from '../About/About';
-import Login from '../../views/Login/Login';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserProvider';
 import AuthButton from '../AuthButton/AuthButton';
+import styles from './Header.css';
 
 export default function Header() {
   const { userObj } = useUser();
