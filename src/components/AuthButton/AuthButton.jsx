@@ -7,10 +7,6 @@ import styles from '../Header/Header.css';
 export default function AuthButton() {
   const { userObj, logout } = useUser();
 
-  useEffect(() => {
-    console.log(`|| userObj >`, userObj);
-  }, [userObj]);
-
   const handleLogout = async () => {
     await logout();
   };

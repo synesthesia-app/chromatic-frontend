@@ -61,12 +61,10 @@ export default function CurrentArray() {
     setIsSequencing(true);
     let tones = [];
     tones = colorPalette.map((swatch) => swatch.tone);
-    console.log('tones', tones);
 
     const synth = new Tone.Synth().toDestination();
-    console.log('synth', synth);
 
-    const seq = new Tone.Sequence((time, note) => {
+    new Tone.Sequence((time, note) => {
       synth.triggerAttackRelease(note, 0.1, time);
     }, tones).start(0);
 
