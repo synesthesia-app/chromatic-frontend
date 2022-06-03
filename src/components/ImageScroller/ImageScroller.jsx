@@ -25,20 +25,26 @@ export default function ImageScroller() {
 
   useEffect(() => {
     console.log(`|| imagesContainer >`, imagesContainer);
-  }, [imagesContainer]);
+  }, []);
+
+  const handleImageSwap = (e) => {
+    console.log(e.target);
+  };
 
   return (
     <>
       <section className={styles.imageScroller}>
         <div className={styles.showImages}>
           {imagesContainer.map((image) => {
-            console.log(`|| image >`, image);
+            // console.log(`|| image >`, image);
             return (
-              <img
-                key={image}
-                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                src={image}
-              />
+              <></>
+              // <img
+              //   key={image}
+              //   style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+              //   src={image}
+              //   onClick={handleImageSwap}
+              // />
             );
           })}
         </div>
