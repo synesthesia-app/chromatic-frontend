@@ -31,6 +31,7 @@ export default function Cloud() {
     setImagesContainer,
     displayedImage,
     setDisplayedImage,
+    setCurrentColorNav
   } = useUser();
 
   const unsigned = 'lfiwhmcn';
@@ -69,6 +70,8 @@ export default function Cloud() {
     });
 
     synth.triggerAttackRelease(note + oct, '4n');
+
+    setCurrentColorNav(true);
   }
 
   const defaultImg = cld.image(displayedImage);
