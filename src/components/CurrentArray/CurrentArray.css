@@ -103,3 +103,13 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.labelAndButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nameAndTone {
+  width: 300px;
+  color: white;
+}

@@ -109,48 +109,58 @@ export default function CurrentArray() {
             </div>
           </div>
           <section className={styles.nameAndButton}>
-            <div>
+            {/* <div>
               {name && (
                 <h3>
                   {name} - {tone}
                 </h3>
               )}
-            </div>
+            </div> */}
           </section>
         </form>
-        <div className={styles.itMovesTheButtonsToTheRight}>
-          <div className={styles.playPalette}>
-            {!userObj.id ? (
-              <></>
-            ) : (
-              <button
-                className={styles.saveArray}
-                type="submit"
-                form="colorArray"
-              >
-                save palette
-              </button>
+        <div className={styles.labelAndButtons}>
+          <div className={styles.nameAndTone}>
+            {name && (
+              <h3>
+                {name} - {tone}
+              </h3>
             )}
-            <button className={styles.resetArray} onClick={handleResetPalette}>
-              reset palette
-            </button>
-            <button className={styles.playArray} onClick={handlePlayPalette}>
-              play palette
-            </button>
-            {!isSequencing
-              ? <button
-                  className={styles.playSequence}
-                  onClick={handlePlaySequence}
+          </div>
+          <div className={styles.itMovesTheButtonsToTheRight}>
+            <div className={styles.playPalette}>
+              
+              {!userObj.id ? (
+                <></>
+              ) : (
+                <button
+                  className={styles.saveArray}
+                  type="submit"
+                  form="colorArray"
                 >
-                play sequence
+                  save palette
                 </button>
-              : <button
-                  className={styles.playSequence}
-                  onClick={handleStopSequence}
-                >
-                  stop sequence
-                </button>
-            }
+              )}
+              <button className={styles.resetArray} onClick={handleResetPalette}>
+                reset palette
+              </button>
+              <button className={styles.playArray} onClick={handlePlayPalette}>
+                play palette
+              </button>
+              {!isSequencing
+                ? <button
+                    className={styles.playSequence}
+                    onClick={handlePlaySequence}
+                  >
+                  play sequence
+                  </button>
+                : <button
+                    className={styles.playSequence}
+                    onClick={handleStopSequence}
+                  >
+                    stop sequence
+                  </button>
+              }
+            </div>
           </div>
         </div>
       </section>
