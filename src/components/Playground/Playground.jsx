@@ -84,7 +84,7 @@ export default function Cloud() {
       if (res.info.files) {
         console.log(res.info);
         let publicUrl = res.info.files[0].uploadInfo.url;
-        let publicId = res.info.files[0].uploadInfo.publicId;
+        let publicId = res.info.files[0].uploadInfo.public_id;
         handleUpload(publicUrl, publicId);
       }
     }
