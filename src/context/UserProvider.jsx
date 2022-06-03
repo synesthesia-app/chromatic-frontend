@@ -4,10 +4,8 @@ import {
   useContext,
   useEffect,
   useState,
-  useMemo,
 } from 'react';
-import { signOut } from '../services/users';
-import { getCurrentUser } from '../services/users';
+import { getCurrentUser, signOut } from '../services/users';
 
 const UserContext = createContext();
 
@@ -22,11 +20,6 @@ export const UserProvider = ({ children }) => {
 
   const [currentColorNav, setCurrentColorNav] = useState(true);
 
-  const value = useMemo(
-    () => ({ userObj, setUserObj }),
-    [userObj?.id, userObj?.username]
-  );
-
   const logout = useCallback(() => {
     signOut().then(() => setUserObj({}));
   });
@@ -37,7 +30,6 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      // value={value}
       value={{
         userObj,
         setUserObj,

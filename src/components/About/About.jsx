@@ -1,5 +1,3 @@
-import React from 'react';
-import profPic from '../../assets/Marx1.jpg';
 import styles from './About.css';
 
 export default function About() {
@@ -102,13 +100,12 @@ export default function About() {
             </div>
             <p>
               Clayton is a Full-Stack Software Engineer living in Portland. His
-              love for photography and music drew him to the Chromatica app
-              idea. He believes in making the web a more accessible place for
-              all users and a more sustainable place for art and creativity.
-              Clayton recognizes the magic of creating code on a well
-              functioning and communicating team and is excited about
-              integrating his drive and work ethic into a career in software
-              development.
+              love for photography and music drew him to the Chromatic app idea.
+              He believes in making the web a more accessible place for all
+              users and a more sustainable place for art and creativity. Clayton
+              recognizes the magic of creating code on a well functioning and
+              communicating team and is excited about integrating his drive and
+              work ethic into a career in software development.
             </p>
           </div>
           <div style={{ color: 'cyan' }} className={styles.aboutBio}>

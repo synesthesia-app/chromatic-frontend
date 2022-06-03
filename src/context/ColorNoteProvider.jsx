@@ -1,16 +1,10 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const ToneContext = createContext();
 
 export const ColorNoteProvider = ({ children }) => {
   const [userColor, setUserColor] = useState({});
-  const [pickedColor, setPickedColor] = useState('#bada55');
+  const [pickedColor, setPickedColor] = useState('');
   const [colorObj, setColorObj] = useState({});
   const [colorPalette, setColorPalette] = useState([]);
   const [paletteName, setPaletteName] = useState('');
