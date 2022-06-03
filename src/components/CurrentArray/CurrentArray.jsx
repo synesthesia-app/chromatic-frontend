@@ -30,6 +30,8 @@ export default function CurrentArray() {
   function handleResetPalette() {
     setColorPalette([]);
     setPaletteName('');
+    setName('');
+    setTone('');
   }
 
   async function handleSavePalette(e) {
