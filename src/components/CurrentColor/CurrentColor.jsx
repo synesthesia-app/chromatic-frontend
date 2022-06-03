@@ -198,7 +198,7 @@ export default function CurrentColor() {
           </div>
         </div>
       ) : (
-        <h2 style={{ color: '#bada55' }}>
+        <h2 className={styles.clickAColor}>
           Click a color with the eye dropper for more info
         </h2>
       )}
