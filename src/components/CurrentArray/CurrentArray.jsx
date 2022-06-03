@@ -19,6 +19,7 @@ export default function CurrentArray() {
   console.log('paletteName :>> ', paletteName);
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
+  const [isSequencing, setIsSequencing] = useState(false);
 
   function handleSwatchClick(swatch) {
     setName(swatch.name);
@@ -53,6 +54,22 @@ export default function CurrentArray() {
     const synth = new Tone.PolySynth().toDestination();
     const tones = colorPalette.map((swatch) => swatch.tone);
     synth.triggerAttackRelease(tones, 1);
+  }
+
+  function handlePlaySequence() {
+    setIsSequencing(true);
+    const tones = colorPalette.map((swatch) => swatch.tone);
+
+    const synth2 = new Tone.Synth().toDestination();
+    const seq = new Tone.Sequence((time, note,) => {
+      synth2.triggerAttackRelease(note, 0.1, time);
+    }, tones).start(0);
+    Tone.Transport.start();
+  }
+
+  function handleStopSequence() {
+    Tone.Transport.stop();
+    setIsSequencing(false);
   }
 
   return (
@@ -113,7 +130,20 @@ export default function CurrentArray() {
             <button className={styles.playArray} onClick={handlePlayPalette}>
               play palette
             </button>
-            <button className={styles.playSequence}>play sequence</button>
+            {!isSequencing
+              ? <button
+                  className={styles.playSequence}
+                  onClick={handlePlaySequence}
+                >
+                play sequence
+                </button>
+              : <button
+                  className={styles.playSequence}
+                  onClick={handleStopSequence}
+                >
+                  stop sequence
+                </button>
+            }
           </div>
         </div>
       </section>
