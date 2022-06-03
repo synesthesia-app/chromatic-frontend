@@ -19,7 +19,7 @@
   color: var(--brt-green);
   padding: 3px 10px;
   border: 2px solid var(--brt-green);
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .uploadImgButton:hover {
