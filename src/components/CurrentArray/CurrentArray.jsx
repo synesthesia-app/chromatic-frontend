@@ -19,14 +19,24 @@ export default function CurrentArray() {
   console.log('paletteName :>> ', paletteName);
   const [name, setName] = useState('');
   const [tone, setTone] = useState('');
+  const [swatchIndex, setSwatchIndex] = useState('');
   const [isSequencing, setIsSequencing] = useState(false);
 
-  function handleSwatchClick(swatch) {
+  function handleSwatchClick(swatch, index) {
     setName(swatch.name);
     setTone(swatch.tone);
+    setSwatchIndex(index);
     const synth3 = new Tone.Synth().toDestination();
     synth3.triggerAttackRelease(swatch.tone, '4n');
   }
+
+  function handleSwatchDelete(swatch, index) {
+    const filteredPalette = colorPalette.filter((swatch, index) => index != swatchIndex);
+    setColorPalette(filteredPalette);
+
+  }
+
+
 
   function handleResetPalette() {
     setColorPalette([]);
@@ -79,6 +89,7 @@ export default function CurrentArray() {
     setIsSequencing(false);
   }
 
+
   return (
     <>
       <section className={styles.arraySection}>
@@ -93,37 +104,37 @@ export default function CurrentArray() {
           />
           <div className={styles.displayArray}>
             <div className={`${styles.arrayContainer} ${styles2.scrollbar}`}>
-              {colorPalette.map((swatch, i) => {
+              {colorPalette.map((swatch, index) => {
                 return (
                   <div
-                    key={swatch.name + i}
+                    key={swatch.name + index}
                     className={styles.swatch}
                     style={{
                       backgroundColor: `hsl(${swatch.hue}, ${swatch.sat}%,${swatch.light}%)`,
                     }}
                     title={`${swatch.name}`}
-                    onClick={() => handleSwatchClick(swatch)}
+                    onClick={() => handleSwatchClick(swatch, index)}
                   ></div>
                 );
               })}
             </div>
           </div>
           <section className={styles.nameAndButton}>
-            {/* <div>
-              {name && (
-                <h3>
-                  {name} - {tone}
-                </h3>
-              )}
-            </div> */}
           </section>
         </form>
         <div className={styles.labelAndButtons}>
           <div className={styles.nameAndTone}>
             {name && (
-              <h3>
-                {name} - {tone}
-              </h3>
+              <div className={styles.iconAndLabel}>
+                <img
+                  src="./trash@2x.png" alt=""
+                  className={styles.trashIcon}
+                  onClick={handleSwatchDelete}
+                />
+                <h3>
+                  {name} - {tone}
+                </h3>
+              </div>
             )}
           </div>
           <div className={styles.itMovesTheButtonsToTheRight}>

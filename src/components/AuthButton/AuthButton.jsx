@@ -18,7 +18,7 @@ export default function AuthButton() {
   };
 
   return (
-    <div className={styles.logout}>
+    <div className={styles.routes}>
       {userObj?.username ? (
         <Link to="*" className={styles.navLink} onClick={handleLogout}>
           Logout

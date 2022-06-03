@@ -27,7 +27,12 @@ export default function ImageScroller() {
             return (
               <img
                 key={image}
-                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  objectFit: 'cover',
+                  cursor: 'pointer',
+                }}
                 src={image.imageName}
                 alt={image.publicId}
                 onClick={handleImageSwap}

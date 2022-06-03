@@ -58,3 +58,7 @@
   justify-content: center;
   font-size: 1.25rem;
 }
+
+.clickAColor {
+  color: var(--brt-green);
+}
