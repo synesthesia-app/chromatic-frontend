@@ -18,6 +18,7 @@ export default function SavedColors() {
         {palettes?.map((palette) => (
           <SavedPalette
             key={palette.id}
+            id={palette.id}
             name={palette.name}
             swatchArr={palette.swatchArr}
           />
