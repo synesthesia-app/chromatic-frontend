@@ -1,27 +1,11 @@
 import styles from './ImageScroller.css';
 import { useEffect, useState } from 'react';
-import { AdvancedImage } from '@cloudinary/react';
 import { useUser } from '../../context/UserProvider';
 import { CloudInstance } from '../../services/Cloudinary';
-import { fill } from '@cloudinary/url-gen/actions/resize';
+import { defaultArray } from './defaultArray';
 
 export default function ImageScroller() {
-  const { imagesContainer, setDisplayedImage } = useUser();
-  const [cloudArr, setCloudArr] = useState([]);
-
-  const cld = CloudInstance();
-
-  // const loopImages = () => {
-  //   const container = imagesContainer.map((img) => {
-  //     let grabbedImg = cld.image(img);
-  //     return grabbedImg.resize(fill().width(80).height(80));
-  //   });
-  //   setCloudArr(container);
-  // };
-
-  // useEffect(() => {
-  //   loopImages();
-  // }, [imagesContainer]);
+  const { imagesContainer, setDisplayedImage, userObj } = useUser();
 
   useEffect(() => {
     console.log(`|| imagesContainer >`, imagesContainer);
@@ -31,16 +15,18 @@ export default function ImageScroller() {
     setDisplayedImage(e.target.alt);
   };
 
+  let userIs;
+  userObj.id ? (userIs = imagesContainer) : (userIs = defaultArray);
+
   return (
     <>
       <section className={styles.imageScroller}>
         <div className={styles.showImages}>
-          {imagesContainer.map((image) => {
-            // console.log(`|| image >`, image);
+          {userIs.map((image) => {
             return (
               <img
                 key={image}
-                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
                 src={image.imageName}
                 alt={image.publicId}
                 onClick={handleImageSwap}

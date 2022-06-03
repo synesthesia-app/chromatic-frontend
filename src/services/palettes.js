@@ -15,4 +15,15 @@ export async function createPalette(palette) {
   });
 
   return res.json();
-}
+};
+
+export async function deletePaletteById(id) {
+  await fetch(`${process.env.API_URL}/api/v1/palettes/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+  });
+};
+
+

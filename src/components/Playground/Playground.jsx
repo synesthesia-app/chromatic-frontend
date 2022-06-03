@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
-import { EyeDropper, useEyeDrop } from 'react-eyedrop';
+import { EyeDropper } from 'react-eyedrop';
 import { useColorNote } from '../../context/ColorNoteProvider';
 import { useUser } from '../../context/UserProvider';
 // import ImgUpload from './ImgUpload';
@@ -13,25 +13,13 @@ import { CloudInstance } from '../../services/Cloudinary';
 
 import styles from './Playground.css';
 
-import { fill } from '@cloudinary/url-gen/actions/resize';
+import { fill, fit } from '@cloudinary/url-gen/actions/resize';
 
 export default function Cloud() {
-  const [uploadedImg, setUploadedImg] = useState('');
-  const {
-    userColor,
-    setUserColor,
-    pickedColor,
-    setPickedColor,
-    colorObj,
-    setColorObj,
-  } = useColorNote();
-  const {
-    userObj,
-    imagesContainer,
-    setImagesContainer,
-    displayedImage,
-    setDisplayedImage,
-  } = useUser();
+
+  const { setUserColor, setPickedColor, setColorObj } = useColorNote();
+  const { userObj, setImagesContainer, displayedImage } = useUser();
+
 
   const unsigned = 'lfiwhmcn';
   const cld = CloudInstance();
@@ -69,6 +57,8 @@ export default function Cloud() {
     });
 
     synth.triggerAttackRelease(note + oct, '4n');
+
+    setCurrentColorNav(true);
   }
 
   // const [myImage, setMyImage] = useState(defaultImg);
@@ -93,9 +83,9 @@ export default function Cloud() {
   const handleUpload = async (publicUrl, publicId) => {
     console.log('in handleUpload');
     publicId && (await uploadImage(publicUrl, publicId, userObj.id));
-    console.log('upload img');
+
     const images = await getImages(userObj.id);
-    console.log(`|| images >`, images);
+
     setImagesContainer(images);
   };
 
@@ -103,14 +93,6 @@ export default function Cloud() {
     e.preventDefault();
     const cloudWidget = widget.open();
   };
-
-  // useEffect(() => {
-  //   const grabImage = (() => {
-  //     const images = await getImages(userObj.id);
-
-  //   })
-  //   grabImage();
-  // }, []);
 
   useEffect(() => {
     !userObj.id ? <></> : handleUpload();
@@ -122,17 +104,10 @@ export default function Cloud() {
     defaultImg = cld.image(displayedImage);
   }, [displayedImage]);
 
-  defaultImg.resize(fill().width(380).height(380));
+  defaultImg.resize(fit().width(380).height(380));
   return (
     <div>
       <div className={styles.imageButtons}>
-        {!userObj.id ? (
-          <></>
-        ) : (
-          <div className={styles.uploadImgButton} onClick={handleClick}>
-            Upload Image
-          </div>
-        )}
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"
@@ -142,6 +117,13 @@ export default function Cloud() {
             Eye Dropper
           </EyeDropper>
         </div>
+        {!userObj.id ? (
+          <></>
+        ) : (
+          <div className={styles.uploadImgButton} onClick={handleClick}>
+            Upload Image
+          </div>
+        )}
       </div>
       <AdvancedImage cldImg={defaultImg} />
     </div>
