@@ -71,8 +71,7 @@ export default function Cloud() {
     synth.triggerAttackRelease(note + oct, '4n');
   }
 
-  const defaultImg = cld.image(displayedImage);
-  const [myImage, setMyImage] = useState(defaultImg);
+  // const [myImage, setMyImage] = useState(defaultImg);
   const [selectedFile, setSelectedFile] = useState('');
   const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`;
 
@@ -83,16 +82,18 @@ export default function Cloud() {
     },
     (err, res) => {
       if (res.info.files) {
-        let imagePublicUrl = res.info.files[0].uploadInfo.url;
-        let imagePublicId = res.info.files[0].uploadInfo.publicId;
-        handleUpload(imagePublicUrl, imagePublicId);
+        console.log(res.info);
+        let publicUrl = res.info.files[0].uploadInfo.url;
+        let publicId = res.info.files[0].uploadInfo.public_id;
+        handleUpload(publicUrl, publicId);
       }
     }
   );
 
-  const handleUpload = async (publicId) => {
-    publicId && (await uploadImage(publicId, userObj.id));
-
+  const handleUpload = async (publicUrl, publicId) => {
+    console.log('in handleUpload');
+    publicId && (await uploadImage(publicUrl, publicId, userObj.id));
+    console.log('upload img');
     const images = await getImages(userObj.id);
     console.log(`|| images >`, images);
     setImagesContainer(images);
@@ -115,8 +116,13 @@ export default function Cloud() {
     !userObj.id ? <></> : handleUpload();
   }, [userObj.id]);
 
-  defaultImg.resize(fill().width(380).height(380));
+  let defaultImg = cld.image(displayedImage);
 
+  useEffect(() => {
+    defaultImg = cld.image(displayedImage);
+  }, [displayedImage]);
+
+  defaultImg.resize(fill().width(380).height(380));
   return (
     <div>
       <div className={styles.imageButtons}>

@@ -6,7 +6,7 @@ import { CloudInstance } from '../../services/Cloudinary';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 
 export default function ImageScroller() {
-  const { imagesContainer } = useUser();
+  const { imagesContainer, setDisplayedImage } = useUser();
   const [cloudArr, setCloudArr] = useState([]);
 
   const cld = CloudInstance();
@@ -25,19 +25,25 @@ export default function ImageScroller() {
 
   useEffect(() => {
     console.log(`|| imagesContainer >`, imagesContainer);
-  }, [imagesContainer]);
+  }, []);
+
+  const handleImageSwap = (e) => {
+    setDisplayedImage(e.target.alt);
+  };
 
   return (
     <>
       <section className={styles.imageScroller}>
         <div className={styles.showImages}>
           {imagesContainer.map((image) => {
-            console.log(`|| image >`, image);
+            // console.log(`|| image >`, image);
             return (
               <img
                 key={image}
                 style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                src={image}
+                src={image.imageName}
+                alt={image.publicId}
+                onClick={handleImageSwap}
               />
             );
           })}
