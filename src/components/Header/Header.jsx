@@ -18,16 +18,16 @@ export default function Header() {
 
   return (
     <header>
-      <Link className={styles.logoStuff} to="/main">
-        <div className={styles.brand}>
+      <div className={styles.brand}>
+        <Link className={styles.logoStuff} to="/main">
           <img
             className={styles.logo}
             src="../../chromaticLogoFullColor.png"
             alt="chromatic-logo"
           />
           <h1 className={styles.logoType}>CHROMATIC</h1>
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div className={styles.auth}>
         <p className={styles.welcome}>
           {userObj?.username ? `welcome ${userObj.username}` : 'Please sign in'}

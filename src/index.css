@@ -36,3 +36,11 @@ body {
   font-family: 'Pixel-Secondary';
   src: url('./assets/fonts/pixel-secondary.otf') format('opentype');
 }
+
+*::-webkit-scrollbar {
+  background-color: #666;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #111;
+}
