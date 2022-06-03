@@ -46,6 +46,12 @@ export default function CurrentArray() {
     setCurrentColorNav(false);
   }
 
+  function handlePlayPalette() {
+    const synth = new Tone.PolySynth().toDestination();
+    const tones = colorPalette.map((swatch) => swatch.tone);
+    synth.triggerAttackRelease(tones, 1);
+  }
+
   return (
     <>
       <section className={styles.arraySection}>
@@ -85,7 +91,12 @@ export default function CurrentArray() {
             </div>
             <div className={styles.arrayButtons}>
               <div className={styles.playPalette}>
-                <button className={styles.playArray}>play palette</button>
+                <button
+                  className={styles.playArray}
+                  onClick={handlePlayPalette}
+                >
+                  play palette
+                </button>
                 <button className={styles.playSequence}>play sequence</button>
               </div>
               <div className={styles.resetAndSave}>
