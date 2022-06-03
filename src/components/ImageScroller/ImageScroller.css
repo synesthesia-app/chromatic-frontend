@@ -1,0 +1,24 @@
+.imageScroller {
+  width: 900px;
+  height: 150px;
+  border: 2px solid var(--brt-green);
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+.showImages {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid #111;
+  border-right: 2px solid #333;
+  border-left: 2px solid #666;
+  border-top: 2px solid #999;
+  background-image: linear-gradient(#777 0%, #444 100%);
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

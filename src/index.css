@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&display=swap');
+
+:root {
+  --dk-grey: #292929;
+  --brt-green: #4cf000;
+  --brt-blue: #00fbff;
+  --brt-pink: #f0b;
+  --font-primary: 'Pixel-Primary', sans-serif;
+  --font-secondary: 'Pixel-Secondary', sans-serif;
+  --font-size-nav: clamp(10px, 0.75vw, 16px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Reem Kufi', sans-serif;
+  text-decoration: none;
+}
+
+html,
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--dk-grey);
+}
+
+@font-face {
+  font-family: 'Pixel-Primary';
+  src: url('./assets/fonts/pixel-primary.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Pixel-Secondary';
+  src: url('./assets/fonts/pixel-secondary.otf') format('opentype');
+}
+
+*::-webkit-scrollbar {
+  background-color: #666;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #111;
+}

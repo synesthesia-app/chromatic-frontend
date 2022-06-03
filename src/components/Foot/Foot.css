@@ -1,0 +1,26 @@
+.footer {
+  padding: 0 20px;
+  height: 60px;
+  width: 900px;
+  border-top: 2px solid var(--brt-green);
+  color: var(--brt-green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+}
+
+.footerLogo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerName {
+  font-style: italic;
+}
+
+.footImage {
+  height: 35px;
+}

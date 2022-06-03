@@ -1,0 +1,9 @@
+.savedColors {
+  min-width: 100px;
+  height: 374px;
+  background-color: var(--dk-grey);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+}

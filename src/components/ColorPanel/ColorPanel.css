@@ -1,0 +1,24 @@
+.info {
+  width: 350px;
+}
+
+.infoSection {
+  width: inherit;
+  padding: 20px;
+  min-height: 374px;
+  border: 2px solid var(--brt-green);
+}
+
+.holdsButtons {
+  padding-left: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.buttonStyle {
+  cursor: pointer;
+  color: var(--dk-grey);
+  padding: 3px 8px;
+  display: flex;
+}
