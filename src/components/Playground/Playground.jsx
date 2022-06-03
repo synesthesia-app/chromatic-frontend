@@ -123,13 +123,6 @@ export default function Cloud() {
   return (
     <div>
       <div className={styles.imageButtons}>
-        {!userObj.id ? (
-          <></>
-        ) : (
-          <div className={styles.uploadImgButton} onClick={handleClick}>
-            Upload Image
-          </div>
-        )}
         <div className={styles.holdsEyeDropper}>
           <EyeDropper
             buttonClasses="eye-dropper"
@@ -139,6 +132,13 @@ export default function Cloud() {
             Eye Dropper
           </EyeDropper>
         </div>
+        {!userObj.id ? (
+          <></>
+        ) : (
+          <div className={styles.uploadImgButton} onClick={handleClick}>
+            Upload Image
+          </div>
+        )}
       </div>
       <AdvancedImage cldImg={defaultImg} />
     </div>
