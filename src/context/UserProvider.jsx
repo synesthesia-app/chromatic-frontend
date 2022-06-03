@@ -35,10 +35,6 @@ export const UserProvider = ({ children }) => {
     if (currentUser) setUserObj(currentUser);
   }, []);
 
-  // const logout = async () => {
-  //   await signOut().then(() => setUserObj({}));
-  // };
-
   return (
     <UserContext.Provider
       // value={value}
