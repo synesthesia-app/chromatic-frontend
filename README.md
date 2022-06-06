@@ -1,5 +1,3 @@
-https://miro.com/app/board/uXjVOy8ab7k=/?share_link_id=825397725942
-
 # CHROMATIC
 
 ## Project Description
@@ -46,7 +44,7 @@ Inspired by colorblind Spanish-Irish cyborg artist Neil Harbisson (<a href = "ht
 ### Planning
 
 Our core project planning was done with a Miro board ( 
-<a href="https://miro.com/app/board/uXjVO9xfIEM=/?share_link_id=822400900447"> see here </a>)
+<a href="https://miro.com/app/board/uXjVOy8ab7k=/?share_link_id=825397725942"> see here </a>)
 
 ### Third Party API
 
